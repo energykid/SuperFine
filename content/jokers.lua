@@ -80,7 +80,7 @@ SMODS.Joker {
         end
       end
       for i = 1, myPosition - 1 do
-        table.insert(VoidBlasts, #VoidBlasts + 1, newVoidBlast(G.jokers.cards[i].T.x, G.jokers.cards[i].T.y, i - 1))
+        table.insert(Particles, #Particles + 1, NewParticle(G.jokers.cards[i].VT.x, G.jokers.cards[i].VT.y, i - 1))
         G.jokers.cards[i].VT.scale = G.jokers.cards[i].VT.scale * 0.8
         SMODS.debuff_card(G.jokers.cards[i], true, 'mng_cardVoided')
         card.ability.amount = card.ability.amount + 1

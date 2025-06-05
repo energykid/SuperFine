@@ -32,9 +32,25 @@ newVoidBlast = function(x, y, delay)
   }
 end
 
+SMODS.load_file("systems/particle_manager.lua")()
 SMODS.load_file("content/jokers.lua")()
 
+tm = 0
+
 function Mng_DrawEverything()
+  
+  for _, v in pairs(Particles) do
+    v.Update(v)
+    v.Draw(v)
+  end
+  
+  --[[
+  
+  tm = tm + 0.2
+  if tm >= 10 then tm = 0 end
+  
+  --local spr2 = Sprite(0.5, 0, 2, 2, G.ASSET_ATLAS["mng_VoidBlast"], { x = math.floor(tm), y = 0 })
+  --spr2:draw()
   
   if (#VoidBlasts > 0) then
     for i = 0, #VoidBlasts do
@@ -45,10 +61,12 @@ function Mng_DrawEverything()
         VoidBlasts[i].Update(VoidBlasts[i])
         
         if vb.Frame >= 0 and vb.Frame < 10 then
-          local spr = Sprite(vb.X + 54, vb.Y + 35.5, 2, 2 * 2, G.ASSET_ATLAS["mng_VoidBlast"], { x = vb.Frame, y = 0 })
+          local spr = Sprite(vb.X + 1, vb.Y + 1, 2.5, 2.5, G.ASSET_ATLAS["mng_VoidBlast"], { x = vb.Frame, y = 0 })
           spr:draw()
         end
       end
     end
   end
+  
+  ]]
 end
