@@ -1,0 +1,1 @@
+SMODS.load_file("content/jokers.lua")()
