@@ -8,6 +8,13 @@ SMODS.Atlas {
 -- Ecstatic Joker
 SMODS.Joker {
   key = 'ecstaticJoker',
+  
+  loc_txt = {
+    name = "Ecstatic Joker",
+    text = {
+      "{X:mult,C:white}X#1#{} Mult"
+    }
+  },
 
   config = { extra = { Xmult = 1.2 } },
   
@@ -21,13 +28,6 @@ SMODS.Joker {
   loc_vars = function(self, info_queue, card)
     return {vars = card.ability.extra.Xmult}
   end,
-
-  loc_txt = {
-    name = "Ecstatic Joker",
-    text = {
-      "{X:mult,C:white}X1.2{} Mult"
-    }
-  },
   
   calculate = function(self, card, context)
     if context.joker_main then
@@ -39,9 +39,25 @@ SMODS.Joker {
   end
 }
 
+
+
+-- Voidcard Drawing
+SMODS.load_file("content/specific/voidcard_vortex.lua")()
 -- Voidcard
 SMODS.Joker {
   key = 'voidcard',
+  
+  loc_txt = {
+    name = "Voidcard",
+    text = {
+      "Debuffs all jokers to",
+      "the left of Voidcard",
+      "",
+      "{X:mult,C:white}X#1#{} Mult,",
+      "plus {X:mult,C:white}X#1#{} Mult for",
+      "each joker debuffed"
+    }
+  }
   
   config = { extra = { Xmult = 1 }, amount = 1 },
   
@@ -56,20 +72,6 @@ SMODS.Joker {
     return {vars = card.ability.extra.Xmult}
   end,
   
-  loc_txt = {
-    name = "Voidcard",
-    text = {
-      "Causes all jokers to",
-      "the left of Voidcard",
-      "to do nothing",
-      "",
-      "+{X:mult,C:white}X1{} Mult for",
-      "each negated joker,",
-      "starting from +{X:mult,C:white}X2",
-      "for one joker"
-    }
-  },
-  
   calculate = function(self, card, context)
     if context.before then
       card.ability.amount = 1
@@ -81,13 +83,14 @@ SMODS.Joker {
         end
       end
       for i = 1, myPosition - 1 do
+        table.insert(VoidBlasts, #VoidBlasts + 1, newVoidBlast(G.jokers.cards[i].VT.x, G.jokers.cards[i].VT.y, i - 1))
         G.jokers.cards[i].VT.scale = G.jokers.cards[i].VT.scale * 0.8
         SMODS.debuff_card(G.jokers.cards[i], true, 'mng_cardVoided')
         card.ability.amount = card.ability.amount + 1
       end
       if (myPosition ~= 0) then
         return {
-          message = "VOIDED!"
+          message = "VOIDED..."
         }
       end
     end

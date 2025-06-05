@@ -1,19 +1,22 @@
 return {
-  voidcard_debuff = "Voided.",
   descriptions = {
     Joker = {
-      ecstaticJoker = {
+      mng_ecstaticJoker = {
         name = "Ecstatic Joker",
         text = {
-          "{X:mult,C:white}X1.2{} Mult"
+          "{X:mult,C:white}X#1#{} Mult"
         }
       },
-      voidcard = {
+      mng_voidcard = {
         name = "Voidcard",
         text = {
-          "Debuffs all jokers to the left",
-          "X2.5 Mult for each joker debuffed"
-          }
+          "Debuffs all jokers to",
+          "the left of Voidcard",
+          "",
+          "{X:mult,C:white}X#1#{} Mult,",
+          "plus {X:mult,C:white}X#1#{} Mult for",
+          "each joker debuffed"
+        }
       }
     }
   }
