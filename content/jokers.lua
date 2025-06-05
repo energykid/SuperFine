@@ -7,12 +7,13 @@ SMODS.Atlas {
 
 -- Ecstatic Joker
 SMODS.Joker {
+
   key = 'ecstaticJoker',
   
   loc_txt = {
     name = "Ecstatic Joker",
     text = {
-      "{X:mult,C:white}X#1#{} Mult"
+      "{X:mult,C:white}X1.2{} Mult"
     }
   },
 
@@ -39,10 +40,6 @@ SMODS.Joker {
   end
 }
 
-
-
--- Voidcard Drawing
-SMODS.load_file("content/specific/voidcard_vortex.lua")()
 -- Voidcard
 SMODS.Joker {
   key = 'voidcard',
@@ -53,11 +50,11 @@ SMODS.Joker {
       "Debuffs all jokers to",
       "the left of Voidcard",
       "",
-      "{X:mult,C:white}X#1#{} Mult,",
-      "plus {X:mult,C:white}X#1#{} Mult for",
+      "{X:mult,C:white}X1{} Mult,",
+      "plus {X:mult,C:white}X1{} Mult for",
       "each joker debuffed"
     }
-  }
+  },
   
   config = { extra = { Xmult = 1 }, amount = 1 },
   
@@ -83,7 +80,7 @@ SMODS.Joker {
         end
       end
       for i = 1, myPosition - 1 do
-        table.insert(VoidBlasts, #VoidBlasts + 1, newVoidBlast(G.jokers.cards[i].VT.x, G.jokers.cards[i].VT.y, i - 1))
+        table.insert(VoidBlasts, #VoidBlasts + 1, newVoidBlast(G.jokers.cards[i].T.x, G.jokers.cards[i].T.y, i - 1))
         G.jokers.cards[i].VT.scale = G.jokers.cards[i].VT.scale * 0.8
         SMODS.debuff_card(G.jokers.cards[i], true, 'mng_cardVoided')
         card.ability.amount = card.ability.amount + 1
