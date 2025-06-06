@@ -1,0 +1,14 @@
+{
+	"id": "superfine",
+	"name": "SuperFine!!",
+	"display_name": "SuperFine!!",
+	"author": ["ENNWAY"],
+	"description": "Hi guys its me the description, i get paid $10/hour to stand here and tell people that im here",
+	"prefix": "supf",
+	"main_file": "superfine.lua",
+	"priority": 0,
+	"badge_colour": "FF4A93",
+	"badge_text_colour": "FFFFFF",
+	"version": "1.0.0",
+	"dependencies": [],
+}

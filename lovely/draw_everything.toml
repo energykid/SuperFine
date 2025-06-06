@@ -4,11 +4,18 @@ priority = 0
 
 [[patches]]
 [patches.pattern]
-target = "main.lua"
-pattern = "G:draw()"
+target = "game.lua"
+pattern = '''
+if G.SPLASH_FRONT then
+            love.graphics.push()
+            G.SPLASH_FRONT:translate_container()
+            G.SPLASH_FRONT:draw()
+            love.graphics.pop()
+        end
+'''
 position = "after"
 payload = '''
-Mng_DrawEverything()
+Supf_DrawEverything()
 '''
 match_indent = true
 times = 1

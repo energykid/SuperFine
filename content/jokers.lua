@@ -1,6 +1,6 @@
 SMODS.Atlas {
 	key = "Jokers",
-	path = "mng_Jokers.png",
+	path = "supf_Jokers.png",
 	px = 71,
 	py = 95
 }
@@ -9,13 +9,6 @@ SMODS.Atlas {
 SMODS.Joker {
 
   key = 'ecstaticJoker',
-  
-  loc_txt = {
-    name = "Ecstatic Joker",
-    text = {
-      "{X:mult,C:white}X1.2{} Mult"
-    }
-  },
 
   config = { extra = { Xmult = 1.2 } },
   
@@ -27,7 +20,10 @@ SMODS.Joker {
   pos = { x = 0, y = 0 },
 
   loc_vars = function(self, info_queue, card)
-    return {vars = card.ability.extra.Xmult}
+    return {
+      key = "supf_ecstaticJoker",
+      vars = { card.ability.extra.Xmult }
+      }
   end,
   
   calculate = function(self, card, context)
@@ -40,35 +36,73 @@ SMODS.Joker {
   end
 }
 
-SMODS.load_file("content/particles/voidcard_particle.lua")()
+-- Cucumber
+SMODS.Joker {
+
+  key = 'supf_cucumber',
+
+  config = { extra = { mult = 15, odds = 3 } },
+  
+  rarity = 1,
+  
+  cost = 4,
+  
+  atlas = 'Jokers',
+  pos = { x = 2, y = 0 },
+
+  loc_vars = function(self, info_queue, card)
+    local KEY = "supf_cucumber"
+    if card.ability.extra.mult == 0 then
+      KEY = "supf_cucumber_alt"
+    end
+    
+    return { key = KEY }
+  end,
+  
+  calculate = function(self, card, context)
+    if context.joker_main then
+      if card.ability.extra.mult ~= 0 then 
+        return {
+          mult_mod = card.ability.extra.mult,
+          message = localize{ type = 'variable', key = 'a_mult', vars = { card.ability.extra.mult }}
+        }
+      end
+    end
+    if context.end_of_round and not context.repetition and context.game_over == false and not context.blueprint then
+      if card.ability.extra.mult == 0 then 
+        card.ability.extra.mult = 10 
+        return {
+					message = 'Reset!'
+				}
+      elseif pseudorandom('gros_michel2') < G.GAME.probabilities.normal / card.ability.extra.odds then
+        card.ability.extra.mult = 0
+        return {
+					message = 'Disabled!'
+				}
+      end
+    end
+  end
+}
 
 -- Voidcard
+SMODS.load_file("content/particles/voidcard_particle.lua")()
 SMODS.Joker {
   key = 'voidcard',
-  
-  loc_txt = {
-    name = "Voidcard",
-    text = {
-      "Debuffs all jokers to",
-      "the left of Voidcard",
-      "",
-      "{X:mult,C:white}X1{} Mult,",
-      "plus {X:mult,C:white}X1{} Mult for",
-      "each joker debuffed"
-    }
-  },
   
   config = { extra = { Xmult = 1 }, amount = 1 },
   
   rarity = 3,
   
-  cost = 7,
+  cost = 6,
   
   atlas = 'Jokers',
   pos = { x = 1, y = 0 },
   
   loc_vars = function(self, info_queue, card)
-    return {vars = card.ability.extra.Xmult}
+    return {
+      key = "supf_voidcard",
+      vars = { card.ability.extra.Xmult }
+    }
   end,
   
   calculate = function(self, card, context)
@@ -82,14 +116,17 @@ SMODS.Joker {
         end
       end
       for i = 1, myPosition - 1 do
-        table.insert(MngParticles, #MngParticles + 1, NewVoidBlast(G.jokers.cards[i].VT.x, G.jokers.cards[i].VT.y, i))
+        local pos = getCardPosition(G.jokers.cards[i])
+        local blst = NewVoidBlast(pos.x + 115, pos.y + 145, i)
+        table.insert(SupfParticles, #SupfParticles + 1, blst)
         G.jokers.cards[i].VT.scale = G.jokers.cards[i].VT.scale * 0.8
-        SMODS.debuff_card(G.jokers.cards[i], true, 'mng_cardVoided')
+        SMODS.debuff_card(G.jokers.cards[i], true, 'supf_cardVoided')
         card.ability.amount = card.ability.amount + 1
       end
       if (myPosition ~= 0) then
         return {
-          message = "VOIDED..."
+          message = "Voided",
+          colour = G.C.JOKER_GREY
         }
       end
     end
@@ -104,13 +141,13 @@ SMODS.Joker {
     
     if context.selling_card and context.card == card then
       for i = 1, #G.jokers.cards do
-        SMODS.debuff_card(G.jokers.cards[i], false, 'mng_cardVoided')
+        SMODS.debuff_card(G.jokers.cards[i], false, 'supf_cardVoided')
       end
     end
       
     if context.end_of_round then
       for i = 1, #G.jokers.cards do
-        SMODS.debuff_card(G.jokers.cards[i], false, 'mng_cardVoided')
+        SMODS.debuff_card(G.jokers.cards[i], false, 'supf_cardVoided')
       end
     end
   end

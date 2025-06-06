@@ -1,20 +1,22 @@
-MngParticles = {}
+SupfParticles = {}
 
-MngParticle = {}
-
-function NewParticle(x, y, atlas, numFrames)
+function NewParticle(x, y, atl, numFrames)
   return {
     X = x,
     Y = y,
     ScaleX = 2,
     ScaleY = 2,
     Rotation = 0,
-    Atlas = atlas,
+    Atlas = atl,
     Xvel = 0,
     Yvel = 0,
     Frame = 0,
     MaxFrames = numFrames,
     FrameCounter = 0,
+    Shadow = true,
+    ShadowHeight = 1,
+    
+    FinalFrame = love.graphics.newQuad(0,0,1,1,1,1),
     
     BaseUpdate = function(tbl)
       tbl.X = tbl.X + tbl.Xvel
@@ -33,18 +35,45 @@ function NewParticle(x, y, atlas, numFrames)
     
     Draw = function(tbl)
       if tbl.Frame >= 0 and tbl.Frame < tbl.MaxFrames then
-        spr = Sprite(tbl.X + 1, tbl.Y + 1, tbl.ScaleX, tbl.ScaleY, G.ASSET_ATLAS[tbl.Atlas], { x = tbl.Frame, y = 0 })
-        spr.VT.r = tbl.Rotation
-        spr:draw()
+        tbl.FinalFrame = love.graphics.newQuad(tbl.Frame, 0, 1, 1, tbl.MaxFrames, 1)
+        
+        if (tbl.Shadow) then
+          
+          local width, height = love.graphics.getDimensions()
+          
+          love.graphics.setColor(0, 0, 0, 0.4)
+          love.graphics.draw(
+              G.ASSET_ATLAS[tbl.Atlas].image,
+              tbl.FinalFrame,
+              lerp(tbl.X, width / 2, 0.025 * tbl.ShadowHeight),
+              lerp(tbl.Y, height / 2, 0.025 * tbl.ShadowHeight),
+              tbl.Rotation,
+              G.ASSET_ATLAS[tbl.Atlas].px * tbl.ScaleX,
+              G.ASSET_ATLAS[tbl.Atlas].py * tbl.ScaleY,
+              0.5, 0.5
+          )
+        end
+        
+        love.graphics.setColor(1, 1, 1, 1)
+        love.graphics.draw(
+            G.ASSET_ATLAS[tbl.Atlas].image,
+            tbl.FinalFrame,
+            tbl.X,
+            tbl.Y,
+            tbl.Rotation,
+            G.ASSET_ATLAS[tbl.Atlas].px * tbl.ScaleX,
+            G.ASSET_ATLAS[tbl.Atlas].py * tbl.ScaleY,
+            0.5, 0.5
+        )
       end
     end,
     
     Destroy = function(tbl)
       local i = 1
-      for k, v in pairs(MngParticles) do
+      for k, v in pairs(SupfParticles) do
         if v == tbl then i = k break end
       end
-      table.remove(MngParticles, i)
+      table.remove(SupfParticles, i)
     end
   }
 end
