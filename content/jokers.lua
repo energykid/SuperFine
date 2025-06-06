@@ -40,6 +40,8 @@ SMODS.Joker {
   end
 }
 
+SMODS.load_file("content/particles/voidcard_particle.lua")()
+
 -- Voidcard
 SMODS.Joker {
   key = 'voidcard',
