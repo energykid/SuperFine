@@ -84,6 +84,94 @@ SMODS.Joker {
   end
 }
 
+-- Cicadas
+SMODS.Atlas {
+	key = "cicada",
+	path = "supf_cicada.png",
+	px = 14,
+	py = 24
+}
+
+CicadaTimer = 0
+
+function drawCicada(tbl)
+  love.graphics.setColor(1, 1, 1, 1)
+  love.graphics.draw(
+    G.ASSET_ATLAS["supf_cicada"].image,
+    love.graphics.newQuad(0, 0, 1, 1, 1, 1),
+    tbl.x,
+    tbl.y,
+    0,
+    G.ASSET_ATLAS["supf_cicada"].px * G.CANV_SCALE,
+    G.ASSET_ATLAS["supf_cicada"].py * G.CANV_SCALE,
+    0.5, 0.5)
+end
+
+SMODS.DrawStep {
+  key = 'supf_cicadas',
+  order = 0,
+  func = function(card, layer)
+    
+    if card.ability.cicadasToDraw then      
+      for i, cic in pairs(card.ability.cicadasToDraw) do
+        cic.t = cic.t + 1
+        cic.x = getCardPosition(card).x + math.sin(cic.t / cic.xmod) * 35
+        cic.y = getCardPosition(card).y + math.sin(cic.t / cic.ymod) * 35
+      end
+      
+      for i, cic in pairs(card.ability.cicadasToDraw) do
+        drawCicada(cic)
+      end
+    end
+  end
+}
+
+SMODS.Joker {
+
+  key = 'supf_cicadas',
+
+  config = { extra = { mult = 2 }, cicadas = 1, cicadasToDraw = {
+      
+      {x = 0, y = 0, xmod = 7 + (math.random(1000) / 100), ymod = 7 + (math.random(1000) / 100), t = math.random(1000) / 100}
+      
+      } },
+  
+  rarity = 3,
+  
+  cost = 6,
+  
+  atlas = 'Jokers',
+  pos = { x = 3, y = 0 },
+
+  loc_vars = function(self, info_queue, card)    
+    local KEY = "supf_cicada"
+    if (card.ability.cicadas > 1) then KEY = "supf_cicadas" end
+    return {
+      key = KEY,
+      vars = { card.ability.extra.mult, card.ability.cicadas }
+      }
+  end,
+  
+  calculate = function(self, card, context)
+    if context.joker_main then
+      return {
+        mult_mod = card.ability.extra.mult,
+        message = localize{ type = 'variable', key = 'a_mult', vars = { card.ability.extra.mult }}
+      }
+    end
+    if context.end_of_round and not context.repetition and context.game_over == false and not context.blueprint then
+      if (card.ability.extra.mult < 1024) then 
+        card.ability.extra.mult = card.ability.extra.mult * 2
+        card.ability.cicadas = card.ability.cicadas * 2
+        
+        for i = #card.ability.cicadasToDraw, card.ability.cicadas - 1 do
+          table.insert(card.ability.cicadasToDraw, #card.ability.cicadasToDraw, {x = 0, y = 0, xmod = 7 + (math.random(1000) / 100), ymod = 7 + (math.random(1000) / 100), t = math.random(1000) / 100})
+        end
+      end
+    end
+  end
+}
+
 -- Voidcard
 SMODS.load_file("content/particles/voidcard_particle.lua")()
 SMODS.Joker {
@@ -112,12 +200,12 @@ SMODS.Joker {
       for i = 1, #G.jokers.cards do
         if G.jokers.cards[i] == card then
           myPosition = i
-          break 
+          break
         end
       end
       for i = 1, myPosition - 1 do
         local pos = getCardPosition(G.jokers.cards[i])
-        local blst = NewVoidBlast(pos.x + 115, pos.y + 145, i)
+        local blst = NewVoidBlast(pos.x, pos.y, i)
         table.insert(SupfParticles, #SupfParticles + 1, blst)
         G.jokers.cards[i].VT.scale = G.jokers.cards[i].VT.scale * 0.8
         SMODS.debuff_card(G.jokers.cards[i], true, 'supf_cardVoided')

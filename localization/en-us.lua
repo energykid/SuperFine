@@ -37,6 +37,28 @@ return {
           "increase value back",
           "to {C:mult}+15{} Mult"
         }
+      },
+      supf_cicada = {
+        name = "Cicada",
+        text = {
+          "{C:mult}+#1#{} Mult",
+          "At end of round,",
+          "multiply this",
+          "value by 2,",
+          "up to a maximum of",
+          "1024"
+        }
+      },
+      supf_cicadas = {
+        name = "#2# Cicadas",
+        text = {
+          "{C:mult}+#1#{} Mult",
+          "At end of round,",
+          "multiply this",
+          "value by 2,",
+          "up to a maximum of",
+          "1024"
+        }
       }
     }
   }
