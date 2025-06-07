@@ -102,8 +102,8 @@ function drawCicada(tbl)
     tbl.x,
     tbl.y,
     0,
-    G.ASSET_ATLAS["supf_cicada"].px * G.CANV_SCALE,
-    G.ASSET_ATLAS["supf_cicada"].py * G.CANV_SCALE,
+    G.ASSET_ATLAS["supf_cicada"].px * (G.TILESCALE / 4),
+    G.ASSET_ATLAS["supf_cicada"].py * (G.TILESCALE / 4),
     0.5, 0.5)
 end
 
@@ -115,8 +115,8 @@ SMODS.DrawStep {
     if card.ability.cicadasToDraw then      
       for i, cic in pairs(card.ability.cicadasToDraw) do
         cic.t = cic.t + 1
-        cic.x = getCardPosition(card).x + math.sin(cic.t / cic.xmod) * 35
-        cic.y = getCardPosition(card).y + math.sin(cic.t / cic.ymod) * 35
+        cic.x = getCardPosition(card).x - 17.5 + (math.sin(cic.t / cic.xmod) * 35)
+        cic.y = getCardPosition(card).y - 17.5 + (math.sin(cic.t / cic.ymod) * 35)
       end
       
       for i, cic in pairs(card.ability.cicadasToDraw) do

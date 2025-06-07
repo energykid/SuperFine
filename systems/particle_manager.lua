@@ -45,11 +45,11 @@ function NewParticle(x, y, atl, numFrames)
           love.graphics.draw(
               G.ASSET_ATLAS[tbl.Atlas].image,
               tbl.FinalFrame,
-              lerp(tbl.X, width / 2, 0.025 * tbl.ShadowHeight),
-              lerp(tbl.Y, height / 2, 0.025 * tbl.ShadowHeight),
+              lerp(tbl.X, width / 2, 0.025 * tbl.ShadowHeight * (G.TILESCALE / 4)),
+              lerp(tbl.Y, height / 2, 0.025 * tbl.ShadowHeight * (G.TILESCALE / 4)),
               tbl.Rotation,
-              G.ASSET_ATLAS[tbl.Atlas].px * tbl.ScaleX,
-              G.ASSET_ATLAS[tbl.Atlas].py * tbl.ScaleY,
+              G.ASSET_ATLAS[tbl.Atlas].px * tbl.ScaleX * (G.TILESCALE / 4),
+              G.ASSET_ATLAS[tbl.Atlas].py * tbl.ScaleY * (G.TILESCALE / 4),
               0.5, 0.5
           )
         end
@@ -61,8 +61,8 @@ function NewParticle(x, y, atl, numFrames)
             tbl.X,
             tbl.Y,
             tbl.Rotation,
-            G.ASSET_ATLAS[tbl.Atlas].px * tbl.ScaleX,
-            G.ASSET_ATLAS[tbl.Atlas].py * tbl.ScaleY,
+            G.ASSET_ATLAS[tbl.Atlas].px * tbl.ScaleX * (G.TILESCALE / 4),
+            G.ASSET_ATLAS[tbl.Atlas].py * tbl.ScaleY * (G.TILESCALE / 4),
             0.5, 0.5
         )
       end
