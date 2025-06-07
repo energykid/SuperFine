@@ -59,6 +59,16 @@ return {
           "up to a maximum of",
           "{C:mult}128{} Mult"
         }
+      },
+      supf_glimby = {
+        name = "Glimby",
+        text = {
+          "{X:mult,C:white}X#1#{} Mult",
+          "If any Cucumber scores",
+          "from adjacent Joker slot,",
+          "gives {X:mult,C:white}X#2#{} Mult",
+          "then {C:red,E:1}explodes"
+        }
       }
     }
   }

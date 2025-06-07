@@ -19,3 +19,38 @@ function scalePosition(xxx, yyy)
     local yy = yyy * G.TILESCALE
   return {x = xx, y = yy}
 end
+
+function drawShadedSprite(x, y, r, sx, sy, atlas, fr, maxfr)
+  r = r or 0
+  sx = sx or 1
+  sy = sy or sx
+  atlas = atlas or ""
+  fr = fr or 0
+  maxfr = maxfr or 1
+  
+  local w, h = love.graphics.getDimensions()
+  
+  if atlas ~= "" then
+    love.graphics.setColor(0, 0, 0, 0.4)
+    love.graphics.draw(
+      G.ASSET_ATLAS[atlas].image,
+      love.graphics.newQuad(fr, 0, 1, 1, maxfr, 1),
+      lerp(x, w / 2, 0.015),
+      y + scalePosition(0, 3).y,
+      r,
+      G.ASSET_ATLAS[atlas].px * (G.TILESCALE / 4) * sx,
+      G.ASSET_ATLAS[atlas].py * (G.TILESCALE / 4) * sy,
+      0.5, 0.5)
+    
+    love.graphics.setColor(1, 1, 1, 1)
+    love.graphics.draw(
+      G.ASSET_ATLAS[atlas].image,
+      love.graphics.newQuad(fr, 0, 1, 1, maxfr, 1),
+      x,
+      y,
+      r,
+      G.ASSET_ATLAS[atlas].px * (G.TILESCALE / 4) * sx,
+      G.ASSET_ATLAS[atlas].py * (G.TILESCALE / 4) * sy,
+      0.5, 0.5)
+  end
+end
