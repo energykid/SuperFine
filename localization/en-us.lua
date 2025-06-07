@@ -46,7 +46,7 @@ return {
           "multiply this",
           "value by 2,",
           "up to a maximum of",
-          "1024"
+          "{C:mult}128{} Mult"
         }
       },
       supf_cicadas = {
@@ -57,7 +57,7 @@ return {
           "multiply this",
           "value by 2,",
           "up to a maximum of",
-          "1024"
+          "{C:mult}128{} Mult"
         }
       }
     }

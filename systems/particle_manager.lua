@@ -37,19 +37,22 @@ function NewParticle(x, y, atl, numFrames)
       if tbl.Frame >= 0 and tbl.Frame < tbl.MaxFrames then
         tbl.FinalFrame = love.graphics.newQuad(tbl.Frame, 0, 1, 1, tbl.MaxFrames, 1)
         
+        love.graphics.setCanvas(G.CANVAS)
+        love.graphics.scale(G.CANV_SCALE)
+        
         if (tbl.Shadow) then
           
-          local width, height = love.graphics.getDimensions()
+          local w, h = love.graphics.getDimensions()
           
           love.graphics.setColor(0, 0, 0, 0.4)
           love.graphics.draw(
               G.ASSET_ATLAS[tbl.Atlas].image,
               tbl.FinalFrame,
-              lerp(tbl.X, width / 2, 0.025 * tbl.ShadowHeight * (G.TILESCALE / 4)),
-              lerp(tbl.Y, height / 2, 0.025 * tbl.ShadowHeight * (G.TILESCALE / 4)),
+              lerp(tbl.X + getScreenOffset().x, w / 2, 0.025 * tbl.ShadowHeight),
+              lerp(tbl.Y + getScreenOffset().y, h / 2, 0.025 * tbl.ShadowHeight),
               tbl.Rotation,
-              G.ASSET_ATLAS[tbl.Atlas].px * tbl.ScaleX * (G.TILESCALE / 4),
-              G.ASSET_ATLAS[tbl.Atlas].py * tbl.ScaleY * (G.TILESCALE / 4),
+              G.ASSET_ATLAS[tbl.Atlas].px * tbl.ScaleX * SUPF.DRAW_SCALE,
+              G.ASSET_ATLAS[tbl.Atlas].py * tbl.ScaleY * SUPF.DRAW_SCALE,
               0.5, 0.5
           )
         end
@@ -58,11 +61,11 @@ function NewParticle(x, y, atl, numFrames)
         love.graphics.draw(
             G.ASSET_ATLAS[tbl.Atlas].image,
             tbl.FinalFrame,
-            tbl.X,
-            tbl.Y,
+            tbl.X + getScreenOffset().x,
+            tbl.Y + getScreenOffset().y,
             tbl.Rotation,
-            G.ASSET_ATLAS[tbl.Atlas].px * tbl.ScaleX * (G.TILESCALE / 4),
-            G.ASSET_ATLAS[tbl.Atlas].py * tbl.ScaleY * (G.TILESCALE / 4),
+            G.ASSET_ATLAS[tbl.Atlas].px * tbl.ScaleX * SUPF.DRAW_SCALE,
+            G.ASSET_ATLAS[tbl.Atlas].py * tbl.ScaleY * SUPF.DRAW_SCALE,
             0.5, 0.5
         )
       end

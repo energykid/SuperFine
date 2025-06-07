@@ -70,7 +70,7 @@ SMODS.Joker {
     end
     if context.end_of_round and not context.repetition and context.game_over == false and not context.blueprint then
       if card.ability.extra.mult == 0 then 
-        card.ability.extra.mult = 10 
+        card.ability.extra.mult = 15
         return {
 					message = 'Reset!'
 				}
@@ -95,13 +95,29 @@ SMODS.Atlas {
 CicadaTimer = 0
 
 function drawCicada(tbl)
+  local r = 0
+  if (tbl.xv and tbl.yv) then
+    r = math.atan2(tbl.yv, tbl.xv) + math.rad(90)
+  end
+  love.graphics.setColor(0, 0, 0, 0.4)
+  local w, h= love.graphics.getDimensions()
+  love.graphics.draw(
+    G.ASSET_ATLAS["supf_cicada"].image,
+    love.graphics.newQuad(0, 0, 1, 1, 1, 1),
+    lerp(tbl.x, w / 2, 0.015),
+    lerp(tbl.y, h / 2, 0.015),
+    r,
+    G.ASSET_ATLAS["supf_cicada"].px * (G.TILESCALE / 4),
+    G.ASSET_ATLAS["supf_cicada"].py * (G.TILESCALE / 4),
+    0.5, 0.5)
+  
   love.graphics.setColor(1, 1, 1, 1)
   love.graphics.draw(
     G.ASSET_ATLAS["supf_cicada"].image,
     love.graphics.newQuad(0, 0, 1, 1, 1, 1),
     tbl.x,
     tbl.y,
-    0,
+    r,
     G.ASSET_ATLAS["supf_cicada"].px * (G.TILESCALE / 4),
     G.ASSET_ATLAS["supf_cicada"].py * (G.TILESCALE / 4),
     0.5, 0.5)
@@ -115,8 +131,12 @@ SMODS.DrawStep {
     if card.ability.cicadasToDraw then      
       for i, cic in pairs(card.ability.cicadasToDraw) do
         cic.t = cic.t + 1
-        cic.x = getCardPosition(card).x - 17.5 + (math.sin(cic.t / cic.xmod) * 35)
-        cic.y = getCardPosition(card).y - 17.5 + (math.sin(cic.t / cic.ymod) * 35)
+        local pos = scalePosition(45 / 2, 57 / 2)
+        local pos2 = scalePosition(math.sin(cic.t / cic.xmod * 1.2462) * 10, math.sin(cic.t / cic.xmod * 1.1356) * 12)
+        cic.xv = (getCardPosition(card).x + (math.sin(cic.t / cic.xmod) * pos.x) + (math.sin(cic.t / cic.xmod * 1.20836) * pos2.x)) - cic.x
+        cic.yv = (getCardPosition(card).y + (math.sin(cic.t / cic.ymod) * pos.y) + (math.sin(cic.t / cic.xmod * 1.08326) * pos2.y)) - cic.y
+        cic.x = cic.x + cic.xv
+        cic.y = cic.y + cic.yv
       end
       
       for i, cic in pairs(card.ability.cicadasToDraw) do
@@ -130,7 +150,7 @@ SMODS.Joker {
 
   key = 'supf_cicadas',
 
-  config = { extra = { mult = 2 }, cicadas = 1, cicadasToDraw = {
+  config = { extra = { mult = 1 }, cicadas = 1, cicadasToDraw = {
       
       {x = 0, y = 0, xmod = 7 + (math.random(1000) / 100), ymod = 7 + (math.random(1000) / 100), t = math.random(1000) / 100}
       
@@ -160,13 +180,18 @@ SMODS.Joker {
       }
     end
     if context.end_of_round and not context.repetition and context.game_over == false and not context.blueprint then
-      if (card.ability.extra.mult < 1024) then 
+      if (card.ability.extra.mult < 128) then 
         card.ability.extra.mult = card.ability.extra.mult * 2
         card.ability.cicadas = card.ability.cicadas * 2
         
         for i = #card.ability.cicadasToDraw, card.ability.cicadas - 1 do
           table.insert(card.ability.cicadasToDraw, #card.ability.cicadasToDraw, {x = 0, y = 0, xmod = 7 + (math.random(1000) / 100), ymod = 7 + (math.random(1000) / 100), t = math.random(1000) / 100})
         end
+        
+        return {
+          message = "+"..tostring(card.ability.extra.mult / 2).." Mult",
+          colour = G.C.RED
+        }
       end
     end
   end
