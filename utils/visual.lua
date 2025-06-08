@@ -20,13 +20,14 @@ function scalePosition(xxx, yyy)
   return {x = xx, y = yy}
 end
 
-function drawShadedSprite(x, y, r, sx, sy, atlas, fr, maxfr)
+function drawShadedSprite(x, y, r, sx, sy, atlas, fr, maxfr, shadow)
   r = r or 0
   sx = sx or 1
   sy = sy or sx
   atlas = atlas or ""
   fr = fr or 0
   maxfr = maxfr or 1
+  shadow = shadow or 2
   
   local w, h = love.graphics.getDimensions()
   
@@ -35,8 +36,8 @@ function drawShadedSprite(x, y, r, sx, sy, atlas, fr, maxfr)
     love.graphics.draw(
       G.ASSET_ATLAS[atlas].image,
       love.graphics.newQuad(fr, 0, 1, 1, maxfr, 1),
-      lerp(x, w / 2, 0.015),
-      y + scalePosition(0, 3).y,
+      lerp(x, w / 2, 0.015 * (shadow / 2)),
+      y + scalePosition(0, shadow).y,
       r,
       G.ASSET_ATLAS[atlas].px * (G.TILESCALE / 4) * sx,
       G.ASSET_ATLAS[atlas].py * (G.TILESCALE / 4) * sy,

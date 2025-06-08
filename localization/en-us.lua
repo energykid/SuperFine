@@ -10,11 +10,11 @@ return {
       supf_voidcard = {
         name = "Voidcard",
         text = {
-          "Debuffs all jokers to",
-          "the left of Voidcard",
-          "",
-          "{X:mult,C:white}X#1#{} Mult,",
-          "plus {X:mult,C:white}X#1#{} Mult for",
+          "Debuffs all jokers",
+          "to the left",
+          "of Voidcard",
+          "{X:mult,C:white}X#1#{} Mult, plus",
+          "{X:mult,C:white}X#1#{} Mult for",
           "each joker debuffed"
         }
       },
@@ -68,6 +68,24 @@ return {
           "from adjacent Joker slot,",
           "gives {X:mult,C:white}X#2#{} Mult",
           "then {C:red,E:1}explodes"
+        }
+      },
+      supf_whimsy = {
+        name = "Whimsy",
+        text = {
+          "{C:chips}+#1#{} Chips",
+          "when played card",
+          "with an {C:attention}Enhancement",
+          "is scored"
+        }
+      },
+      supf_wonder = {
+        name = "Wonder",
+        text = {
+          "{C:mult}+#1#{} Mult",
+          "when played card",
+          "with an {C:attention}Edition",
+          "is scored"
         }
       }
     }
