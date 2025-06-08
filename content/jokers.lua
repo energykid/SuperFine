@@ -334,7 +334,7 @@ SMODS.Joker {
           func = function()
             local pos = getCardPosition(card)
             table.insert(SupfParticles, NewExplosion(pos.x, pos.y))
-            play_sound("supf_explosion", 0.4 + (math.random(12) / 10), 1)
+            play_sound("supf_explosion", 1, 1)
             G.jokers:remove_card(card)
             card:remove()
             card = nil

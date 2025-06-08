@@ -9,6 +9,17 @@ function getCardPosition(card)
   end
 end
 
+function getAreaPosition(area)
+  area = area or {}
+  if area ~= {} then
+    local xx = area.VT.x * (G.TILESCALE*G.TILESIZE)
+    local yy = area.VT.y * (G.TILESCALE*G.TILESIZE)
+    return {x = xx, y = yy}
+  else
+    return {x = 0, y = 0}
+  end
+end
+
 function getScreenOffset()
   local sc = G.TILESCALE * G.TILESIZE * G.CANV_SCALE
   return {x = SUPF.WINDOW_PAD.x * sc, y = SUPF.WINDOW_PAD.y * sc}
