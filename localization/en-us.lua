@@ -95,6 +95,26 @@ return {
           "end of round to",
           "gain {C:attention}#1#{} dollars"
         }
+      },
+      supf_peoplewatching = {
+        name = 'Peoplewatching',
+        text = {
+          'Gain {C:mult}+20{} Mult',
+          'if played hand',
+          'contains at least',
+          '{C:attention}3 face cards'
+        }
+      },
+      supf_archibald = {
+        name = 'Archibald',
+        text = {
+          'Upon {C:attention}selecting',
+          'or {C:attention}skipping{} Blind,',
+          'create an {C:attention}enhanced',
+          '{C:attention}Polychrome Ace',
+          'and add it to',
+          'your hand'
+        }
       }
     }
   }
