@@ -23,9 +23,6 @@ function Supf_DrawEverything()
   
   SUPF.DRAW_SCALE = G.TILESCALE / 4
   
-  -- love.graphics.print(tostring(SUPF.WINDOW_PAD.x), 200, 100)
-  -- love.graphics.print(tostring(SUPF.WINDOW_PAD.y), 200, 200)
-  
   for i = 1, #SupfParticles do
     if SupfParticles[i] ~= nil then
       SupfParticles[i].Update(SupfParticles[i])

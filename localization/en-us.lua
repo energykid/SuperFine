@@ -21,9 +21,9 @@ return {
       supf_cucumber = {
         name = "Cucumber",
         text = {
-          "{C:mult}+15{} Mult",
+          "{C:mult}+#1#{} Mult",
           "At end of round,",
-          "{C:green}1 in 3{} chance to",
+          "{C:green}1 in #2#{} chance to",
           "negate this card's",
           "effect until the",
           "next round ends"
@@ -35,7 +35,7 @@ return {
           "Does nothing",
           "At end of next round,",
           "increase value back",
-          "to {C:mult}+15{} Mult"
+          "to {C:mult}+#1#{} Mult"
         }
       },
       supf_cicada = {
@@ -86,6 +86,14 @@ return {
           "when played card",
           "with an {C:attention}Edition",
           "is scored"
+        }
+      },
+      supf_luckyTicket = {
+        name = "Lucky Ticket",
+        text = {
+          "{C:green}1 in #2#{} chance at",
+          "end of round to",
+          "gain {C:attention}#1#{} dollars"
         }
       }
     }

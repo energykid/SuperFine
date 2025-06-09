@@ -6,6 +6,7 @@ SMODS.Atlas {
 }
 
 -- Ecstatic Joker
+
 SMODS.Joker {
 
   key = 'ecstaticJoker',
@@ -36,7 +37,78 @@ SMODS.Joker {
   end
 }
 
+-- Voidcard
+
+SMODS.load_file("content/particles/voidcard_particle.lua")()
+SMODS.Joker {
+  key = 'voidcard',
+  
+  config = { extra = { Xmult = 1 }, amount = 1 },
+  
+  rarity = 3,
+  
+  cost = 6,
+  
+  atlas = 'Jokers',
+  pos = { x = 1, y = 0 },
+  
+  loc_vars = function(self, info_queue, card)
+    return {
+      key = "supf_voidcard",
+      vars = { card.ability.extra.Xmult }
+    }
+  end,
+  
+  calculate = function(self, card, context)
+    if context.before then
+      card.ability.amount = 1
+      local myPosition = 0
+      for i = 1, #G.jokers.cards do
+        if G.jokers.cards[i] == card then
+          myPosition = i
+          break
+        end
+      end
+      for i = 1, myPosition - 1 do
+        local pos = getCardPosition(G.jokers.cards[i])
+        local blst = NewVoidBlast(pos.x, pos.y, i)
+        table.insert(SupfParticles, #SupfParticles + 1, blst)
+        G.jokers.cards[i].VT.scale = G.jokers.cards[i].VT.scale * 0.8
+        SMODS.debuff_card(G.jokers.cards[i], true, 'supf_cardVoided')
+        card.ability.amount = card.ability.amount + 1
+      end
+      if (myPosition ~= 0) then
+        return {
+          message = "Voided",
+          colour = G.C.JOKER_GREY
+        }
+      end
+    end
+    
+    if context.joker_main then 
+      local amt = card.ability.extra.Xmult * card.ability.amount
+      return {
+        Xmult_mod = amt,
+        message = localize{ type = 'variable', key = 'a_xmult', vars = { amt }}
+      }
+    end
+    
+    if context.selling_card and context.card == card then
+      for i = 1, #G.jokers.cards do
+        SMODS.debuff_card(G.jokers.cards[i], false, 'supf_cardVoided')
+      end
+    end
+      
+    if context.end_of_round then
+      for i = 1, #G.jokers.cards do
+        SMODS.debuff_card(G.jokers.cards[i], false, 'supf_cardVoided')
+      end
+    end
+  end
+}
+
 -- Cucumber
+
 SMODS.Joker {
 
   key = 'supf_cucumber',
@@ -56,7 +128,7 @@ SMODS.Joker {
       KEY = "supf_cucumber_alt"
     end
     
-    return { key = KEY }
+    return { key = KEY, vars = { card.ability.extra.mult, card.ability.extra.odds } }
   end,
   
   calculate = function(self, card, context)
@@ -74,7 +146,7 @@ SMODS.Joker {
         return {
 					message = 'Reset!'
 				}
-      elseif pseudorandom('gros_michel2') < G.GAME.probabilities.normal / card.ability.extra.odds then
+      elseif pseudorandom('supf_cucumber') < G.GAME.probabilities.normal / card.ability.extra.odds then
         card.ability.extra.mult = 0
         return {
 					message = 'Disabled!'
@@ -85,6 +157,7 @@ SMODS.Joker {
 }
 
 -- Cicadas
+
 SMODS.Atlas {
 	key = "cicada",
 	path = "supf_cicada.png",
@@ -176,76 +249,110 @@ SMODS.Joker {
   end
 }
 
--- Voidcard
-SMODS.load_file("content/particles/voidcard_particle.lua")()
+-- Lucky Ticket
+
 SMODS.Joker {
-  key = 'voidcard',
+
+  key = 'supf_luckyTicket',
+
+  config = { dolers = 1000, extra = { odds = 500 } },
   
-  config = { extra = { Xmult = 1 }, amount = 1 },
+  rarity = 1,
   
-  rarity = 3,
-  
-  cost = 6,
+  cost = 4,
   
   atlas = 'Jokers',
-  pos = { x = 1, y = 0 },
-  
-  loc_vars = function(self, info_queue, card)
-    return {
-      key = "supf_voidcard",
-      vars = { card.ability.extra.Xmult }
-    }
+  pos = { x = 7, y = 0 },
+
+  loc_vars = function(self, info_queue, card)    
+    return { key = "supf_luckyTicket", vars = { card.ability.dolers, card.ability.odds } }
   end,
   
   calculate = function(self, card, context)
-    if context.before then
-      card.ability.amount = 1
-      local myPosition = 0
-      for i = 1, #G.jokers.cards do
-        if G.jokers.cards[i] == card then
-          myPosition = i
-          break
-        end
-      end
-      for i = 1, myPosition - 1 do
-        local pos = getCardPosition(G.jokers.cards[i])
-        local blst = NewVoidBlast(pos.x, pos.y, i)
-        table.insert(SupfParticles, #SupfParticles + 1, blst)
-        G.jokers.cards[i].VT.scale = G.jokers.cards[i].VT.scale * 0.8
-        SMODS.debuff_card(G.jokers.cards[i], true, 'supf_cardVoided')
-        card.ability.amount = card.ability.amount + 1
-      end
-      if (myPosition ~= 0) then
+    if context.end_of_round and not context.repetition and context.game_over == false and not context.blueprint then
+      if pseudorandom('supf_luckyTicket') < G.GAME.probabilities.normal / card.ability.extra.odds then
         return {
-          message = "Voided",
-          colour = G.C.JOKER_GREY
-        }
-      end
-    end
-    
-    if context.joker_main then 
-      local amt = card.ability.extra.Xmult * card.ability.amount
-      return {
-        Xmult_mod = amt,
-        message = localize{ type = 'variable', key = 'a_xmult', vars = { amt }}
-      }
-    end
-    
-    if context.selling_card and context.card == card then
-      for i = 1, #G.jokers.cards do
-        SMODS.debuff_card(G.jokers.cards[i], false, 'supf_cardVoided')
-      end
-    end
-      
-    if context.end_of_round then
-      for i = 1, #G.jokers.cards do
-        SMODS.debuff_card(G.jokers.cards[i], false, 'supf_cardVoided')
+          dollars = card.ability.dolers,
+					message = 'Jackpot!'
+				}
+      else
+        return {
+					message = 'Nope!'
+				}
       end
     end
   end
 }
 
+-- Wonder
 
+SMODS.Joker {
+  key = 'wonder',
+  
+  config = { extra = { mult = 4 } },
+  
+  rarity = 1,
+  
+  cost = 4,
+  
+  atlas = 'Jokers',
+  pos = { x = 6, y = 0 },
+  
+  loc_vars = function(self, info_queue, card)
+    return {
+      key = "supf_wonder",
+      vars = { card.ability.extra.mult }
+    }
+  end,
+  
+  calculate = function(self, card, context)
+    
+    if context.individual and context.cardarea == G.play then
+      if (context.other_card.edition) then
+        local amt = card.ability.extra.mult
+        return {
+          mult_mod = amt,
+          message = localize{ type = 'variable', key = 'a_mult', vars = { amt }}
+        }
+      end
+    end
+  end
+}
+
+-- Whimsy
+
+SMODS.Joker {
+  key = 'whimsy',
+  
+  config = { extra = { chips = 30 } },
+  
+  rarity = 1,
+  
+  cost = 4,
+  
+  atlas = 'Jokers',
+  pos = { x = 5, y = 0 },
+  
+  loc_vars = function(self, info_queue, card)
+    return {
+      key = "supf_whimsy",
+      vars = { card.ability.extra.chips }
+    }
+  end,
+  
+  calculate = function(self, card, context)
+    
+    if context.individual and context.cardarea == G.play then
+      if (context.other_card.config.center ~= G.P_CENTERS.c_base) then
+        local amt = card.ability.extra.chips
+        return {
+          chips_mod = amt,
+          message = localize{ type = 'variable', key = 'a_chips', vars = { amt }}
+        }
+      end
+    end
+  end
+}
 -- Glimby
 SMODS.load_file("content/particles/glimby_explosion.lua")()
 
@@ -269,6 +376,8 @@ SMODS.DrawStep {
     end
   end
 }
+
+-- WE GOT GLIMBY!!!!!
 
 SMODS.Joker {
   key = 'glimby',
@@ -344,72 +453,5 @@ SMODS.Joker {
       end
     end
     
-  end
-}
-
-SMODS.Joker {
-  key = 'wonder',
-  
-  config = { extra = { mult = 8 } },
-  
-  rarity = 1,
-  
-  cost = 4,
-  
-  atlas = 'Jokers',
-  pos = { x = 6, y = 0 },
-  
-  loc_vars = function(self, info_queue, card)
-    return {
-      key = "supf_wonder",
-      vars = { card.ability.extra.mult }
-    }
-  end,
-  
-  calculate = function(self, card, context)
-    
-    if context.individual and context.cardarea == G.play then
-      if (context.other_card.edition) then
-        local amt = card.ability.extra.mult
-        return {
-          mult_mod = amt,
-          message = localize{ type = 'variable', key = 'a_mult', vars = { amt }}
-        }
-      end
-    end
-  end
-}
-
-
-SMODS.Joker {
-  key = 'whimsy',
-  
-  config = { extra = { chips = 30 } },
-  
-  rarity = 1,
-  
-  cost = 4,
-  
-  atlas = 'Jokers',
-  pos = { x = 5, y = 0 },
-  
-  loc_vars = function(self, info_queue, card)
-    return {
-      key = "supf_whimsy",
-      vars = { card.ability.extra.chips }
-    }
-  end,
-  
-  calculate = function(self, card, context)
-    
-    if context.individual and context.cardarea == G.play then
-      if (context.other_card.config.center ~= G.P_CENTERS.c_base) then
-        local amt = card.ability.extra.chips
-        return {
-          chips_mod = amt,
-          message = localize{ type = 'variable', key = 'a_chips', vars = { amt }}
-        }
-      end
-    end
   end
 }
