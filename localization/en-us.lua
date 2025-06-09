@@ -110,10 +110,10 @@ return {
         text = {
           'Upon {C:attention}selecting',
           'or {C:attention}skipping{} Blind,',
-          'create an {C:attention}enhanced',
-          '{C:attention}Polychrome Ace',
-          'and add it to',
-          'your hand'
+          'create {C:mult}#1# {C:attention}enhanced',
+          '{C:attention}Polychrome Aces',
+          'and add them to',
+          'your deck'
         }
       }
     }

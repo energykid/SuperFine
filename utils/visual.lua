@@ -66,3 +66,14 @@ function drawShadedSprite(x, y, r, sx, sy, atlas, fr, maxfr, shadow)
       0.5, 0.5)
   end
 end
+
+function drawFloatingSprite(card, atlas, pos, rot, sc, xoff, yoff, index)
+  rot = rot or 0
+  sc = sc or 1
+  index = index or 1
+
+  local spr = Sprite(card.T.x, card.T.y, card.T.w, card.T.h, G.ASSET_ATLAS[atlas], {x = pos.x, y = pos.y})
+  spr:set_role({major = card, role_type = 'Glued', draw_major = card})
+  spr:draw_shader('dissolve', 0, nil, false, card.children.center, sc, rot, xoff, yoff, nil, 0.6)
+  spr:draw_shader('dissolve', nil, nil, false, card.children.center, sc, rot, xoff, yoff)
+end

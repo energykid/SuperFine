@@ -266,7 +266,7 @@ SMODS.Joker {
   pos = { x = 7, y = 0 },
 
   loc_vars = function(self, info_queue, card)    
-    return { key = "supf_luckyTicket", vars = { card.ability.dolers, card.ability.odds } }
+    return { key = "supf_luckyTicket", vars = { card.ability.dolers, card.ability.extra.odds } }
   end,
   
   calculate = function(self, card, context)
@@ -505,30 +505,27 @@ SMODS.DrawStep {
   order = 20,
   func = function(card)
     if card.ability.archibald then
-      card.children.floating_sprite = card.children.floating_sprite or Sprite(card.T.x, card.T.y, card.T.w, card.T.h, G.ASSET_ATLAS[card.config.center.atlas] ,{x=card.config.center.pos.x+1,y=card.config.center.pos.y})
-      card.children.floating_sprite:set_role({major = card, role_type = 'Glued', draw_major = card})
       local timer = G.TIMERS.REAL
-      if card.children.floating_sprite then
-        local timeroff = timer + 0.25
 
-        local scale_mod = 0.07 + 0.02*math.sin(1.8*(timeroff)) + 0.00*math.sin(((timeroff) - math.floor((timeroff)))*math.pi*14)*(1 - ((timeroff) - math.floor((timeroff))))^3
-        local rotate_mod = 0.05*math.sin(1.219*(timeroff)) + 0.00*math.sin(((timeroff))*math.pi*5)*(1 - ((timeroff) - math.floor((timeroff))))^2
+      local timeroff = timer + 0.25
 
-        local xoff = 0
-        local yoff = 0
+      local scale_mod = 0.07 + 0.02*math.sin(1.8*(timeroff)) + 0.00*math.sin(((timeroff) - math.floor((timeroff)))*math.pi*14)*(1 - ((timeroff) - math.floor((timeroff))))^3
+      local rotate_mod = 0.05*math.sin(1.219*(timeroff)) + 0.00*math.sin(((timeroff))*math.pi*5)*(1 - ((timeroff) - math.floor((timeroff))))^2
 
-        if card.config.center.rotlayer == 2 then
+      local xoff = 0
+      local yoff = 0
+
+      if card.config.center.rotlayer == 2 then
         rotate_mod = rotate_mod + (timeroff)
-        end
-
-        if card.config.center.facelayer == 2 then
-          xoff = 0.05*math.sin(0.8*timeroff)
-          yoff = 0.05*math.sin((1.6*timeroff)+0.5)
-        end
-
-        card.children.floating_sprite:draw_shader('dissolve',0, nil, false, card.children.center, scale_mod, rotate_mod,xoff,yoff + 0.1 + 0.03*math.sin(1.8*(timeroff)),nil, 0.6)
-        card.children.floating_sprite:draw_shader('dissolve', nil, nil, false, card.children.center, scale_mod, rotate_mod, xoff, yoff)
       end
+
+      if card.config.center.facelayer == 2 then
+        xoff = 0.05*math.sin(0.8*timeroff)
+        yoff = 0.05*math.sin((1.6*timeroff)+0.5)
+      end
+
+      drawFloatingSprite(card, "supf_Jokers", { x = 9, y = 0 }, rotate_mod, scale_mod, xoff, yoff)
+
     end
   end,
   conditions = {vortex = false, facing = "front"}
@@ -538,7 +535,7 @@ SMODS.Joker {
 
   key = 'archibald',
 
-  config = { archibald = true, extra = { mult = 20 }, face_cards_scored = 0 },
+  config = { archibald = true, cards_to_create = 2 },
   
   rarity = 4,
   
@@ -549,31 +546,32 @@ SMODS.Joker {
 
   loc_vars = function(self, info_queue, card)
     return {
-      key = "supf_archibald"
+      key = "supf_archibald",
+      vars = { card.ability.cards_to_create }
       }
   end,
   
   calculate = function(self, card, context)
-    local enhancements = {"Bonus", "Mult", "Wild Card", "Glass Card", "Steel Card", "Stone Card", "Gold Card", "Lucky Card"}
-    if context.skip_blind or context.setting_blind then
-      
-      local cards = {}
-        local _suit, _rank =
-          pseudorandom_element(SMODS.Suits, pseudoseed('grim_create')).card_key, 'A'
-        local cen_pool = {}
-        for _, enhancement_center in pairs(G.P_CENTER_POOLS["Enhanced"]) do
-        if enhancement_center.key ~= 'm_stone' and not enhancement_center.overrides_base_rank then
-          cen_pool[#cen_pool + 1] = enhancement_center
+      if context.skip_blind or context.setting_blind then
+      for i = 1, card.ability.cards_to_create do
+        local cards = {}
+          local _suit, _rank =
+            pseudorandom_element(SMODS.Suits, pseudoseed('grim_create')).card_key, 'A'
+          local cen_pool = {}
+          for _, enhancement_center in pairs(G.P_CENTER_POOLS["Enhanced"]) do
+          if enhancement_center.key ~= 'm_stone' and not enhancement_center.overrides_base_rank then
+            cen_pool[#cen_pool + 1] = enhancement_center
+          end
         end
+        cards[#cards+1] = create_playing_card({
+          front = G.P_CARDS[_suit .. '_' .. _rank],
+          center = pseudorandom_element(cen_pool, pseudoseed('supf_archibald'))
+        }, G.deck, nil)
+
+        cards[#cards]:set_edition({polychrome = true}, true, true)
+
+        SMODS.calculate_context({ playing_card_added = true, cards = cards })
       end
-      cards[#cards+1] = create_playing_card({
-        front = G.P_CARDS[_suit .. '_' .. _rank],
-        center = pseudorandom_element(cen_pool, pseudoseed('supf_archibald'))
-      }, G.deck, nil)
-
-      cards[#cards]:set_edition({polychrome = true}, true, true)
-
-      SMODS.calculate_context({ playing_card_added = true, cards = cards })
     end
   end
 }
