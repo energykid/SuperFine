@@ -6,7 +6,7 @@ SMODS.Atlas {
 }
 
 -- Ecstatic Joker
-
+do
 SMODS.Joker {
 
   key = 'ecstaticJoker',
@@ -36,9 +36,10 @@ SMODS.Joker {
     end
   end
 }
+end
 
 -- Voidcard
-
+do
 SMODS.load_file("content/particles/voidcard_particle.lua")()
 SMODS.Joker {
   key = 'voidcard',
@@ -106,9 +107,10 @@ SMODS.Joker {
     end
   end
 }
+end
 
 -- Cucumber
-
+do
 SMODS.Joker {
 
   key = 'supf_cucumber',
@@ -155,9 +157,10 @@ SMODS.Joker {
     end
   end
 }
+end
 
 -- Cicadas
-
+do
 SMODS.Atlas {
 	key = "cicada",
 	path = "supf_cicada.png",
@@ -249,9 +252,10 @@ SMODS.Joker {
     end
   end
 }
+end
 
 -- Lucky Ticket
-
+do
 SMODS.Joker {
 
   key = 'supf_luckyTicket',
@@ -284,9 +288,10 @@ SMODS.Joker {
     end
   end
 }
+end
 
 -- Wonder
-
+do
 SMODS.Joker {
   key = 'wonder',
   
@@ -319,9 +324,10 @@ SMODS.Joker {
     end
   end
 }
+end
 
 -- Whimsy
-
+do
 SMODS.Joker {
   key = 'whimsy',
   
@@ -354,7 +360,10 @@ SMODS.Joker {
     end
   end
 }
+end
+
 -- Glimby
+do
 SMODS.load_file("content/particles/glimby_explosion.lua")()
 
 SMODS.Atlas {
@@ -457,8 +466,10 @@ SMODS.Joker {
     
   end
 }
+end
 
 -- Peoplewatching
+do
 SMODS.Joker {
 
   key = 'peoplewatching',
@@ -497,9 +508,10 @@ SMODS.Joker {
     end
   end
 }
+end
 
 -- Archibald
-
+do
 SMODS.DrawStep {
   key = 'supf_archibald',
   order = 20,
@@ -575,3 +587,4 @@ SMODS.Joker {
     end
   end
 }
+end
