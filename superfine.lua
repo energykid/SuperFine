@@ -1,7 +1,8 @@
 SMODS.load_file("utils/math.lua")()
 SMODS.load_file("utils/visual.lua")()
+SMODS.load_file("utils/file.lua")()
 SMODS.load_file("systems/particle_manager.lua")()
-SMODS.load_file("content/jokers.lua")()
+SMODS.load_file("content/jokers_main.lua")()
 
 SUPF = {}
 
