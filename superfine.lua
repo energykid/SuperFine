@@ -7,6 +7,7 @@ SUPF = {}
 
 SUPF.WINDOW_PAD = {x = 0, y = 0}
 SUPF.DRAW_SCALE = 1
+SUPF.FLOATING_SPRITES = {}
 
 if SMODS and SMODS.current_mod then
   

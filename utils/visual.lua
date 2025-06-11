@@ -72,8 +72,8 @@ function drawFloatingSprite(card, atlas, pos, rot, sc, xoff, yoff, index)
   sc = sc or 1
   index = index or 1
 
-  local spr = Sprite(card.T.x, card.T.y, card.T.w, card.T.h, G.ASSET_ATLAS[atlas], {x = pos.x, y = pos.y})
-  spr:set_role({major = card, role_type = 'Glued', draw_major = card})
-  spr:draw_shader('dissolve', 0, nil, false, card.children.center, sc, rot, xoff, yoff, nil, 0.6)
-  spr:draw_shader('dissolve', nil, nil, false, card.children.center, sc, rot, xoff, yoff)
+  SUPF.FLOATING_SPRITES[index] = SUPF.FLOATING_SPRITES[index] or Sprite(card.T.x, card.T.y, card.T.w, card.T.h, G.ASSET_ATLAS[atlas], {x = pos.x, y = pos.y})
+  SUPF.FLOATING_SPRITES[index]:set_role({major = card, role_type = 'Glued', draw_major = card})
+  SUPF.FLOATING_SPRITES[index]:draw_shader('dissolve', 0, nil, false, card.children.center, sc, rot, xoff, yoff, nil, 0.6)
+  SUPF.FLOATING_SPRITES[index]:draw_shader('dissolve', nil, nil, false, card.children.center, sc, rot, xoff, yoff)
 end

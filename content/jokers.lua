@@ -5,6 +5,27 @@ SMODS.Atlas {
 	py = 95
 }
 
+-- Attuned Rarity
+do
+local attunedGradient = SMODS.Gradient({
+    key="attuned",
+    colours = {
+        HEX("ffba00"),
+        HEX("ffe800")
+    },
+    cycle = 2
+})
+SMODS.Rarity {
+    key = "attuned",
+    badge_colour = attunedGradient,
+    default_weight = 0,
+    
+    pools = {
+        ["Joker"] = false,
+    },
+}
+end
+
 -- Ecstatic Joker
 do
 SMODS.Joker {
@@ -382,7 +403,7 @@ SMODS.DrawStep {
       local at = card.ability.arrowtimer
       local pos = getCardPosition(card)
       local sc = 3.5 + (math.sin(at / 28) * 0.1) * card.T.scale
-      drawShadedSprite(pos.x + scalePosition(0, 6).y, pos.y - scalePosition(0, 18).y, math.sin(at / 35) * math.rad(7.5), sc, sc, "supf_glimby_arrow")
+      drawShadedSprite(pos.x + scalePosition(0, 0).y, pos.y - scalePosition(0, 28).y, math.sin(at / 35) * math.rad(7.5), sc, sc, "supf_glimby_arrow")
     end
   end,
   conditions = {vortex = false, facing = "front"}
@@ -481,7 +502,7 @@ SMODS.Joker {
   cost = 3,
   
   atlas = 'Jokers',
-  pos = { x = 0, y = 0 },
+  pos = { x = 3, y = 1 },
 
   loc_vars = function(self, info_queue, card)
     return {
@@ -536,7 +557,7 @@ SMODS.DrawStep {
         yoff = 0.05*math.sin((1.6*timeroff)+0.5)
       end
 
-      drawFloatingSprite(card, "supf_Jokers", { x = 9, y = 0 }, rotate_mod, scale_mod, xoff, yoff)
+      drawFloatingSprite(card, "supf_Jokers", { x = 9, y = 0 }, rotate_mod, scale_mod, xoff, yoff, 1)
 
     end
   end,
@@ -564,8 +585,9 @@ SMODS.Joker {
   end,
   
   calculate = function(self, card, context)
-      if context.skip_blind or context.setting_blind then
-      for i = 1, card.ability.cards_to_create do
+    if context.skip_blind or context.setting_blind then
+      card.ability.cards_to_create = card.ability.cards_to_create or 2
+      for i = 1, card.ability.cards_to_create, 1 do
         local cards = {}
           local _suit, _rank =
             pseudorandom_element(SMODS.Suits, pseudoseed('grim_create')).card_key, 'A'
@@ -583,6 +605,173 @@ SMODS.Joker {
         cards[#cards]:set_edition({polychrome = true}, true, true)
 
         SMODS.calculate_context({ playing_card_added = true, cards = cards })
+      end
+    end
+  end
+}
+end
+
+-- Overachiever
+do
+SMODS.DrawStep {
+  key = 'supf_overachiever',
+  order = 20,
+  func = function(card)
+    if card.ability.overachiever then
+      local timer = G.TIMERS.REAL
+
+      card.visualtimer = card.visualtimer or 0
+
+      card.visualtimer = card.visualtimer + 1
+
+      local timeroff = timer + 0.25
+
+      local scale_mod = 0.07 + 0.02*math.sin(1.8*(timeroff)) + 0.00*math.sin(((timeroff) - math.floor((timeroff)))*math.pi*14)*(1 - ((timeroff) - math.floor((timeroff))))^3
+      local rotate_mod = 0.05*math.sin(1.219*(timeroff)) + 0.00*math.sin(((timeroff))*math.pi*5)*(1 - ((timeroff) - math.floor((timeroff))))^2
+
+      local rnd1 = -50 + math.random(100)
+      local rnd2 = -50 + math.random(100)
+      rnd1 = rnd1 * 0.00025
+      rnd2 = rnd2 * 0.00025
+
+      drawFloatingSprite(card, "supf_Jokers", { x = 2, y = 1 }, rotate_mod, scale_mod * 1.05, (math.sin((card.visualtimer + 7) / 33) * 0.05), (math.sin(card.visualtimer / 32) * 0.05), 2)
+      drawFloatingSprite(card, "supf_Jokers", { x = 1, y = 1 }, rotate_mod * 1.1, scale_mod * 1.1, 0, 0, 3)
+
+    end
+  end,
+  conditions = {vortex = false, facing = "front"}
+}
+SMODS.Joker {
+
+  key = 'overachiever',
+
+  config = { extra = { mult = 6 }, overachiever = true, repetitions = 3, cards_scored = 0 },
+  
+  rarity = "supf_attuned",
+  
+  cost = 15,
+  
+  atlas = 'Jokers',
+  pos = { x = 0, y = 1 },
+
+  loc_vars = function(self, info_queue, card)
+    return {
+      key = "supf_overachiever",
+      vars = { card.ability.repetitions, card.ability.extra.mult }
+      }
+  end,
+  
+  calculate = function(self, card, context)
+    if context.individual and context.cardarea == G.play then
+      if context.other_card:get_id() == 14 then
+        return {
+          message = "Aced!",
+          colour = G.C.RED,
+          mult_mod = card.ability.extra.mult
+        }
+      end
+    end
+    if context.repetition and context.cardarea == G.play then
+      if context.other_card:get_id() == 14 then
+        card.ability.cards_scored = card.ability.cards_scored + 1
+        if card.ability.cards_scored <= card.ability.repetitions then
+          return {
+            message = "Again!",
+            repetitions = card.ability.repetitions
+          }
+        end
+      end
+    end
+    if context.final_scoring_step then
+      card.ability.cards_scored = 0
+    end
+  end
+}
+end
+
+-- Blue Java
+do
+SMODS.DrawStep {
+  key = 'supf_bluejava',
+  order = 20,
+  func = function(card)
+    if card.ability.bluejava then
+      local timer = G.TIMERS.REAL
+
+      card.visualtimer = card.visualtimer or 0
+
+      card.visualtimer = card.visualtimer + 1
+
+      local timeroff = timer + 0.25
+
+      local scale_mod = 0.07 + 0.02*math.sin(1.8*(timeroff)) + 0.00*math.sin(((timeroff) - math.floor((timeroff)))*math.pi*14)*(1 - ((timeroff) - math.floor((timeroff))))^3
+      local rotate_mod = 0.05*math.sin(1.219*(timeroff)) + 0.00*math.sin(((timeroff))*math.pi*5)*(1 - ((timeroff) - math.floor((timeroff))))^2
+
+      local rnd1 = -50 + math.random(100)
+      local rnd2 = -50 + math.random(100)
+      rnd1 = rnd1 * 0.00025
+      rnd2 = rnd2 * 0.00025
+
+      drawFloatingSprite(card, "supf_Jokers", { x = 1, y = 2 }, rotate_mod * 0.5, scale_mod * 0.7, 0, 0, 4)
+      drawFloatingSprite(card, "supf_Jokers", { x = 2, y = 2 }, rotate_mod, (scale_mod * 1.2) - 0.015 + (math.sin(card.visualtimer / 50) * 0.05), 0, 0, 5)
+
+    end
+  end,
+  conditions = {vortex = false, facing = "front"}
+}
+SMODS.Joker {
+
+  key = 'bluejava',
+
+  config = { bluejava = true, extra = { Xmult = 3 }, odds1 = 4, odds2 = 10, add1 = 0.25, add2 = 1, oddsReset = 50 },
+  
+  rarity = "supf_attuned",
+  
+  cost = 15,
+  
+  atlas = 'Jokers',
+  pos = { x = 0, y = 2 },
+
+  loc_vars = function(self, info_queue, card)
+    return {
+      key = "supf_blueJava",
+      vars = { card.ability.extra.Xmult, card.ability.odds1, card.ability.add1, card.ability.odds2, card.ability.add2, card.ability.oddsReset }
+      }
+  end,
+  
+  calculate = function(self, card, context)
+    
+    if context.joker_main then
+      return {
+        Xmult_mod = card.ability.extra.Xmult,
+        message = localize{ type = 'variable', key = 'a_xmult', vars = { card.ability.extra.Xmult }}
+      }
+    end
+    
+    if context.end_of_round and not context.repetition and context.game_over == false and not context.blueprint then
+      if pseudorandom('supf_blueJava') < G.GAME.probabilities.normal / card.ability.odds1 then
+        card.ability.extra.Xmult = card.ability.extra.Xmult + card.ability.add1
+        return {
+          message = 'Upgrade!'
+        }
+      else
+        if pseudorandom('supf_blueJava2') < G.GAME.probabilities.normal / card.ability.odds2 then
+          card.ability.extra.Xmult = card.ability.extra.Xmult + card.ability.add2
+          return {
+            message = 'Upgrade!'
+          }
+        else
+          if pseudorandom('supf_blueJava3') < G.GAME.probabilities.normal / card.ability.oddsReset then
+            card.ability.extra.Xmult = 3
+            return {
+              message = 'Unfortunate!'
+            }
+          else
+            return {
+              message = 'Nope!'
+            }
+          end
+        end
       end
     end
   end

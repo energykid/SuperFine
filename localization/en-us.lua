@@ -93,7 +93,7 @@ return {
         text = {
           "{C:green}1 in #2#{} chance at",
           "end of round to",
-          "gain {C:attention}#1#{} dollars"
+          "gain {C:attention}$#1#{}"
         }
       },
       supf_peoplewatching = {
@@ -115,7 +115,33 @@ return {
           'and add them to',
           'your deck'
         }
+      },
+      supf_overachiever = {
+        name = 'Overachiever',
+        text = {
+          'Played {C:attention}Aces{} give',
+          '{C:mult}+#2#{} Mult when scored',
+          'Retrigger first played',
+          '{C:attention}Ace {C:mult}#1#{} times',
+        }
+      },
+      supf_blueJava = {
+        name = 'Blue Java',
+        text = {
+          '{X:mult,C:white}X#1#{} Mult',
+          '{C:green}1 in #2#{} chance to gain',
+          '{X:mult,C:white}X#3#{} Mult at end of round',
+          '{C:green}1 in #4#{} chance to gain',
+          '{X:mult,C:white}X#5#{} Mult at end of round',
+          '{C:green}1 in #6#{} chance to {C:red,E:1}reset{} to',
+          '{X:mult,C:white}X3{} Mult at end of round'
+        }
       }
+    }
+  },
+  misc = {
+    dictionary={
+      k_supf_attuned = "Attuned"
     }
   }
 }
