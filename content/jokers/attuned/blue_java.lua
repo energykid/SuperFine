@@ -1,5 +1,6 @@
 -- Blue Java
-do
+NewAttunement('Cavendish', 'supf_bluejava')
+
 SMODS.DrawStep {
   key = 'supf_bluejava',
   order = 20,
@@ -21,8 +22,8 @@ SMODS.DrawStep {
       rnd1 = rnd1 * 0.00025
       rnd2 = rnd2 * 0.00025
 
-      drawFloatingSprite(card, "supf_Jokers", { x = 1, y = 2 }, rotate_mod * 0.5, scale_mod * 0.7, 0, 0, 4)
-      drawFloatingSprite(card, "supf_Jokers", { x = 2, y = 2 }, rotate_mod, (scale_mod * 1.2) - 0.015 + (math.sin(card.visualtimer / 50) * 0.05), 0, 0, 5)
+      drawFloatingSprite(card, "supf_AttunedJokers", { x = 1, y = 1 }, rotate_mod * 0.5, scale_mod * 0.7, 0, 0, 4)
+      drawFloatingSprite(card, "supf_AttunedJokers", { x = 2, y = 1 }, rotate_mod, (scale_mod * 1.2) - 0.015 + (math.sin(card.visualtimer / 50) * 0.05), 0, 0, 5)
 
     end
   end,
@@ -38,8 +39,8 @@ SMODS.Joker {
   
   cost = 15,
   
-  atlas = 'Jokers',
-  pos = { x = 0, y = 2 },
+  atlas = 'AttunedJokers',
+  pos = { x = 0, y = 1 },
 
   loc_vars = function(self, info_queue, card)
     return {
@@ -85,4 +86,3 @@ SMODS.Joker {
     end
   end
 }
-end

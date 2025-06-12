@@ -15,9 +15,9 @@ SMODS.DrawStep {
     if card.ability.arrowtimer then
       card.ability.arrowtimer = card.ability.arrowtimer + 1
       local at = card.ability.arrowtimer
-      local pos = getCardPosition(card)
-      local sc = 3.5 + (math.sin(at / 28) * 0.1) * card.T.scale
-      drawShadedSprite(pos.x + scalePosition(0, 0).y, pos.y - scalePosition(0, 28).y, math.sin(at / 35) * math.rad(7.5), sc, sc, "supf_glimby_arrow")
+      local sc = 0.5 + (math.sin(at / 28) * 0.05)
+      local rot = math.sin(at / 35) * math.rad(2.5)
+      drawFloatingSprite(card, 'supf_glimby_arrow', {x = 0, y = 0}, rot, sc, 0.25, 0.25 + (math.sin(at / 24) * 0.01), 'glimby_arrow')
     end
   end,
   conditions = {vortex = false, facing = "front"}

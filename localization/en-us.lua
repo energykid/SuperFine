@@ -136,6 +136,27 @@ return {
           '{C:green}1 in #6#{} chance to {C:red,E:1}reset{} to',
           '{X:mult,C:white}X3{} Mult at end of round'
         }
+      },
+      supf_rainstorm = {
+        name = 'Rainstorm',
+        text = {
+          'Every {C:attention}played card',
+          'counts in scoring',
+          'Played cards that',
+          'otherwise {C:red}wouldn\'t',
+          'be scored will additionally',
+          'give {X:mult,C:white}X#1#{} Mult'
+        }
+      }
+    },
+    Spectral = {
+      supf_rune = {
+        name = 'Rune',
+        text = {
+          'Convert selected Joker',
+          'into its {V:1,E:1}Attuned{} form',
+          '{C:inactive}(Compatible Jokers will glow)'
+        }
       }
     }
   },

@@ -2,7 +2,7 @@
 	"id": "superfine",
 	"name": "SuperFine!!",
 	"display_name": "SuperFine!!",
-	"author": ["ENNWAY"],
+	"author": ["ENNWAY", "Fred"],
 	"description": "Hi guys its me the description, i get paid $10/hour to stand here and tell people that im here",
 	"prefix": "supf",
 	"main_file": "superfine.lua",

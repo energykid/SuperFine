@@ -1,0 +1,105 @@
+SMODS.DrawStep {
+    key = 'supf_rune',
+    order = -200,
+    
+    func = function(card, layer)
+        if G.jokers then
+            if not card.shouldBeRuneHighlighted then
+                for i, v in ipairs(SUPF.ATTUNEMENTS) do
+                    if v.base == card.config.center.name then 
+                        card.shouldBeRuneHighlighted = true
+                    end
+                end
+            end
+            if card.shouldBeRuneHighlighted and SUPF.RUNE_SELECTED then
+                card.runicGlowScale = card.runicGlowScale or 0
+                card.runicGlowTimer = card.runicGlowTimer or 0
+                card.runicGlowTimer = card.runicGlowTimer + 1
+                card.runicGlowScale = lerp(card.runicGlowScale, 0.55, 0.05)
+                drawFloatingSprite(card, 'supf_AttunementGlow', {x = 0, y = 0}, card.runicGlowTimer * math.rad(5), card.runicGlowScale + (math.sin(card.runicGlowTimer / 30) * 0.02), 0, 0, 'runic_glow')
+            else
+                if card.runicGlowScale then
+                    card.runicGlowScale = lerp(card.runicGlowScale, 0, 0.05)
+                    card.runicGlowTimer = card.runicGlowTimer + card.runicGlowScale * 2
+                    drawFloatingSprite(card, 'supf_AttunementGlow', {x = 0, y = 0}, card.runicGlowTimer * math.rad(5), card.runicGlowScale + (math.sin(card.runicGlowTimer / 30) * 0.02), 0, 0, 'runic_glow')
+                end
+            end
+        end
+    end
+}
+
+SMODS.Sound {
+    key = "attunement_jingle",
+    path = "attunement_jingle.ogg"
+}
+
+SMODS.Consumable {
+    key = 'rune',
+    set = 'Spectral',
+
+    atlas = 'Spectrals', 
+    pos = { x = 0, y = 0 },
+
+    soul_rate = 0.006,
+
+    config = {extra = {is_rune = true}},
+    
+    loc_vars = function(self, info_queue, card)
+        return {
+            key = "supf_rune",
+            vars = {
+                colours = { 
+                    SUPF.GRADIENTS.ATTUNED
+                }
+            }
+        }
+    end,
+
+    can_use = function(self, card)
+        if #G.jokers.highlighted == 1 then 
+            for i, v in ipairs(SUPF.ATTUNEMENTS) do
+                if v.base == G.jokers.highlighted[1].config.center.name then return true end
+            end
+        end
+        return false
+    end,
+
+    use = function(self, card, area, copier)
+        local oldCard = G.jokers.highlighted[1]
+        for i, v in ipairs(SUPF.ATTUNEMENTS) do
+            if v.base == G.jokers.highlighted[1].config.center.name then
+                play_sound("supf_attunement_jingle", 1, 1)
+                G.jokers.highlighted[1]:start_dissolve({G.C.BLACK, G.C.ORANGE, G.C.RED, G.C.GOLD, G.C.JOKER_GREY}, true, 0.05, true)
+                G.jokers.highlighted[1] = SMODS.add_card({
+                    set = 'Joker', 
+                    area = G.jokers, 
+                    key = "j_" .. v.attuned,
+                    skip_materialize = true
+                })
+            end
+        end
+    end,
+
+    hidden = true,
+    soul_set = 'Joker',
+    can_repeat_soul = true,
+
+    draw = function(self, card, layer)
+        card.runic_timer = card.runic_timer or 0
+        card.runic_timer = card.runic_timer + 1
+        local rot = math.sin(card.runic_timer / 46) * math.rad(10)
+        local sc = 0.5 * (math.sin(card.runic_timer / 62) * 0.1)
+        drawFloatingSprite(card, 'supf_Spectrals', {x = 2, y = 0}, rot + math.rad(card.runic_timer), 0.35, 0, 0, 'the_rune_spiral')
+        love.graphics.setShader()
+        drawFloatingSprite(card, 'supf_Spectrals', {x = 1, y = 0}, rot, sc, 0, 0, 'the_rune')
+
+        SUPF.RUNE_SELECTED = false
+        if G.consumeables and G.consumeables.highlighted then
+            for i, v in ipairs(G.consumeables.highlighted) do
+                if G.consumeables.highlighted[i] == card then
+                    SUPF.RUNE_SELECTED = true
+                end
+            end
+        end
+    end
+}

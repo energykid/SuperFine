@@ -1,14 +1,23 @@
-SMODS.load_file("utils/math.lua")()
-SMODS.load_file("utils/visual.lua")()
-SMODS.load_file("utils/file.lua")()
-SMODS.load_file("systems/particle_manager.lua")()
-SMODS.load_file("content/jokers_main.lua")()
-
 SUPF = {}
 
 SUPF.WINDOW_PAD = {x = 0, y = 0}
 SUPF.DRAW_SCALE = 1
 SUPF.FLOATING_SPRITES = {}
+SUPF.GRADIENTS = {}
+SUPF.ATTUNEMENTS = {}
+SUPF.RUNE_SELECTED = false -- visual
+
+function do_folder(folder)
+  local joker_src = NFS.getDirectoryItems(SMODS.current_mod.path .. folder)
+  for _, file in ipairs(joker_src) do
+    sendInfoMessage("Loading " .. file, "SuperFine!!")
+    assert(SMODS.load_file(folder .. "/" .. file))()
+  end
+end
+
+do_folder("utils")
+do_folder("systems")
+SMODS.load_file("content/content_main.lua")()
 
 if SMODS and SMODS.current_mod then
   
