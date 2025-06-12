@@ -28,6 +28,8 @@ SMODS.DrawStep {
     end
 }
 
+SMODS.load_file('content/particles/attunement_burst.lua')()
+
 SMODS.Sound {
     key = "attunement_jingle",
     path = "attunement_jingle.ogg"
@@ -66,18 +68,43 @@ SMODS.Consumable {
 
     use = function(self, card, area, copier)
         local oldCard = G.jokers.highlighted[1]
-        for i, v in ipairs(SUPF.ATTUNEMENTS) do
-            if v.base == G.jokers.highlighted[1].config.center.name then
-                play_sound("supf_attunement_jingle", 1, 1)
-                G.jokers.highlighted[1]:start_dissolve({G.C.BLACK, G.C.ORANGE, G.C.RED, G.C.GOLD, G.C.JOKER_GREY}, true, 0.05, true)
-                G.jokers.highlighted[1] = SMODS.add_card({
-                    set = 'Joker', 
-                    area = G.jokers, 
-                    key = "j_" .. v.attuned,
-                    skip_materialize = true
-                })
+        local spot = 0
+        for i = 1, #G.jokers.cards, 1 do
+            if G.jokers.cards[i] == oldCard then
+                spot = i
             end
         end
+
+        local pos = getCardPosition(G.jokers.cards[spot])
+        for _ = 0, 24, 1 do
+            table.insert(SupfParticles, #SupfParticles + 1, NewAttunementBurst(pos.x, pos.y, 3 + (math.random(80) / 10)))
+        end
+        table.insert(SupfParticles, #SupfParticles + 1, NewAttunementExplosion(pos.x, pos.y))
+
+        G.E_MANAGER:add_event(Event({
+            trigger = 'after',
+            delay = 0.6,
+            blockable = false,
+            func = function()
+                for i, v in ipairs(SUPF.ATTUNEMENTS) do
+                    if v.base == G.jokers.highlighted[1].config.center.name then
+                        play_sound("supf_attunement_jingle", 1, 1)
+                        --G.jokers.highlighted[1]:start_dissolve({G.C.BLACK, G.C.ORANGE, G.C.RED, G.C.GOLD, G.C.JOKER_GREY}, true, 0.05, true)
+                        G.jokers.cards[spot] = SMODS.create_card({
+                            set = 'Joker', 
+                            area = G.jokers, 
+                            key = "j_" .. v.attuned,
+                            skip_materialize = true
+                        })
+                        G.jokers.cards[spot]:set_card_area(G.jokers)
+                        G.jokers.cards[spot].T = oldCard.T
+                        G.jokers.cards[spot].CT = oldCard.CT
+                        G.jokers.cards[spot].VT = oldCard.VT
+                    end
+                end
+                return true
+            end
+        }))
     end,
 
     hidden = true,

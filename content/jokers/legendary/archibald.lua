@@ -4,7 +4,7 @@ SMODS.DrawStep {
   key = 'supf_archibald',
   order = 20,
   func = function(card)
-    if card.ability.archibald then
+    if card.ability.archibald and card.config.center.discovered then
       local timer = G.TIMERS.REAL
 
       local timeroff = timer + 0.25
@@ -28,7 +28,7 @@ SMODS.DrawStep {
 
     end
   end,
-  conditions = {vortex = false, facing = "front"}
+  conditions = {vortex = false, facing = "front", discovered = true}
 }
 
 SMODS.Joker {

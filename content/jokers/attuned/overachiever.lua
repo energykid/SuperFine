@@ -5,7 +5,7 @@ SMODS.DrawStep {
   key = 'supf_overachiever',
   order = 20,
   func = function(card)
-    if card.ability.overachiever then
+    if card.ability.overachiever and card.config.center.discovered then
       local timer = G.TIMERS.REAL
 
       card.visualtimer = card.visualtimer or 0
@@ -27,7 +27,7 @@ SMODS.DrawStep {
 
     end
   end,
-  conditions = {vortex = false, facing = "front"}
+  conditions = {vortex = false, facing = "front", discovered = true}
 }
 SMODS.Joker {
 

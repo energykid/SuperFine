@@ -5,7 +5,7 @@ SMODS.DrawStep {
   key = 'supf_bluejava',
   order = 20,
   func = function(card)
-    if card.ability.bluejava then
+    if card.ability.bluejava and card.config.center.discovered then
       local timer = G.TIMERS.REAL
 
       card.visualtimer = card.visualtimer or 0
@@ -27,7 +27,7 @@ SMODS.DrawStep {
 
     end
   end,
-  conditions = {vortex = false, facing = "front"}
+  conditions = {vortex = false, facing = "front", discovered = true}
 }
 SMODS.Joker {
 

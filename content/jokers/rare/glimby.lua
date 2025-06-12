@@ -12,7 +12,7 @@ SMODS.DrawStep {
   key = 'supf_glimby',
   order = 0,
   func = function(card, layer)
-    if card.ability.arrowtimer then
+    if card.ability.arrowtimer and card.config.center.discovered then
       card.ability.arrowtimer = card.ability.arrowtimer + 1
       local at = card.ability.arrowtimer
       local sc = 0.5 + (math.sin(at / 28) * 0.05)
@@ -20,7 +20,7 @@ SMODS.DrawStep {
       drawFloatingSprite(card, 'supf_glimby_arrow', {x = 0, y = 0}, rot, sc, 0.25, 0.25 + (math.sin(at / 24) * 0.01), 'glimby_arrow')
     end
   end,
-  conditions = {vortex = false, facing = "front"}
+  conditions = {vortex = false, facing = "front", discovered = true}
 }
 
 -- WE GOT GLIMBY!!!!!
@@ -80,11 +80,11 @@ SMODS.Joker {
       }
     end
 
-    if context.end_of_round and not context.repetition and context.game_over == false and not context.blueprint then
+    if (context.hand_drawn or context.end_of_round) and not context.blueprint and context.area == G.jokers then
       if card.ability.shouldExplode then
         G.E_MANAGER:add_event(Event({
           trigger = 'after',
-          delay = 0.1,
+          delay = 1,
           blockable = false,
           func = function()
             local pos = getCardPosition(card)

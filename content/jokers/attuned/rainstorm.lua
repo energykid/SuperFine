@@ -4,7 +4,7 @@ SMODS.DrawStep {
   key = 'supf_rainstorm',
   order = 20,
   func = function(card)
-    if card.ability.rainstorm then
+    if card.ability.rainstorm and card.config.center.discovered then
       local timer = G.TIMERS.REAL
 
       card.visualtimer = card.visualtimer or 0
@@ -26,7 +26,7 @@ SMODS.DrawStep {
 
     end
   end,
-  conditions = {vortex = false, facing = "front", unlocked = true}
+  conditions = {vortex = false, facing = "front", discovered = true}
 }
 SMODS.Joker {
 

@@ -21,7 +21,7 @@ SMODS.DrawStep {
   order = 0,
   func = function(card, layer)
     
-    if card.ability.cicadasToDraw then      
+    if card.ability.cicadasToDraw and card.config.center.discovered then      
       for i, cic in pairs(card.ability.cicadasToDraw) do
         cic.t = cic.t + 1
         local pos = scalePosition(45 / 2, 57 / 2)
@@ -37,7 +37,7 @@ SMODS.DrawStep {
       end
     end
   end,
-  conditions = {vortex = false, facing = "front"}
+  conditions = {vortex = false, facing = "front", discovered = true}
 }
 
 SMODS.Joker {

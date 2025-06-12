@@ -147,6 +147,17 @@ return {
           'be scored will additionally',
           'give {X:mult,C:white}X#1#{} Mult'
         }
+      },
+      supf_ultimateJimbo = {
+        name = 'Ultimate Jimbo',
+        text = {
+          '{C:mult}+#1#{} Mult',
+          '{X:mult,C:white}X1{} Mult, plus',
+          '{X:mult,C:white}X#3#{} Mult for each',
+          'card played or discarded',
+          'this round',
+          '{C:inactive}(Currently {C:white,X:inactive}X#2# {C:inactive} Mult)'
+        }
       }
     },
     Spectral = {

@@ -61,7 +61,8 @@ SMODS.Joker {
         local amt = card.ability.extra.chips
         return {
           chips_mod = amt,
-          message = localize{ type = 'variable', key = 'a_chips', vars = { amt }}
+          message = localize{ type = 'variable', key = 'a_chips', vars = { amt }},
+          colour = G.C.BLUE
         }
       end
     end

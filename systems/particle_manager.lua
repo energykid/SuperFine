@@ -34,7 +34,7 @@ function NewParticle(x, y, atl, numFrames)
     end,
     
     Draw = function(tbl)
-      if tbl.Frame >= 0 and tbl.Frame < tbl.MaxFrames then
+      if tbl.Frame >= 0 and tbl.Frame <= tbl.MaxFrames then
         tbl.FinalFrame = love.graphics.newQuad(tbl.Frame, 0, 1, 1, tbl.MaxFrames, 1)
         
         love.graphics.setCanvas(G.CANVAS)
