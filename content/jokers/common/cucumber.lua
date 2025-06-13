@@ -3,7 +3,7 @@ SMODS.Joker {
 
   key = 'supf_cucumber',
 
-  config = { extra = { mult = 15, odds = 3 }, isCucumber = true },
+  config = { extra = { mult = 15, odds = 3, multBack = 15 }, isCucumber = true },
   
   rarity = 1,
   
@@ -18,7 +18,7 @@ SMODS.Joker {
       KEY = "supf_cucumber_alt"
     end
     
-    return { key = KEY, vars = { card.ability.extra.mult, card.ability.extra.odds } }
+    return { key = KEY, vars = { card.ability.extra.mult, card.ability.extra.odds, card.ability.extra.multBack } }
   end,
   
   calculate = function(self, card, context)

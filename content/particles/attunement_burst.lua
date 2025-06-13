@@ -23,8 +23,6 @@ function NewAttunementExplosion(x, y)
   blast.ScaleY = 0
 
   blast.scaleDest = 7
-
-  blast.Shadow = false
   
   blast.Update = function(tbl)
     tbl.BaseUpdate(tbl)
@@ -32,11 +30,11 @@ function NewAttunementExplosion(x, y)
     tbl.FrameTimer = tbl.FrameTimer + 1
     
     if tbl.FrameTimer < 10 then
-      tbl.ScaleX = lerp(tbl.ScaleX, 5, 0.65)
-      tbl.ScaleY = lerp(tbl.ScaleY, 5, 0.65)
+      tbl.ScaleX = lerp(tbl.ScaleX, 6.5, 0.65)
+      tbl.ScaleY = lerp(tbl.ScaleY, 6.5, 0.65)
     else
-      tbl.ScaleX = lerp(tbl.ScaleX, 5, -0.35)
-      tbl.ScaleY = lerp(tbl.ScaleY, 5, -0.35)
+      tbl.ScaleX = lerp(tbl.ScaleX, 6.5, -0.35)
+      tbl.ScaleY = lerp(tbl.ScaleY, 6.5, -0.35)
     end
 
     tbl.rotationTimer = tbl.rotationTimer + tbl.rotationScale

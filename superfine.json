@@ -3,7 +3,7 @@
 	"name": "SuperFine!!",
 	"display_name": "SuperFine!!",
 	"author": ["ENNWAY", "Fred"],
-	"description": "Hi guys its me the description, i get paid $10/hour to stand here and tell people that im here",
+	"description": "SuperFine is a 'Vanilla++' mod - aiming to add content that fits in with vanilla's balance, but stands out on its own.",
 	"prefix": "supf",
 	"main_file": "superfine.lua",
 	"priority": 0,

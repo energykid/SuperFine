@@ -62,7 +62,7 @@ SMODS.Joker {
     if context.repetition and context.cardarea == G.play then
       if context.other_card:get_id() == 14 then
         card.ability.cards_scored = card.ability.cards_scored + 1
-        if card.ability.cards_scored <= card.ability.repetitions then
+        if card.ability.cards_scored == 1 then
           return {
             message = "Again!",
             repetitions = card.ability.repetitions

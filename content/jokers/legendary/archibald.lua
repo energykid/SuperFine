@@ -35,7 +35,7 @@ SMODS.Joker {
 
   key = 'archibald',
 
-  config = { archibald = true, cards_to_create = 2 },
+  config = { archibald = true },
   
   rarity = 4,
   
@@ -54,25 +54,23 @@ SMODS.Joker {
   calculate = function(self, card, context)
     if context.skip_blind or context.setting_blind then
       card.ability.cards_to_create = card.ability.cards_to_create or 2
-      for i = 1, card.ability.cards_to_create, 1 do
-        local cards = {}
-          local _suit, _rank =
-            pseudorandom_element(SMODS.Suits, pseudoseed('grim_create')).card_key, 'A'
-          local cen_pool = {}
-          for _, enhancement_center in pairs(G.P_CENTER_POOLS["Enhanced"]) do
-          if enhancement_center.key ~= 'm_stone' and not enhancement_center.overrides_base_rank then
-            cen_pool[#cen_pool + 1] = enhancement_center
-          end
+      local cards = {}
+        local _suit, _rank =
+          pseudorandom_element(SMODS.Suits, pseudoseed('grim_create')).card_key, 'A'
+        local cen_pool = {}
+        for _, enhancement_center in pairs(G.P_CENTER_POOLS["Enhanced"]) do
+        if enhancement_center.key ~= 'm_stone' and not enhancement_center.overrides_base_rank then
+          cen_pool[#cen_pool + 1] = enhancement_center
         end
-        cards[#cards+1] = create_playing_card({
-          front = G.P_CARDS[_suit .. '_' .. _rank],
-          center = pseudorandom_element(cen_pool, pseudoseed('supf_archibald'))
-        }, G.deck, nil)
-
-        cards[#cards]:set_edition({polychrome = true}, true, true)
-
-        SMODS.calculate_context({ playing_card_added = true, cards = cards })
       end
+      cards[#cards+1] = create_playing_card({
+        front = G.P_CARDS[_suit .. '_' .. _rank],
+        center = pseudorandom_element(cen_pool, pseudoseed('supf_archibald'))
+      }, G.deck, nil)
+
+      cards[#cards]:set_edition({polychrome = true}, true, true)
+
+      SMODS.calculate_context({ playing_card_added = true, cards = cards })
     end
   end
 }

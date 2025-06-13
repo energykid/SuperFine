@@ -33,7 +33,7 @@ SMODS.Joker {
 
   key = 'bluejava',
 
-  config = { bluejava = true, extra = { Xmult = 3 }, odds1 = 4, odds2 = 10, add1 = 0.25, add2 = 1, oddsReset = 50 },
+  config = { bluejava = true, extra = { Xmult = 3 }, odds1 = 4, odds2 = 10, add1 = 0.25, add2 = 1, oddsReset = 500 },
   
   rarity = "supf_attuned",
   

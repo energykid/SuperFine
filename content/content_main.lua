@@ -1,3 +1,13 @@
+-- Blinds Atlas
+SMODS.Atlas {
+  key = "Blinds",
+  path = "supf_Blinds.png",
+  px = 34,
+  py = 34,
+  atlas_table = 'ANIMATION_ATLAS', 
+  frames = 21
+}
+
 -- Joker Atlas
 SMODS.Atlas {
   key = "Jokers",
@@ -12,6 +22,7 @@ SMODS.Atlas {
   px = 71,
   py = 95
 }
+
 -- Spectral Atlas
 SMODS.Atlas {
   key = "Spectrals",
@@ -44,6 +55,9 @@ SMODS.Rarity {
         ["Joker"] = false,
     },
 }
+
+-- Blinds
+do_folder("content/blinds/boss")
 
 -- Jokers
 do_folder("content/jokers/common")

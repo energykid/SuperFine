@@ -28,7 +28,7 @@ SMODS.DrawStep {
 SMODS.Joker {
   key = 'glimby',
   
-  config = { extra = { Xmult = 3 }, arrowtimer = 0, XmultWhenCucumber = 10, shouldExplode = false },
+  config = { extra = { Xmult = 2 }, arrowtimer = 0, XmultWhenCucumber = 10, shouldExplode = false },
   
   rarity = 3,
   
@@ -80,7 +80,8 @@ SMODS.Joker {
       }
     end
 
-    if (context.hand_drawn or context.end_of_round) and not context.blueprint and context.area == G.jokers then
+    local b = (context.hand_drawn or context.end_of_round)
+    if b and not context.blueprint then
       if card.ability.shouldExplode then
         G.E_MANAGER:add_event(Event({
           trigger = 'after',
@@ -89,7 +90,7 @@ SMODS.Joker {
           func = function()
             local pos = getCardPosition(card)
             table.insert(SupfParticles, NewExplosion(pos.x, pos.y))
-            play_sound("supf_explosion", 1, 1)
+            play_sound("supf_explosion", 1, 0.5)
             G.jokers:remove_card(card)
             card:remove()
             card = nil

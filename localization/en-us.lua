@@ -35,7 +35,7 @@ return {
           "Does nothing",
           "At end of next round,",
           "increase value back",
-          "to {C:mult}+#1#{} Mult"
+          "to {C:mult}+#3#{} Mult"
         }
       },
       supf_cicada = {
@@ -110,8 +110,8 @@ return {
         text = {
           'Upon {C:attention}selecting',
           'or {C:attention}skipping{} Blind,',
-          'create {C:mult}#1# {C:attention}enhanced',
-          '{C:attention}Polychrome Aces',
+          'create an {C:attention}enhanced',
+          '{C:attention}Polychrome Ace',
           'and add them to',
           'your deck'
         }
@@ -138,7 +138,7 @@ return {
         }
       },
       supf_rainstorm = {
-        name = 'Rainstorm',
+        name = 'Storm',
         text = {
           'Every {C:attention}played card',
           'counts in scoring',
@@ -167,6 +167,28 @@ return {
           'Convert selected Joker',
           'into its {V:1,E:1}Attuned{} form',
           '{C:inactive}(Compatible Jokers will glow)'
+        }
+      }
+    },
+    Blind = {
+      bl_supf_scroll = {
+        ['name'] = "The Scroll",
+        ['text'] = {
+          'Hands must contain',
+          'at least two suits'
+        }
+      },
+      bl_supf_canvas = {
+        ['name'] = "The Canvas",
+        ['text'] = {
+          'Hands cannot contain',
+          '3 or more suits'
+        }
+      },
+      bl_supf_stack = {
+        ['name'] = "The Stack",
+        ['text'] = {
+          'X1.2 Chips, X0.6 Mult'
         }
       }
     }
