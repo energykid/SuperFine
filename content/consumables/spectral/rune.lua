@@ -44,6 +44,10 @@ SMODS.Consumable {
 
     soul_rate = 0.006,
 
+    keep_on_use = function(self, card)
+        return card.area ~= G.consumeables
+    end, 
+
     config = {extra = {is_rune = true}},
     
     loc_vars = function(self, info_queue, card)
@@ -58,6 +62,7 @@ SMODS.Consumable {
     end,
 
     can_use = function(self, card)
+        if card.area ~= G.consumeables then return true end
         if #G.jokers.highlighted == 1 then 
             for i, v in ipairs(SUPF.ATTUNEMENTS) do
                 if v.base == G.jokers.highlighted[1].config.center.name then return true end
@@ -67,6 +72,7 @@ SMODS.Consumable {
     end,
 
     use = function(self, card, area, copier)
+
         local oldCard = G.jokers.highlighted[1]
         local spot = 0
         for i = 1, #G.jokers.cards, 1 do
@@ -80,7 +86,7 @@ SMODS.Consumable {
             table.insert(SUPF.PARTICLES, #SUPF.PARTICLES + 1, NewAttunementBurst(pos.x, pos.y, 3 + (math.random(80) / 10)))
         end
         table.insert(SUPF.PARTICLES, #SUPF.PARTICLES + 1, NewAttunementExplosion(pos.x, pos.y))
-
+        play_sound("supf_attunement_jingle", 1, 1)
         G.E_MANAGER:add_event(Event({
             trigger = 'after',
             delay = 0.6,
@@ -88,7 +94,6 @@ SMODS.Consumable {
             func = function()
                 for i, v in ipairs(SUPF.ATTUNEMENTS) do
                     if v.base == G.jokers.highlighted[1].config.center.name then
-                        play_sound("supf_attunement_jingle", 1, 1)
                         --G.jokers.highlighted[1]:start_dissolve({G.C.BLACK, G.C.ORANGE, G.C.RED, G.C.GOLD, G.C.JOKER_GREY}, true, 0.05, true)
                         G.jokers.cards[spot] = SMODS.create_card({
                             set = 'Joker', 
