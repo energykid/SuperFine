@@ -6,6 +6,14 @@ SMODS.Atlas {
   py = 95
 }
 
+-- Deck Atlas
+SMODS.Atlas {
+  key = "Decks",
+  path = "supf_Decks.png",
+  px = 71,
+  py = 95
+}
+
 -- Blind Atlas
 SMODS.Atlas {
   key = "Blinds",
@@ -66,6 +74,9 @@ SMODS.Rarity {
 
 -- Enhancements
 do_folder("content/enhancements")
+
+-- Decks
+do_folder("content/backs")
 
 -- Blinds
 do_folder("content/blinds/boss")

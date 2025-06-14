@@ -209,6 +209,15 @@ return {
           'after each hand played'
         }
       }
+    },
+    Back = {
+      b_supf_shadow = {
+        ['name'] = 'Shadow Deck',
+        ['text'] = {
+          'Starting {C:attention}Aces{} become',
+          '{V:1,T:m_supf_ghost}#1#s'
+        }
+      }
     }
   },
   misc = {
