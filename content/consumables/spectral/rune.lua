@@ -77,9 +77,9 @@ SMODS.Consumable {
 
         local pos = getCardPosition(G.jokers.cards[spot])
         for _ = 0, 24, 1 do
-            table.insert(SupfParticles, #SupfParticles + 1, NewAttunementBurst(pos.x, pos.y, 3 + (math.random(80) / 10)))
+            table.insert(SUPF.PARTICLES, #SUPF.PARTICLES + 1, NewAttunementBurst(pos.x, pos.y, 3 + (math.random(80) / 10)))
         end
-        table.insert(SupfParticles, #SupfParticles + 1, NewAttunementExplosion(pos.x, pos.y))
+        table.insert(SUPF.PARTICLES, #SUPF.PARTICLES + 1, NewAttunementExplosion(pos.x, pos.y))
 
         G.E_MANAGER:add_event(Event({
             trigger = 'after',

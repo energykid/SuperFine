@@ -1,4 +1,4 @@
--- The Scroll
+-- The Canvas
 
 SMODS.Blind {
     key = 'canvas',

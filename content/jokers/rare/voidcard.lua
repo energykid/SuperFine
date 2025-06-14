@@ -33,7 +33,7 @@ SMODS.Joker {
       for i = 1, myPosition - 1 do
         local pos = getCardPosition(G.jokers.cards[i])
         local blst = NewVoidBlast(pos.x, pos.y, i)
-        table.insert(SupfParticles, #SupfParticles + 1, blst)
+        table.insert(SUPF.PARTICLES, #SUPF.PARTICLES + 1, blst)
         G.jokers.cards[i].VT.scale = G.jokers.cards[i].VT.scale * 0.8
         SMODS.debuff_card(G.jokers.cards[i], true, 'supf_cardVoided')
         card.ability.amount = card.ability.amount + 1

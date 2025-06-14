@@ -1,4 +1,4 @@
-SupfParticles = {}
+SUPF.PARTICLES = {}
 
 function NewParticle(x, y, atl, numFrames)
   return {
@@ -73,10 +73,10 @@ function NewParticle(x, y, atl, numFrames)
     
     Destroy = function(tbl)
       local i = 1
-      for k, v in pairs(SupfParticles) do
+      for k, v in pairs(SUPF.PARTICLES) do
         if v == tbl then i = k break end
       end
-      table.remove(SupfParticles, i)
+      table.remove(SUPF.PARTICLES, i)
     end
   }
 end

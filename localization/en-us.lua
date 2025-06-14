@@ -188,7 +188,8 @@ return {
       bl_supf_stack = {
         ['name'] = "The Stack",
         ['text'] = {
-          'X1.2 Chips, X0.6 Mult'
+          'X0.9 total chips',
+          'after each hand played'
         }
       }
     }

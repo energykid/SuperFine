@@ -2,6 +2,7 @@ SUPF = {}
 
 SUPF.WINDOW_PAD = {x = 0, y = 0}
 SUPF.DRAW_SCALE = 1
+SUPF.PARTICLES = {}
 SUPF.FLOATING_SPRITES = {}
 SUPF.GRADIENTS = {}
 SUPF.ATTUNEMENTS = {}
@@ -33,16 +34,21 @@ end
 function Supf_DrawEverything()
   
   SUPF.DRAW_SCALE = G.TILESCALE / 4
+
+  local debugtext = ''
+  if debugtext ~= '' then
+    love.graphics.print(debugtext, 100, 100)
+  end
   
-  for i = 1, #SupfParticles do
-    if SupfParticles[i] ~= nil then
-      SupfParticles[i].Update(SupfParticles[i])
+  for i = 1, #SUPF.PARTICLES do
+    if SUPF.PARTICLES[i] ~= nil then
+      SUPF.PARTICLES[i].Update(SUPF.PARTICLES[i])
     end
   end
   
-  for i = 1, #SupfParticles do
-    if SupfParticles[i] ~= nil then
-      SupfParticles[i].Draw(SupfParticles[i])
+  for i = 1, #SUPF.PARTICLES do
+    if SUPF.PARTICLES[i] ~= nil then
+      SUPF.PARTICLES[i].Draw(SUPF.PARTICLES[i])
     end
   end
   

@@ -1,0 +1,30 @@
+[manifest]
+version = "1.0.0"
+priority = 0
+
+[[patches]]
+[patches.pattern]
+target = "game.lua"
+pattern = '''
+function Game:update_hand_played(dt)
+    if self.buttons then self.buttons:remove(); self.buttons = nil end
+    if self.shop then self.shop:remove(); self.shop = nil end
+
+    if not G.STATE_COMPLETE then
+'''
+position = "after"
+payload = '''
+if G.GAME.blind.name == 'bl_supf_stack' then
+    G.E_MANAGER:add_event(Event({trigger = 'after',
+    delay = 0.2,
+    func = function()
+        G.GAME.chips = math.floor(G.GAME.chips * 0.9)
+        G.hand_text_area.game_chips:juice_up()
+        play_sound("supf_stack_reducechips", 0.9 + (math.random(12) / 10 / 10), 1)
+        return true
+    end
+    }))
+end
+'''
+match_indent = true
+times = 1
