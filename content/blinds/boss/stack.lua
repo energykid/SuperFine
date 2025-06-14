@@ -11,6 +11,6 @@ SMODS.Blind {
     loc_vars = function(self)
         return {}
     end,
-    boss = {min = 0},
-    boss_colour = HEX('886859')
+    boss = {min = 3},
+    boss_colour = HEX('804380')
 }
