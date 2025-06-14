@@ -168,6 +168,23 @@ return {
           'into its {V:1,E:1}Attuned{} form',
           '{C:inactive}(Compatible Jokers will glow)'
         }
+      },
+      supf_shade = {
+        name = 'Shade',
+        text={
+          "Enhances {C:attention}#1#{} selected",
+          "cards into",
+          "{C:attention}#2#s",
+        },
+      }
+    },
+    Enhanced = {
+      m_supf_ghost = {
+        name="Ghost Card",
+        text={
+          '{C:red}Does not count{} towards',
+          'selection limit'
+        }
       }
     },
     Blind = {

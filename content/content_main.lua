@@ -1,4 +1,12 @@
--- Blinds Atlas
+-- Enhancement Atlas
+SMODS.Atlas {
+  key = "Enhancements",
+  path = "supf_Enhancements.png",
+  px = 71,
+  py = 95
+}
+
+-- Blind Atlas
 SMODS.Atlas {
   key = "Blinds",
   path = "supf_Blinds.png",
@@ -55,6 +63,9 @@ SMODS.Rarity {
         ["Joker"] = false,
     },
 }
+
+-- Enhancements
+do_folder("content/enhancements")
 
 -- Blinds
 do_folder("content/blinds/boss")

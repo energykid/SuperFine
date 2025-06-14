@@ -6,6 +6,7 @@ SUPF.PARTICLES = {}
 SUPF.FLOATING_SPRITES = {}
 SUPF.GRADIENTS = {}
 SUPF.ATTUNEMENTS = {}
+SUPF.PLAY_LIMIT_MOD = 0
 SUPF.RUNE_SELECTED = false -- visual
 
 function do_folder(folder)
@@ -31,6 +32,21 @@ if SMODS and SMODS.current_mod then
 
 end
 
+function Supf_UpdateEverything()
+
+  if G.hand then
+    SMODS.change_play_limit(-SUPF.PLAY_LIMIT_MOD)
+    SUPF.PLAY_LIMIT_MOD = 0
+  end
+
+  for i = 1, #SUPF.PARTICLES do
+    if SUPF.PARTICLES[i] ~= nil then
+      SUPF.PARTICLES[i].Update(SUPF.PARTICLES[i])
+    end
+  end
+
+end
+
 function Supf_DrawEverything()
   
   SUPF.DRAW_SCALE = G.TILESCALE / 4
@@ -38,12 +54,6 @@ function Supf_DrawEverything()
   local debugtext = ''
   if debugtext ~= '' then
     love.graphics.print(debugtext, 100, 100)
-  end
-  
-  for i = 1, #SUPF.PARTICLES do
-    if SUPF.PARTICLES[i] ~= nil then
-      SUPF.PARTICLES[i].Update(SUPF.PARTICLES[i])
-    end
   end
   
   for i = 1, #SUPF.PARTICLES do

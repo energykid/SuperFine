@@ -6,7 +6,8 @@ SMODS.Sound {
 }
 SMODS.Blind {
     key = 'stack',
-    atlas = 'Blinds', 
+    atlas = 'Blinds',
+    mult = 1.75,
     pos = { y=2 },
     loc_vars = function(self)
         return {}
