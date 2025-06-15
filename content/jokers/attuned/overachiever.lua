@@ -44,7 +44,6 @@ SMODS.Joker {
 
   loc_vars = function(self, info_queue, card)
     return {
-      key = "supf_overachiever",
       vars = { card.ability.repetitions, card.ability.extra.mult }
       }
   end,

@@ -1,11 +1,11 @@
 {
-	"title": "Extended Cards",
+	"title": "SuperFine!!",
 	"requires-steamodded": true,
 	"requires-talisman": false,
-	"categories": ["Content"],
+	"categories": ["Content", "Joker"],
 	"author": "ENNWAY!",
 	"repo": "https://github.com/energykid/SuperFine",
-	"downloadURL": "https://github.com/energykid/SuperFine/releases/latest/SuperFine.zip",
+	"downloadURL": "https://github.com/energykid/SuperFine/releases/latest/download/SuperFine.zip",
 	"folderName": "SuperFine",
 	"version": "1.0.0",
 	"automatic-version-check": true

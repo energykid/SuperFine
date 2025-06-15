@@ -46,7 +46,6 @@ SMODS.Joker {
 
   loc_vars = function(self, info_queue, card)
     return {
-      key = "supf_archibald",
       vars = { card.ability.cards_to_create }
       }
   end,

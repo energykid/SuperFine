@@ -1,13 +1,20 @@
 return {
   descriptions = {
     Joker = {
-      supf_ecstaticJoker = {
+      j_supf_ecstaticJoker = {
         name = "Ecstatic Joker",
         text = {
           "{X:mult,C:white}X#1#{} Mult"
         }
       },
-      supf_voidcard = {
+      j_supf_emphasis = {
+        name = "Emphasis!",
+        text = {
+          'Last played card',
+          'gives {C:mult}+#1#{} Mult'
+        }
+      },
+      j_supf_voidcard = {
         name = "Voidcard",
         text = {
           "Debuffs all jokers",
@@ -18,7 +25,7 @@ return {
           "each joker debuffed"
         }
       },
-      supf_cucumber = {
+      j_supf_cucumber = {
         name = "Cucumber",
         text = {
           "{C:mult}+#1#{} Mult",
@@ -29,7 +36,7 @@ return {
           "next round ends"
         }
       },
-      supf_cucumber_alt = {
+      j_supf_cucumber_alt = {
         name = "Cucumber",
         text = {
           "Does nothing",
@@ -38,7 +45,7 @@ return {
           "to {C:mult}+#3#{} Mult"
         }
       },
-      supf_cicada = {
+      j_supf_cicada = {
         name = "Cicada",
         text = {
           "{C:mult}+#1#{} Mult",
@@ -49,7 +56,7 @@ return {
           "{C:mult}128{} Mult"
         }
       },
-      supf_cicadas = {
+      j_supf_cicadas = {
         name = "#2# Cicadas",
         text = {
           "{C:mult}+#1#{} Mult",
@@ -60,7 +67,7 @@ return {
           "{C:mult}128{} Mult"
         }
       },
-      supf_glimby = {
+      j_supf_glimby = {
         name = "Glimby",
         text = {
           "{X:mult,C:white}X#1#{} Mult",
@@ -70,7 +77,7 @@ return {
           "then {C:red,E:1}explodes"
         }
       },
-      supf_whimsy = {
+      j_supf_whimsy = {
         name = "Whimsy",
         text = {
           "{C:chips}+#1#{} Chips",
@@ -79,7 +86,7 @@ return {
           "is scored"
         }
       },
-      supf_wonder = {
+      j_supf_wonder = {
         name = "Wonder",
         text = {
           "{C:mult}+#1#{} Mult",
@@ -88,7 +95,7 @@ return {
           "is scored"
         }
       },
-      supf_luckyTicket = {
+      j_supf_luckyTicket = {
         name = "Lucky Ticket",
         text = {
           "{C:green}#3# in #2#{} chance at",
@@ -96,7 +103,7 @@ return {
           "gain {C:attention}$#1#{}"
         }
       },
-      supf_peoplewatching = {
+      j_supf_peoplewatching = {
         name = 'Peoplewatching',
         text = {
           'Gain {C:mult}+20{} Mult',
@@ -105,7 +112,7 @@ return {
           '{C:attention}3 face cards'
         }
       },
-      supf_archibald = {
+      j_supf_archibald = {
         name = 'Archibald',
         text = {
           'Upon {C:attention}selecting',
@@ -116,7 +123,7 @@ return {
           'your deck'
         }
       },
-      supf_overachiever = {
+      j_supf_overachiever = {
         name = 'Overachiever',
         text = {
           'Played {C:attention}Aces{} give',
@@ -125,7 +132,7 @@ return {
           '{C:attention}Ace {C:mult}#1#{} times',
         }
       },
-      supf_blueJava = {
+      j_supf_blueJava = {
         name = 'Blue Java',
         text = {
           '{X:mult,C:white}X#1#{} Mult',
@@ -137,7 +144,7 @@ return {
           '{X:mult,C:white}X3{} Mult at end of round'
         }
       },
-      supf_rainstorm = {
+      j_supf_rainstorm = {
         name = 'Storm',
         text = {
           'Every {C:attention}played card',
@@ -148,7 +155,7 @@ return {
           'give {X:mult,C:white}X#1#{} Mult'
         }
       },
-      supf_ultimateJimbo = {
+      j_supf_ultimateJimbo = {
         name = 'Ultimate Jimbo',
         text = {
           '{C:mult}+#1#{} Mult',
@@ -189,22 +196,22 @@ return {
     },
     Blind = {
       bl_supf_scroll = {
-        ['name'] = "The Scroll",
-        ['text'] = {
+        name = "The Scroll",
+        text = {
           'Hands must contain',
           'at least two suits'
         }
       },
       bl_supf_canvas = {
-        ['name'] = "The Canvas",
-        ['text'] = {
+        name = "The Canvas",
+        text = {
           'Hands cannot contain',
           '3 or more suits'
         }
       },
       bl_supf_stack = {
-        ['name'] = "The Stack",
-        ['text'] = {
+        name = "The Stack",
+        text = {
           'X0.9 total chips',
           'after each hand played'
         }
@@ -212,8 +219,8 @@ return {
     },
     Back = {
       b_supf_shadow = {
-        ['name'] = 'Shadow Deck',
-        ['text'] = {
+        name = 'Shadow Deck',
+        text = {
           'Starting {C:attention}Aces{} become',
           '{V:1,T:m_supf_ghost}#1#s'
         }

@@ -1,0 +1,19 @@
+[manifest]
+version = "1.0.0"
+priority = 0
+
+[[patches]]
+[patches.pattern]
+target = "card.lua"
+pattern = '''
+Moveable.juice_up(self, scale, rot_amt)
+'''
+position = "after"
+payload = '''
+if self.supf_do_emphasis then
+    play_sound("supf_emphasis", 1, 1)
+    self.supf_do_emphasis = false
+end
+'''
+match_indent = true
+times = 1

@@ -117,19 +117,21 @@ SMODS.Consumable {
     can_repeat_soul = true,
 
     draw = function(self, card, layer)
-        card.runic_timer = card.runic_timer or 0
-        card.runic_timer = card.runic_timer + 1
-        local rot = math.sin(card.runic_timer / 46) * math.rad(10)
-        local sc = 0.5 * (math.sin(card.runic_timer / 62) * 0.1)
-        drawFloatingSprite(card, 'supf_Spectrals', {x = 2, y = 0}, rot + math.rad(card.runic_timer), 0.35, 0, 0, 'the_rune_spiral')
-        love.graphics.setShader()
-        drawFloatingSprite(card, 'supf_Spectrals', {x = 1, y = 0}, rot, sc, 0, 0, 'the_rune')
+        if card.config.center.discovered then
+            card.runic_timer = card.runic_timer or 0
+            card.runic_timer = card.runic_timer + 1
+            local rot = math.sin(card.runic_timer / 46) * math.rad(10)
+            local sc = 0.5 * (math.sin(card.runic_timer / 62) * 0.1)
+            drawFloatingSprite(card, 'supf_Spectrals', {x = 2, y = 0}, rot + math.rad(card.runic_timer), 0.35, 0, 0, 'the_rune_spiral')
+            love.graphics.setShader()
+            drawFloatingSprite(card, 'supf_Spectrals', {x = 1, y = 0}, rot, sc, 0, 0, 'the_rune')
 
-        SUPF.RUNE_SELECTED = false
-        if G.consumeables and G.consumeables.highlighted then
-            for i, v in ipairs(G.consumeables.highlighted) do
-                if G.consumeables.highlighted[i] == card then
-                    SUPF.RUNE_SELECTED = true
+            SUPF.RUNE_SELECTED = false
+            if G.consumeables and G.consumeables.highlighted then
+                for i, v in ipairs(G.consumeables.highlighted) do
+                    if G.consumeables.highlighted[i] == card then
+                        SUPF.RUNE_SELECTED = true
+                    end
                 end
             end
         end

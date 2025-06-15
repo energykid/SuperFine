@@ -43,7 +43,6 @@ SMODS.Joker {
 
   loc_vars = function(self, info_queue, card)
     return {
-      key = "supf_rainstorm",
       vars = { card.ability.extra.Xmult }
       }
   end,

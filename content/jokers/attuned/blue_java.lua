@@ -1,5 +1,5 @@
 -- Blue Java
-NewAttunement('Cavendish', 'supf_bluejava')
+NewAttunement('Cavendish', 'supf_blueJava')
 
 SMODS.DrawStep {
   key = 'supf_bluejava',
@@ -31,7 +31,7 @@ SMODS.DrawStep {
 }
 SMODS.Joker {
 
-  key = 'bluejava',
+  key = 'blueJava',
 
   config = { bluejava = true, extra = { Xmult = 3 }, odds1 = 4, odds2 = 10, add1 = 0.25, add2 = 1, oddsReset = 500 },
   
@@ -44,7 +44,6 @@ SMODS.Joker {
 
   loc_vars = function(self, info_queue, card)
     return {
-      key = "supf_blueJava",
       vars = { card.ability.extra.Xmult, card.ability.odds1, card.ability.add1, card.ability.odds2, card.ability.add2, card.ability.oddsReset, getProbability() }
       }
   end,

@@ -44,7 +44,6 @@ SMODS.Joker {
 
   loc_vars = function(self, info_queue, card)
     return {
-      key = "supf_ultimateJimbo",
       vars = { card.ability.extra.mult, card.ability.extra.Xmult, card.ability.extra.Xmult_inc }
       }
   end,
