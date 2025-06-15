@@ -36,6 +36,7 @@ function Supf_UpdateEverything()
 
   if G.hand then
     SMODS.change_play_limit(-SUPF.PLAY_LIMIT_MOD)
+    SMODS.change_discard_limit(-SUPF.PLAY_LIMIT_MOD)
     SUPF.PLAY_LIMIT_MOD = 0
   end
 

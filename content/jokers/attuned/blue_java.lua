@@ -45,7 +45,7 @@ SMODS.Joker {
   loc_vars = function(self, info_queue, card)
     return {
       key = "supf_blueJava",
-      vars = { card.ability.extra.Xmult, card.ability.odds1, card.ability.add1, card.ability.odds2, card.ability.add2, card.ability.oddsReset }
+      vars = { card.ability.extra.Xmult, card.ability.odds1, card.ability.add1, card.ability.odds2, card.ability.add2, card.ability.oddsReset, getProbability() }
       }
   end,
   

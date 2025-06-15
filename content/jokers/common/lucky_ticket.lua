@@ -13,7 +13,7 @@ SMODS.Joker {
   pos = { x = 7, y = 0 },
 
   loc_vars = function(self, info_queue, card)    
-    return { key = "supf_luckyTicket", vars = { card.ability.dolers, card.ability.extra.odds } }
+    return { key = "supf_luckyTicket", vars = { card.ability.dolers, card.ability.extra.odds, getProbability() } }
   end,
   
   calculate = function(self, card, context)

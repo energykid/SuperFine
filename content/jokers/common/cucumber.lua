@@ -18,7 +18,7 @@ SMODS.Joker {
       KEY = "supf_cucumber_alt"
     end
     
-    return { key = KEY, vars = { card.ability.extra.mult, card.ability.extra.odds, card.ability.extra.multBack } }
+    return { key = KEY, vars = { card.ability.extra.mult, card.ability.extra.odds, card.ability.extra.multBack, getProbability() } }
   end,
   
   calculate = function(self, card, context)

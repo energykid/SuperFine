@@ -23,7 +23,7 @@ return {
         text = {
           "{C:mult}+#1#{} Mult",
           "At end of round,",
-          "{C:green}1 in #2#{} chance to",
+          "{C:green}#4# in #2#{} chance to",
           "negate this card's",
           "effect until the",
           "next round ends"
@@ -91,7 +91,7 @@ return {
       supf_luckyTicket = {
         name = "Lucky Ticket",
         text = {
-          "{C:green}1 in #2#{} chance at",
+          "{C:green}#3# in #2#{} chance at",
           "end of round to",
           "gain {C:attention}$#1#{}"
         }
@@ -129,11 +129,11 @@ return {
         name = 'Blue Java',
         text = {
           '{X:mult,C:white}X#1#{} Mult',
-          '{C:green}1 in #2#{} chance to gain',
+          '{C:green}#7# in #2#{} chance to gain',
           '{X:mult,C:white}X#3#{} Mult at end of round',
-          '{C:green}1 in #4#{} chance to gain',
+          '{C:green}#7# in #4#{} chance to gain',
           '{X:mult,C:white}X#5#{} Mult at end of round',
-          '{C:green}1 in #6#{} chance to {C:red,E:1}reset{} to',
+          '{C:green}#7# in #6#{} chance to {C:red,E:1}reset{} to',
           '{X:mult,C:white}X3{} Mult at end of round'
         }
       },
