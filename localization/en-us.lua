@@ -175,6 +175,29 @@ return {
           'this round',
           '{C:inactive}(Currently {C:white,X:inactive}X#2# {C:inactive} Mult)'
         }
+      },
+      j_supf_murderJoker = {
+        name = '{C:red}MURDER JOKER',
+        text = {
+          'If played hand is a',
+          '{C:attention}Four of a Kind,',
+          '{E:1,C:red}KILL THEM ALL{} and',
+          '{E:1,C:red}STEAL{} their {E:1,C:red}WALLETS!!!',
+          '{C:inactive}(Destroys all four cards,',
+          '{C:inactive}giving you 1/4 of their',
+          '{C:inactive}rank as money)'
+        }
+      },
+      j_supf_enamoredJoker = {
+        name = 'Enamored Joker',
+        text = {
+          'Cards of {V:1}#1#{} suit',
+          'give {E:1}double{} the amount',
+          'of {V:1}#1#{} cards in',
+          '{C:attention}scoring hand{} as Mult',
+          'when scored',
+          '{C:inactive}(Minimum of {C:mult}+#2#{C:inactive} Mult)'
+        }
       }
     },
     Spectral = {

@@ -3,7 +3,7 @@ SMODS.DrawStep {
     order = -200,
     
     func = function(card, layer)
-        if G.jokers then
+        if G.jokers and card.config.center.discovered then
             if not card.shouldBeRuneHighlighted then
                 for i, v in ipairs(SUPF.ATTUNEMENTS) do
                     if v.base == card.config.center.name then 
