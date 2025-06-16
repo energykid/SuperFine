@@ -3,19 +3,17 @@ do
 SMODS.Joker {
 
   key = 'hauntedHouse',
-
-  config = { extra = { odds = 2 } },
   
-  rarity = 2,
+  rarity = 3,
   
   cost = 5,
   
   atlas = 'Jokers',
-  pos = { x = 0, y = 0 },
+  pos = { x = 2, y = 1 },
 
   loc_vars = function(self, info_queue, card)
     return {
-      vars = { card.ability.extra.odds, getProbability() }
+      vars = { localize { type = 'name_text', set = 'Enhanced', key = 'm_supf_ghost' } }
       }
   end,
   

@@ -81,9 +81,9 @@ return {
         name = "Haunted House",
         text = {
           "When playing a {C:blue}Full House{},",
-          "if {C:attention}final scoring card",
-          "is not a {C:blue}Ghost Card{},",
-          "convert it into one.",
+          "if final scoring card",
+          "is not a {C:tarot,T:m_supf_ghost}#1#{},",
+          "convert it into one",
           "Otherwise, {C:attention}retrigger it"
         }
       },
