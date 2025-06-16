@@ -77,6 +77,16 @@ return {
           "then {C:red,E:1}explodes"
         }
       },
+      j_supf_hauntedHouse = {
+        name = "Haunted House",
+        text = {
+          "When playing a {C:blue}Full House{},",
+          "if {C:attention}final scoring card",
+          "is not a {C:blue}Ghost Card{},",
+          "convert it into one.",
+          "Otherwise, {C:attention}retrigger it"
+        }
+      },
       j_supf_whimsy = {
         name = "Whimsy",
         text = {

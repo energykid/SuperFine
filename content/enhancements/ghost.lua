@@ -13,7 +13,7 @@ SMODS.Enhancement {
         end
         
         if shouldSelect and card.area == G.hand and not card.debuff then
-            increaseCardSelection()
+            increaseCardSelection(1)
         end
     end
 }
