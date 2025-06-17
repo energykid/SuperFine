@@ -198,6 +198,17 @@ return {
           'when scored',
           '{C:inactive}(Minimum of {C:mult}+#2#{C:inactive} Mult)'
         }
+      },
+      j_supf_engaudedJoker = {
+        name = 'Engauded Joker',
+        text = {
+          'Cards of {V:1}#1#{} suit',
+          'give {E:1}double{} the amount',
+          'of {V:1}#1#{} cards in',
+          '{C:attention}scoring hand{} as Mult',
+          'when scored',
+          '{C:inactive}(Minimum of {C:mult}+#2#{C:inactive} Mult)'
+        }
       }
     },
     Spectral = {
