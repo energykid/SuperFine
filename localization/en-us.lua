@@ -236,21 +236,28 @@ return {
           '{C:red}Does not count{} towards',
           'selection limit'
         }
+      },
+      m_supf_obsidian = {
+        name="Obsidian Card",
+        text={
+          '{C:white,X:chips}X#1#{} chips and {C:white,X:mult}X#2#{} mult',
+          'no rank or suit'
+        }
       }
     },
     Blind = {
       bl_supf_scroll = {
         name = "The Scroll",
         text = {
-          'Hands must contain',
-          'at least two suits'
+          'Hands must not contain',
+          'exactly two suits'
         }
       },
       bl_supf_canvas = {
         name = "The Canvas",
         text = {
-          'Hands cannot contain',
-          '3 or more suits'
+          'Hands must contain',
+          '3 or less suits'
         }
       },
       bl_supf_stack = {
