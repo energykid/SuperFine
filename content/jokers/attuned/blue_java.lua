@@ -1,11 +1,27 @@
 -- Blue Java
 NewAttunement('Cavendish', 'supf_blueJava')
 
-SMODS.DrawStep {
-  key = 'supf_bluejava',
-  order = 20,
-  func = function(card)
-    if card.ability.bluejava and card.config.center.discovered then
+SMODS.Joker {
+
+  key = 'blueJava',
+
+  config = { bluejava = true, extra = { Xmult = 3 }, odds1 = 4, odds2 = 10, add1 = 0.25, add2 = 1, oddsReset = 500 },
+  
+  rarity = "supf_attuned",
+  
+  cost = 15,
+  
+  atlas = 'AttunedJokers',
+  pos = { x = 0, y = 1 },
+
+  loc_vars = function(self, info_queue, card)
+    return {
+      vars = { card.ability.extra.Xmult, card.ability.odds1, card.ability.add1, card.ability.odds2, card.ability.add2, card.ability.oddsReset, getProbability() }
+      }
+  end,
+  
+  draw = function(self, card, layer)
+    if card.config.center.discovered then
       local timer = G.TIMERS.REAL
 
       card.visualtimer = card.visualtimer or 0
@@ -27,27 +43,7 @@ SMODS.DrawStep {
 
     end
   end,
-  conditions = {vortex = false, facing = "front", discovered = true}
-}
-SMODS.Joker {
 
-  key = 'blueJava',
-
-  config = { bluejava = true, extra = { Xmult = 3 }, odds1 = 4, odds2 = 10, add1 = 0.25, add2 = 1, oddsReset = 500 },
-  
-  rarity = "supf_attuned",
-  
-  cost = 15,
-  
-  atlas = 'AttunedJokers',
-  pos = { x = 0, y = 1 },
-
-  loc_vars = function(self, info_queue, card)
-    return {
-      vars = { card.ability.extra.Xmult, card.ability.odds1, card.ability.add1, card.ability.odds2, card.ability.add2, card.ability.oddsReset, getProbability() }
-      }
-  end,
-  
   calculate = function(self, card, context)
     
     if context.joker_main then

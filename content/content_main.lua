@@ -39,6 +39,14 @@ SMODS.Atlas {
   py = 95
 }
 
+-- Tarot Atlas
+SMODS.Atlas {
+  key = "Tarots",
+  path = "supf_Tarots.png",
+  px = 65,
+  py = 95
+}
+
 -- Spectral Atlas
 SMODS.Atlas {
   key = "Spectrals",
@@ -90,3 +98,8 @@ do_folder("content/jokers/attuned")
 
 -- Spectrals
 do_folder("content/consumables/spectral")
+
+-- Tarots (individually, for order)
+SMODS.load_file("content/consumables/tarot/absence.lua")()
+SMODS.load_file("content/consumables/tarot/crystal.lua")()
+SMODS.load_file("content/consumables/tarot/elements.lua")()

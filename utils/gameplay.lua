@@ -8,13 +8,18 @@ function getProbability()
     return G.GAME and G.GAME.probabilities.normal or 1
 end
 
-function flipCardToEnhance(card, cardarea, enhancement)
+function flipCardToEnhance(cards, cardarea, enhancement)
+
+    cards = cards[1] and cards or {cards}
+
     G.E_MANAGER:add_event(Event({
             trigger = 'after',
             delay = 0.4,
             func = function()
-                play_sound('tarot1')
-                card:juice_up(0.3, 0.5)
+                for i, card in ipairs(cards) do
+                    play_sound('tarot1')
+                    card:juice_up(0.3, 0.5)
+                end
                 return true
             end
         }))
@@ -23,9 +28,11 @@ function flipCardToEnhance(card, cardarea, enhancement)
                 trigger = 'after',
                 delay = 0.15,
                 func = function()
-                    card:flip()
-                    play_sound('card1')
-                    card:juice_up(0.3, 0.3)
+                    for i, card in ipairs(cards) do
+                        card:flip()
+                        play_sound('card1')
+                        card:juice_up(0.3, 0.3)
+                    end
                     return true
                 end
             }))
@@ -34,7 +41,9 @@ function flipCardToEnhance(card, cardarea, enhancement)
                 trigger = 'after',
                 delay = 0.1,
                 func = function()
-                    card:set_ability(G.P_CENTERS[enhancement])
+                    for i, card in ipairs(cards) do
+                        card:set_ability(G.P_CENTERS[enhancement])
+                    end
                     return true
                 end
             }))
@@ -42,9 +51,11 @@ function flipCardToEnhance(card, cardarea, enhancement)
                 trigger = 'after',
                 delay = 0.15,
                 func = function()
-                    card:flip()
-                    play_sound('tarot2', 1, 0.6)
-                    card:juice_up(0.3, 0.3)
+                    for i, card in ipairs(cards) do
+                        card:flip()
+                        play_sound('tarot2', 1, 0.6)
+                        card:juice_up(0.3, 0.3)
+                    end
                     return true
                 end
             }))

@@ -211,6 +211,17 @@ return {
         }
       }
     },
+    Tarot = {
+      c_supf_crystal = {
+        name = 'The Crystal',
+        text = {
+          "Enhances {C:attention}#1#{} selected",
+          "#3#s or",
+          "#4#s into",
+          "{C:attention}#2#s",
+        }
+      },
+    },
     Spectral = {
       supf_rune = {
         name = 'Rune',
