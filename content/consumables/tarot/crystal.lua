@@ -11,30 +11,36 @@ SMODS.Consumable {
     can_use = function(self, card)
         local currenthand = G.hand
         if card.area == G.consumeables then
-            if #currenthand.highlighted <= 2 then 
-                for i, _card in ipairs(currenthand.highlighted) do
-                    if (_card.ability.name ~= G.P_CENTERS['m_stone'].name) and (_card.ability.name ~= G.P_CENTERS['m_glass'].name) then
-                        return false
+            if #currenthand.highlighted <= 2 and #currenthand.highlighted ~= 0 then 
+                local b = true
+                for _, _card in ipairs(currenthand.highlighted) do
+                    if not SMODS.has_enhancement(playing_card, 'm_stone') and not SMODS.has_enhancement(playing_card, 'm_glass') then
+                        b = false
                     end
-                    return true
                 end
+                return b
+            else
+                return false
             end
         else
             return true
         end
-        return false
     end,
 
     use = function(self, card, area, copier)
 
         local currenthand = G.hand
-        local copyCards = function() 
-            for _, _card in ipairs(currenthand.highlighted) do
-                flipCardToEnhance(_card, currenthand, 'm_supf_obsidian')
+        local copyCards = function()
+            for i, _card in ipairs(currenthand.highlighted) do
+                forceFlipCardToEnhance(_card, currenthand, 'm_supf_obsidian', i / 3, i / 10)
             end
         end
 
-        if card.area == G.consumeables then copyCards() elseif #currenthand.highlighted ~= 0 then copyCards() end
+        if card.area == G.consumeables and #currenthand.highlighted ~= 0 and #currenthand.highlighted <= 2 then 
+            copyCards()
+        elseif #currenthand.highlighted ~= 0 then 
+            copyCards()
+        end
     end,
 
     loc_vars = function(self, info_queue, card)

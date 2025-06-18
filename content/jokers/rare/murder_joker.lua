@@ -34,7 +34,9 @@ SMODS.Joker {
       for _, c in ipairs(context.scoring_hand) do
         dolers = dolers + math.ceil(c.rank and c.rank / 4 or 2)
       end
-        -- TODO: Fix the bug where dissolved cards turn into invisible spots on the hand
+      for _, c in ipairs(context.scoring_hand) do
+        c.destroyed = true
+      end
       G.E_MANAGER:add_event(Event({
             trigger = 'after',
             delay = 0.4,
@@ -42,9 +44,7 @@ SMODS.Joker {
               SUPF.MURDER_FRAMES = 10
               play_sound('supf_murderjoker')
               for _, c in ipairs(context.scoring_hand) do
-                for _, rc in ipairs(G.play.cards) do if c == rc then
-                  c:start_dissolve({G.C.RED}, true, 0, true)
-                end end
+                c:start_dissolve({G.C.RED}, true, 0, true)
               end
               return true
             end
