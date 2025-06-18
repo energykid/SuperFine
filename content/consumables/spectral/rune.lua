@@ -65,7 +65,7 @@ SMODS.Consumable {
         if card.area ~= G.consumeables then return true end
         if #G.jokers.highlighted == 1 then 
             for i, v in ipairs(SUPF.ATTUNEMENTS) do
-                if v.base == G.jokers.highlighted[1].config.center.name then return true end
+                if v.base == G.jokers.highlighted[1].config.center.key then return true end
             end
         end
         return false
