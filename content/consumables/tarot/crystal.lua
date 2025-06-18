@@ -14,7 +14,7 @@ SMODS.Consumable {
             if #currenthand.highlighted <= 2 and #currenthand.highlighted ~= 0 then 
                 local b = true
                 for _, _card in ipairs(currenthand.highlighted) do
-                    if not SMODS.has_enhancement(playing_card, 'm_stone') and not SMODS.has_enhancement(playing_card, 'm_glass') then
+                    if not SMODS.has_enhancement(_card, 'm_stone') and not SMODS.has_enhancement(_card, 'm_glass') then
                         b = false
                     end
                 end
@@ -32,7 +32,7 @@ SMODS.Consumable {
         local currenthand = G.hand
         local copyCards = function()
             for i, _card in ipairs(currenthand.highlighted) do
-                forceFlipCardToEnhance(_card, currenthand, 'm_supf_obsidian', i / 3, i / 10)
+                forceFlipCardToEnhance(_card, 'm_supf_obsidian', i / 3, i / 10)
             end
         end
 
@@ -49,7 +49,8 @@ SMODS.Consumable {
             vars = { card.ability.max_highlighted, 
             localize { type = 'name_text', set = 'Enhanced', key = card.ability.mod_conv },
             localize { type = 'name_text', set = 'Enhanced', key = 'm_stone' },
-            localize { type = 'name_text', set = 'Enhanced', key = 'm_glass' }} 
+            localize { type = 'name_text', set = 'Enhanced', key = 'm_glass' },
+            colours = {HEX('33428F')}},
         }
     end,
 }

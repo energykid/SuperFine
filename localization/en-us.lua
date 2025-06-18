@@ -209,6 +209,28 @@ return {
           'when scored',
           '{C:inactive}(Minimum of {C:mult}+#2#{C:inactive} Mult)'
         }
+      },
+      j_supf_enragedJoker = {
+        name = 'Enraged Joker',
+        text = {
+          'Cards of {V:1}#1#{} suit',
+          'give {E:1}double{} the amount',
+          'of {V:1}#1#{} cards in',
+          '{C:attention}scoring hand{} as Mult',
+          'when scored',
+          '{C:inactive}(Minimum of {C:mult}+#2#{C:inactive} Mult)'
+        }
+      },
+      j_supf_engorgedJoker = {
+        name = 'Engorged Joker',
+        text = {
+          'Cards of {V:1}#1#{} suit',
+          'give {E:1}double{} the amount',
+          'of {V:1}#1#{} cards in',
+          '{C:attention}scoring hand{} as Mult',
+          'when scored',
+          '{C:inactive}(Minimum of {C:mult}+#2#{C:inactive} Mult)'
+        }
       }
     },
     Tarot = {
@@ -218,7 +240,7 @@ return {
           "Enhances {C:attention}#1#{} selected",
           "#3#s or",
           "#4#s into",
-          "{C:attention}#2#s",
+          "{V:1}#2#s",
         }
       },
     },
@@ -236,7 +258,7 @@ return {
         text={
           "Enhances {C:attention}#1#{} selected",
           "cards into",
-          "{C:attention}#2#s",
+          "{V:1}#2#s",
         },
       }
     },

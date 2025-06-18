@@ -21,7 +21,7 @@ SMODS.Joker {
     if context.cardarea == G.play and context.repetition and next(context.poker_hands['Full House']) then
       if context.other_card == context.scoring_hand[#context.scoring_hand] then
         if context.other_card.config.center.key == "c_base" then
-          flipCardToEnhance(context.other_card, G.play, 'm_supf_ghost')
+          flipCardToEnhance(context.other_card, 'm_supf_ghost')
         elseif SMODS.has_enhancement(context.other_card, 'm_supf_ghost') then
           return
           {

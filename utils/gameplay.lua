@@ -8,7 +8,7 @@ function getProbability()
     return G.GAME and G.GAME.probabilities.normal or 1
 end
 
-function flipCardToEnhance(cards, cardarea, enhancement)
+function flipCardToEnhance(cards, enhancement)
 
     cards = cards[1] and cards or {cards}
 
@@ -62,7 +62,7 @@ function flipCardToEnhance(cards, cardarea, enhancement)
         delay(0.5)
 end
 
-function forceFlipCardToEnhance(cards, cardarea, enhancement, delayTime, pitch)
+function forceFlipCardToEnhance(cards, enhancement, delayTime, pitch)
 
     delayTime = delayTime or 0
     pitch = pitch or 0
