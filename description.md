@@ -1,5 +1,14 @@
 SuperFine!! is a 'Vanilla++' mod - aiming to add content that fits in with vanilla's balance, but stands out on its own.
 
-Currently, it adds 18 Jokers, 2 Spectral cards, 3 Boss Blinds, an enhancement, and a new deck.
+Currently, it adds:
+21 Jokers,
+2 Spectral cards,
+3 Boss Blinds,
+three Enhancements,
+two Tarot cards,
+and one deck.
 
-Feel free to join the SuperFine!! thread in the Balatro Discord to discuss or learn more about the mod!
+Feel free to join the SuperFine!! thread in the Balatro Discord to discuss or learn more about the mod:
+https://discord.com/channels/1116389027176787968/1383223172781965413
+
+(Must be in the Balatro discord for this link to work.)
