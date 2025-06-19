@@ -3,7 +3,7 @@
 SMODS.Blind {
     key = 'revenant',
     atlas = 'Blinds',
-    mult = 2,
+    mult = 1.5,
     pos = { y=3 },
     loc_vars = function(self)
         return {}

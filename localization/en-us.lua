@@ -192,7 +192,7 @@ return {
         name = 'Enamored Joker',
         text = {
           'Cards of {V:1}#1#{} suit',
-          'give {E:1}double{} the amount',
+          'give {E:1}quadruple{} the amount',
           'of {V:1}#1#{} cards in',
           '{C:attention}scoring hand{} as Mult',
           'when scored',
@@ -203,7 +203,7 @@ return {
         name = 'Engauded Joker',
         text = {
           'Cards of {V:1}#1#{} suit',
-          'give {E:1}double{} the amount',
+          'give {E:1}quadruple{} the amount',
           'of {V:1}#1#{} cards in',
           '{C:attention}scoring hand{} as Mult',
           'when scored',
@@ -214,7 +214,7 @@ return {
         name = 'Enraged Joker',
         text = {
           'Cards of {V:1}#1#{} suit',
-          'give {E:1}double{} the amount',
+          'give {E:1}quadruple{} the amount',
           'of {V:1}#1#{} cards in',
           '{C:attention}scoring hand{} as Mult',
           'when scored',
@@ -225,7 +225,7 @@ return {
         name = 'Engorged Joker',
         text = {
           'Cards of {V:1}#1#{} suit',
-          'give {E:1}double{} the amount',
+          'give {E:1}quadruple{} the amount',
           'of {V:1}#1#{} cards in',
           '{C:attention}scoring hand{} as Mult',
           'when scored',
@@ -313,6 +313,13 @@ return {
         name = "The Revenant",
         text = {
           '-1 hand selection size',
+        }
+      },
+      bl_supf_mace = {
+        name = "The Mace",
+        text = {
+          'Reduces rank of played',
+          'cards before scoring'
         }
       }
     },

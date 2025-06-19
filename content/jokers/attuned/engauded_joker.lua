@@ -42,14 +42,16 @@ SMODS.Joker {
       local mlt = 0
       for _, reference_card in ipairs(context.scoring_hand) do
         if reference_card:is_suit(card.ability.extra.suit) then
-          mlt = mlt + 2
+          mlt = mlt + 4
         end
       end
-      mlt = math.max(mlt, card.ability.extra.minimum)
-      return {
-        mult_mod = mlt,
-        message = localize{ type = 'variable', key = 'a_mult', vars = { mlt }}
-      }
+      if context.other_card:is_suit(card.ability.extra.suit) then
+        mlt = math.max(mlt, card.ability.extra.minimum)
+        return {
+          mult_mod = mlt,
+          message = localize{ type = 'variable', key = 'a_mult', vars = { mlt }}
+        }
+      end
     end
   end
 }

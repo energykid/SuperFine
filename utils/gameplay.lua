@@ -8,6 +8,15 @@ function getProbability()
     return G.GAME and G.GAME.probabilities.normal or 1
 end
 
+function changeCardTo(card, new_suit, new_rank)
+    local new_code = SMODS.Suits[new_suit].card_key
+    local new_val = SMODS.Ranks[new_rank].card_key
+    local new_card = G.P_CARDS[new_code..'_'..new_val]
+
+    card:set_base(new_card)
+    G.GAME.blind:debuff_card(card)
+end
+
 function flipCardToEnhance(cards, enhancement)
 
     cards = cards[1] and cards or {cards}
