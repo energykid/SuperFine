@@ -1,4 +1,4 @@
-NewAttunement('Wrathful Joker', 'supf_enragedJoker')
+NewAttunement('wrathful_joker', 'supf_enragedJoker')
 
 SMODS.Joker {
 

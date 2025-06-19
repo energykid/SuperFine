@@ -6,7 +6,7 @@ SMODS.DrawStep {
         if G.jokers and card.config.center.discovered then
             if not card.shouldBeRuneHighlighted then
                 for i, v in ipairs(SUPF.ATTUNEMENTS) do
-                    if v.base == card.config.center.name then 
+                    if card.config.center.key == 'j_'..v.base then 
                         card.shouldBeRuneHighlighted = true
                     end
                 end
@@ -65,7 +65,7 @@ SMODS.Consumable {
         if card.area ~= G.consumeables then return true end
         if #G.jokers.highlighted == 1 then 
             for i, v in ipairs(SUPF.ATTUNEMENTS) do
-                if v.base == G.jokers.highlighted[1].config.center.key then return true end
+                if G.jokers.highlighted[1].config.center.key == 'j_'..v.base then return true end
             end
         end
         return false
@@ -93,12 +93,12 @@ SMODS.Consumable {
             blockable = false,
             func = function()
                 for i, v in ipairs(SUPF.ATTUNEMENTS) do
-                    if v.base == G.jokers.highlighted[1].config.center.name then
+                    if G.jokers.highlighted[1].config.center.key == 'j_'..v.base then
                         --G.jokers.highlighted[1]:start_dissolve({G.C.BLACK, G.C.ORANGE, G.C.RED, G.C.GOLD, G.C.JOKER_GREY}, true, 0.05, true)
                         G.jokers.cards[spot] = SMODS.create_card({
                             set = 'Joker', 
                             area = G.jokers, 
-                            key = "j_" .. v.attuned,
+                            key = "j_"..v.attuned,
                             skip_materialize = true
                         })
                         G.jokers.cards[spot]:set_card_area(G.jokers)

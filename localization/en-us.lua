@@ -231,6 +231,15 @@ return {
           'when scored',
           '{C:inactive}(Minimum of {C:mult}+#2#{C:inactive} Mult)'
         }
+      },
+      j_supf_violentVisage = {
+        name = 'Violent Visage',
+        text = {
+          'Played {C:attention}face cards{}',
+          'permanently gain {C:chips}+#1#{}',
+          'Chips and {C:mult}+#2#{} Mult',
+          'when scored'
+        }
       }
     },
     Tarot = {
@@ -289,8 +298,8 @@ return {
       bl_supf_canvas = {
         name = "The Canvas",
         text = {
-          'Hands must contain',
-          '3 or less suits'
+          'Hands must not contain',
+          'exactly four suits'
         }
       },
       bl_supf_stack = {
@@ -298,6 +307,12 @@ return {
         text = {
           'X0.9 total chips',
           'after each hand played'
+        }
+      },
+      bl_supf_revenant = {
+        name = "The Revenant",
+        text = {
+          '-1 hand selection size',
         }
       }
     },

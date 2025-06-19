@@ -1,5 +1,5 @@
 -- Rainstorm
-NewAttunement('Splash', 'supf_rainstorm')
+NewAttunement('splash', 'supf_rainstorm')
 SMODS.DrawStep {
   key = 'supf_rainstorm',
   order = 20,

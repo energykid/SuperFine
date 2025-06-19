@@ -1,5 +1,5 @@
 -- Overachiever
-NewAttunement('Scholar', 'supf_overachiever')
+NewAttunement('scholar', 'supf_overachiever')
 
 SMODS.DrawStep {
   key = 'supf_overachiever',

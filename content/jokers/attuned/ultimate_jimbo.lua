@@ -1,5 +1,5 @@
 -- Blue Java
-NewAttunement('Joker', 'supf_ultimateJimbo')
+NewAttunement('joker', 'supf_ultimateJimbo')
 
 SMODS.DrawStep {
   key = 'supf_ultimateJimbo',

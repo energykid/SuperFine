@@ -1,5 +1,5 @@
 -- Blue Java
-NewAttunement('j_cavendish', 'supf_blueJava')
+NewAttunement('cavendish', 'supf_blueJava')
 
 SMODS.Joker {
 
