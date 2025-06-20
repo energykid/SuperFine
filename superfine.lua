@@ -7,6 +7,7 @@ SUPF.FLOATING_SPRITES = {}
 SUPF.GRADIENTS = {}
 SUPF.ATTUNEMENTS = {}
 SUPF.PLAY_LIMIT_MOD = 0
+SUPF.MURDER_FRAMES = 0
 SUPF.RUNE_SELECTED = false -- visual
 
 function do_folder(folder)
@@ -29,11 +30,19 @@ if SMODS and SMODS.current_mod then
 		px = 32,
 		py = 32,
 	})
+  
+	SMODS.Atlas({
+		key = "MurderJoker",
+		path = "supf_MurderJoker.png",
+		px = 32,
+		py = 32,
+	})
 
 end
 
 function Supf_UpdateEverything()
 
+  SUPF.MURDER_FRAMES = SUPF.MURDER_FRAMES - 1
   if G.hand then
     SMODS.change_play_limit(-SUPF.PLAY_LIMIT_MOD)
     SMODS.change_discard_limit(-SUPF.PLAY_LIMIT_MOD)
@@ -61,6 +70,25 @@ function Supf_DrawEverything()
     if SUPF.PARTICLES[i] ~= nil then
       SUPF.PARTICLES[i].Draw(SUPF.PARTICLES[i])
     end
+  end
+
+  if SUPF.MURDER_FRAMES > 0 then
+    love.graphics.setCanvas(G.CANVAS)
+    love.graphics.scale(G.CANV_SCALE)
+    
+    local wid, hei = love.graphics.getDimensions()
+
+    love.graphics.setColor(1, 1, 1, 1)
+    love.graphics.draw(
+      G.ASSET_ATLAS["supf_MurderJoker"].image,
+      love.graphics.newQuad(0, 0, 1, 1, 1, 1),
+      0,
+      0,
+      0,
+      wid,
+      hei,
+      0, 0
+    )
   end
   
 end

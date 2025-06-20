@@ -1,5 +1,5 @@
 -- Blue Java
-NewAttunement('Joker', 'supf_ultimateJimbo')
+NewAttunement('joker', 'supf_ultimateJimbo')
 
 SMODS.DrawStep {
   key = 'supf_ultimateJimbo',
@@ -22,8 +22,8 @@ SMODS.DrawStep {
       rnd1 = rnd1 * 0.00025
       rnd2 = rnd2 * 0.00025
 
-      drawFloatingSprite(card, "supf_AttunedJokers", { x = 4, y = 0 }, rotate_mod * 0.5, (scale_mod * 1.2) - 0.015 + (math.sin(card.visualtimer / 50) * 0.05), 0, 0, "ultimate_jimbo_face")
-      drawFloatingSprite(card, "supf_AttunedJokers", { x = 5, y = 0 }, 0, 0.1, 0, 0, "ultimate_jimbo_overlay")
+      drawFloatingSpriteLegacy(card, "supf_AttunedJokers", { x = 4, y = 0 }, rotate_mod * 0.5, (scale_mod * 1.2) - 0.015 + (math.sin(card.visualtimer / 50) * 0.05), 0, 0, "ultimate_jimbo_face")
+      drawFloatingSpriteLegacy(card, "supf_AttunedJokers", { x = 5, y = 0 }, 0, 0.1, 0, 0, "ultimate_jimbo_overlay")
 
     end
   end,
@@ -44,7 +44,6 @@ SMODS.Joker {
 
   loc_vars = function(self, info_queue, card)
     return {
-      key = "supf_ultimateJimbo",
       vars = { card.ability.extra.mult, card.ability.extra.Xmult, card.ability.extra.Xmult_inc }
       }
   end,

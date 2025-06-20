@@ -15,7 +15,6 @@ SMODS.Joker {
   
   loc_vars = function(self, info_queue, card)
     return {
-      key = "supf_voidcard",
       vars = { card.ability.extra.Xmult }
     }
   end,

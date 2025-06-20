@@ -1,5 +1,5 @@
 -- Rainstorm
-NewAttunement('Splash', 'supf_rainstorm')
+NewAttunement('splash', 'supf_rainstorm')
 SMODS.DrawStep {
   key = 'supf_rainstorm',
   order = 20,
@@ -21,8 +21,8 @@ SMODS.DrawStep {
       rnd1 = rnd1 * 0.00025
       rnd2 = rnd2 * 0.00025
 
-      drawFloatingSprite(card, "supf_AttunedJokers", { x = 1, y = 2 }, 0, 0.05 - (scale_mod * 0.6), 0, 0, 'rainstorm_background')
-      drawFloatingSprite(card, "supf_AttunedJokers", { x = 2, y = 2 }, 0, (scale_mod * 1.2), 0, 0, 'rainstorm_foreground')
+      drawFloatingSpriteLegacy(card, "supf_AttunedJokers", { x = 1, y = 2 }, 0, 0.05 - (scale_mod * 0.6), 0, 0, 'rainstorm_background')
+      drawFloatingSpriteLegacy(card, "supf_AttunedJokers", { x = 2, y = 2 }, 0, (scale_mod * 1.2), 0, 0, 'rainstorm_foreground')
 
     end
   end,
@@ -43,7 +43,6 @@ SMODS.Joker {
 
   loc_vars = function(self, info_queue, card)
     return {
-      key = "supf_rainstorm",
       vars = { card.ability.extra.Xmult }
       }
   end,

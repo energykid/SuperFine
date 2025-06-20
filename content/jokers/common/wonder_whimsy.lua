@@ -14,7 +14,6 @@ SMODS.Joker {
   
   loc_vars = function(self, info_queue, card)
     return {
-      key = "supf_wonder",
       vars = { card.ability.extra.mult }
     }
   end,
@@ -49,7 +48,6 @@ SMODS.Joker {
   
   loc_vars = function(self, info_queue, card)
     return {
-      key = "supf_whimsy",
       vars = { card.ability.extra.chips }
     }
   end,

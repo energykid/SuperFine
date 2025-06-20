@@ -42,7 +42,7 @@ SMODS.DrawStep {
 
 SMODS.Joker {
 
-  key = 'supf_cicadas',
+  key = 'cicadas',
 
   config = { extra = { mult = 1 }, cicadas = 1, cicadasToDraw = {
       
@@ -58,8 +58,8 @@ SMODS.Joker {
   pos = { x = 3, y = 0 },
 
   loc_vars = function(self, info_queue, card)    
-    local KEY = "supf_cicada"
-    if (card.ability.cicadas > 1) then KEY = "supf_cicadas" end
+    local KEY = "j_supf_cicada"
+    if (card.ability.cicadas > 1) then KEY = "j_supf_cicadas" end
     return {
       key = KEY,
       vars = { card.ability.extra.mult, card.ability.cicadas }
