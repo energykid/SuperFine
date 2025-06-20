@@ -70,12 +70,12 @@ end
 function drawFloatingSpriteLegacy(card, atlas, pos, rot, sc, xoff, yoff, index)
   rot = rot or 0
   sc = sc or 1
-  index = index or "nil"
+  index = index or 1
 
   SUPF.FLOATING_SPRITES[index] = SUPF.FLOATING_SPRITES[index] or Sprite(card.T.x, card.T.y, card.T.w, card.T.h, G.ASSET_ATLAS[atlas], {x = pos.x, y = pos.y})
   SUPF.FLOATING_SPRITES[index]:set_role({major = card, role_type = 'Glued', draw_major = card})
-  SUPF.FLOATING_SPRITES[index]:draw_shader('dissolve', 0, nil, false, card.children.center, sc, rot, xoff, yoff)
-  SUPF.FLOATING_SPRITES[index]:draw_shader('dissolve', nil, nil, false, card.children.center, sc, rot, xoff, yoff, nil, 0.6)
+  SUPF.FLOATING_SPRITES[index]:draw_shader('dissolve', 0, nil, false, card.children.center, sc, rot, xoff, yoff, nil, 0.6)
+  SUPF.FLOATING_SPRITES[index]:draw_shader('dissolve', nil, nil, false, card.children.center, sc, rot, xoff, yoff)
 end
 
 -- info is a table:
@@ -91,6 +91,6 @@ function drawFloatingSprite(card, atlas, pos, info, index)
 
   SUPF.FLOATING_SPRITES[index] = SUPF.FLOATING_SPRITES[index] or Sprite(card.T.x, card.T.y, card.T.w, card.T.h, G.ASSET_ATLAS[atlas], {x = pos.x, y = pos.y})
   SUPF.FLOATING_SPRITES[index]:set_role({major = card, role_type = 'Glued', draw_major = card})
-  SUPF.FLOATING_SPRITES[index]:draw_shader('dissolve', 0, nil, false, card.children.center, info.scale, info.rotation, info.position.x, info.position.y + info.shadowLength, nil, info.shadowDepth)
-  SUPF.FLOATING_SPRITES[index]:draw_shader('dissolve', nil, nil, false, card.children.center, info.scale, info.rotation, info.position.x, info.position.y, nil, info.depth)
+  SUPF.FLOATING_SPRITES[index]:draw_shader('dissolve', 0, nil, false, card.children.center, info.scale, info.rotation, info.position.x, info.position.y + info.shadowLength, nil, 0.6)
+  SUPF.FLOATING_SPRITES[index]:draw_shader('dissolve', nil, nil, false, card.children.center, info.scale, info.rotation, info.position.x, info.position.y)
 end

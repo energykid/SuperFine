@@ -49,9 +49,7 @@ SMODS.Joker {
       drawFloatingSprite(card, "supf_AttunedJokers", { x = 2, y = 1 }, {
         rotation = rotate_mod, 
         scale = sc / 2,
-        position = {x = 0, y = 0},
-        shadowDepth = sc / 4,
-        depth = sc
+        position = {x = 0, y = 0}
       }, 'blueJava_Banana')
 
     end
