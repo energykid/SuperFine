@@ -1,11 +1,27 @@
 -- Blue Java
-NewAttunement('Cavendish', 'supf_bluejava')
+NewAttunement('cavendish', 'supf_blueJava')
 
-SMODS.DrawStep {
-  key = 'supf_bluejava',
-  order = 20,
-  func = function(card)
-    if card.ability.bluejava and card.config.center.discovered then
+SMODS.Joker {
+
+  key = 'blueJava',
+
+  config = { bluejava = true, extra = { Xmult = 3 }, odds1 = 4, odds2 = 10, add1 = 0.25, add2 = 1, oddsReset = 500 },
+  
+  rarity = "supf_attuned",
+  
+  cost = 15,
+  
+  atlas = 'AttunedJokers',
+  pos = { x = 0, y = 1 },
+
+  loc_vars = function(self, info_queue, card)
+    return {
+      vars = { card.ability.extra.Xmult, card.ability.odds1, card.ability.add1, card.ability.odds2, card.ability.add2, card.ability.oddsReset, getProbability() }
+      }
+  end,
+  
+  draw = function(self, card, layer)
+    if card.config.center.discovered then
       local timer = G.TIMERS.REAL
 
       card.visualtimer = card.visualtimer or 0
@@ -22,33 +38,23 @@ SMODS.DrawStep {
       rnd1 = rnd1 * 0.00025
       rnd2 = rnd2 * 0.00025
 
-      drawFloatingSprite(card, "supf_AttunedJokers", { x = 1, y = 1 }, rotate_mod * 0.5, scale_mod * 0.7, 0, 0, 4)
-      drawFloatingSprite(card, "supf_AttunedJokers", { x = 2, y = 1 }, rotate_mod, (scale_mod * 1.2) - 0.015 + (math.sin(card.visualtimer / 50) * 0.05), 0, 0, 5)
+      local sc = (scale_mod * 1.2) - 0.015 + (math.sin(card.visualtimer / 50) * 0.05)
+
+      drawFloatingSprite(card, "supf_AttunedJokers", { x = 1, y = 1 }, {
+        rotation = rotate_mod * 0.5, 
+        scale = scale_mod * 0.7, 
+        position = {x = 0, y = 0}
+      }, 'blueJava_Lightning')
+
+      drawFloatingSprite(card, "supf_AttunedJokers", { x = 2, y = 1 }, {
+        rotation = rotate_mod, 
+        scale = sc / 2,
+        position = {x = 0, y = 0}
+      }, 'blueJava_Banana')
 
     end
   end,
-  conditions = {vortex = false, facing = "front", discovered = true}
-}
-SMODS.Joker {
 
-  key = 'bluejava',
-
-  config = { bluejava = true, extra = { Xmult = 3 }, odds1 = 4, odds2 = 10, add1 = 0.25, add2 = 1, oddsReset = 500 },
-  
-  rarity = "supf_attuned",
-  
-  cost = 15,
-  
-  atlas = 'AttunedJokers',
-  pos = { x = 0, y = 1 },
-
-  loc_vars = function(self, info_queue, card)
-    return {
-      key = "supf_blueJava",
-      vars = { card.ability.extra.Xmult, card.ability.odds1, card.ability.add1, card.ability.odds2, card.ability.add2, card.ability.oddsReset, getProbability() }
-      }
-  end,
-  
   calculate = function(self, card, context)
     
     if context.joker_main then

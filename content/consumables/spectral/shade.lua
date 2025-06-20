@@ -11,7 +11,8 @@ SMODS.Consumable {
         info_queue[#info_queue + 1] = G.P_CENTERS[card.ability.mod_conv]
         return {
             key = 'supf_shade',
-            vars = { card.ability.max_highlighted, localize { type = 'name_text', set = 'Enhanced', key = card.ability.mod_conv }} 
+            vars = { card.ability.max_highlighted, localize { type = 'name_text', set = 'Enhanced', key = card.ability.mod_conv },
+            colours = {HEX('9A89BB')}}
         }
     end,
 }

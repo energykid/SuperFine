@@ -13,9 +13,9 @@ SMODS.Joker {
   pos = { x = 2, y = 0 },
 
   loc_vars = function(self, info_queue, card)
-    local KEY = "supf_cucumber"
+    local KEY = "j_supf_cucumber"
     if card.ability.extra.mult == 0 then
-      KEY = "supf_cucumber_alt"
+      KEY = "j_supf_cucumber_alt"
     end
     
     return { key = KEY, vars = { card.ability.extra.mult, card.ability.extra.odds, card.ability.extra.multBack, getProbability() } }

@@ -24,6 +24,6 @@ SMODS.Blind {
             end
         end
 
-        return #suits < 2
+        return #suits == 2
     end
 }

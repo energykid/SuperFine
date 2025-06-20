@@ -1,35 +1,4 @@
 -- Archibald
-do
-SMODS.DrawStep {
-  key = 'supf_archibald',
-  order = 20,
-  func = function(card)
-    if card.ability.archibald and card.config.center.discovered then
-      local timer = G.TIMERS.REAL
-
-      local timeroff = timer + 0.25
-
-      local scale_mod = 0.07 + 0.02*math.sin(1.8*(timeroff)) + 0.00*math.sin(((timeroff) - math.floor((timeroff)))*math.pi*14)*(1 - ((timeroff) - math.floor((timeroff))))^3
-      local rotate_mod = 0.05*math.sin(1.219*(timeroff)) + 0.00*math.sin(((timeroff))*math.pi*5)*(1 - ((timeroff) - math.floor((timeroff))))^2
-
-      local xoff = 0
-      local yoff = 0
-
-      if card.config.center.rotlayer == 2 then
-        rotate_mod = rotate_mod + (timeroff)
-      end
-
-      if card.config.center.facelayer == 2 then
-        xoff = 0.05*math.sin(0.8*timeroff)
-        yoff = 0.05*math.sin((1.6*timeroff)+0.5)
-      end
-
-      drawFloatingSprite(card, "supf_Jokers", { x = 9, y = 0 }, rotate_mod, scale_mod, xoff, yoff, 1)
-
-    end
-  end,
-  conditions = {vortex = false, facing = "front", discovered = true}
-}
 
 SMODS.Joker {
 
@@ -43,10 +12,10 @@ SMODS.Joker {
   
   atlas = 'Jokers',
   pos = { x = 8, y = 0 },
+  soul_pos = { x = 9, y = 0 },
 
   loc_vars = function(self, info_queue, card)
     return {
-      key = "supf_archibald",
       vars = { card.ability.cards_to_create }
       }
   end,
@@ -74,5 +43,3 @@ SMODS.Joker {
     end
   end
 }
-end
-
