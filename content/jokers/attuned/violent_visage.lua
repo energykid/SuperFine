@@ -38,8 +38,8 @@ SMODS.Joker {
       rnd1 = rnd1 * 0.00025
       rnd2 = rnd2 * 0.00025
 
-      drawFloatingSprite(card, "supf_AttunedJokers", { x = 2, y = 3 }, rotate_mod * 0.2, scale_mod * 0.7, rnd1, rnd2, 'violent_visage_1')
-      drawFloatingSprite(card, "supf_AttunedJokers", { x = 1, y = 3 }, rotate_mod * 4, (scale_mod * 1.2) - 0.015 + (math.sin(card.visualtimer / 50) * 0.05), rnd1 * 2, rnd2 * 2, 'violent_visage_2')
+      drawFloatingSpriteLegacy(card, "supf_AttunedJokers", { x = 2, y = 3 }, rotate_mod * 0.2, scale_mod * 0.7, rnd1, rnd2, 'violent_visage_1')
+      drawFloatingSpriteLegacy(card, "supf_AttunedJokers", { x = 1, y = 3 }, rotate_mod * 4, (scale_mod * 1.2) - 0.015 + (math.sin(card.visualtimer / 50) * 0.05), rnd1 * 2, rnd2 * 2, 'violent_visage_2')
 
     end
   end,

@@ -38,8 +38,21 @@ SMODS.Joker {
       rnd1 = rnd1 * 0.00025
       rnd2 = rnd2 * 0.00025
 
-      drawFloatingSprite(card, "supf_AttunedJokers", { x = 1, y = 1 }, rotate_mod * 0.5, scale_mod * 0.7, 0, 0, 4)
-      drawFloatingSprite(card, "supf_AttunedJokers", { x = 2, y = 1 }, rotate_mod, (scale_mod * 1.2) - 0.015 + (math.sin(card.visualtimer / 50) * 0.05), 0, 0, 5)
+      local sc = (scale_mod * 1.2) - 0.015 + (math.sin(card.visualtimer / 50) * 0.05)
+
+      drawFloatingSprite(card, "supf_AttunedJokers", { x = 1, y = 1 }, {
+        rotation = rotate_mod * 0.5, 
+        scale = scale_mod * 0.7, 
+        position = {x = 0, y = 0}
+      }, 'blueJava_Lightning')
+
+      drawFloatingSprite(card, "supf_AttunedJokers", { x = 2, y = 1 }, {
+        rotation = rotate_mod, 
+        scale = sc / 2,
+        position = {x = 0, y = 0},
+        shadowDepth = sc / 4,
+        depth = sc
+      }, 'blueJava_Banana')
 
     end
   end,

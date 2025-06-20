@@ -22,8 +22,8 @@ SMODS.DrawStep {
       rnd1 = rnd1 * 0.00025
       rnd2 = rnd2 * 0.00025
 
-      drawFloatingSprite(card, "supf_AttunedJokers", { x = 2, y = 0 }, rotate_mod, scale_mod * 1.05, (math.sin((card.visualtimer + 7) / 33) * 0.05), (math.sin(card.visualtimer / 32) * 0.05), 2)
-      drawFloatingSprite(card, "supf_AttunedJokers", { x = 1, y = 0 }, rotate_mod * 1.1, scale_mod * 1.1, 0, 0, 3)
+      drawFloatingSpriteLegacy(card, "supf_AttunedJokers", { x = 2, y = 0 }, rotate_mod, scale_mod * 1.05, (math.sin((card.visualtimer + 7) / 33) * 0.05), (math.sin(card.visualtimer / 32) * 0.05), 2)
+      drawFloatingSpriteLegacy(card, "supf_AttunedJokers", { x = 1, y = 0 }, rotate_mod * 1.1, scale_mod * 1.1, 0, 0, 3)
 
     end
   end,

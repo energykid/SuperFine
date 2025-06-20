@@ -17,7 +17,7 @@ SMODS.DrawStep {
       local at = card.ability.arrowtimer
       local sc = 0.5 + (math.sin(at / 28) * 0.05)
       local rot = math.sin(at / 35) * math.rad(2.5)
-      drawFloatingSprite(card, 'supf_glimby_arrow', {x = 0, y = 0}, rot, sc, 0.25, 0.25 + (math.sin(at / 24) * 0.01), 'glimby_arrow')
+      drawFloatingSpriteLegacy(card, 'supf_glimby_arrow', {x = 0, y = 0}, rot, sc, 0.25, 0.25 + (math.sin(at / 24) * 0.01), 'glimby_arrow')
     end
   end,
   conditions = {vortex = false, facing = "front", discovered = true}

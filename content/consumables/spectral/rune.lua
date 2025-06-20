@@ -16,12 +16,12 @@ SMODS.DrawStep {
                 card.runicGlowTimer = card.runicGlowTimer or 0
                 card.runicGlowTimer = card.runicGlowTimer + 1
                 card.runicGlowScale = lerp(card.runicGlowScale, 0.55, 0.05)
-                drawFloatingSprite(card, 'supf_AttunementGlow', {x = 0, y = 0}, card.runicGlowTimer * math.rad(5), card.runicGlowScale + (math.sin(card.runicGlowTimer / 30) * 0.02), 0, 0, 'runic_glow')
+                drawFloatingSpriteLegacy(card, 'supf_AttunementGlow', {x = 0, y = 0}, card.runicGlowTimer * math.rad(5), card.runicGlowScale + (math.sin(card.runicGlowTimer / 30) * 0.02), 0, 0, 'runic_glow')
             else
                 if card.runicGlowScale then
                     card.runicGlowScale = lerp(card.runicGlowScale, 0, 0.05)
                     card.runicGlowTimer = card.runicGlowTimer + card.runicGlowScale * 2
-                    drawFloatingSprite(card, 'supf_AttunementGlow', {x = 0, y = 0}, card.runicGlowTimer * math.rad(5), card.runicGlowScale + (math.sin(card.runicGlowTimer / 30) * 0.02), 0, 0, 'runic_glow')
+                    drawFloatingSpriteLegacy(card, 'supf_AttunementGlow', {x = 0, y = 0}, card.runicGlowTimer * math.rad(5), card.runicGlowScale + (math.sin(card.runicGlowTimer / 30) * 0.02), 0, 0, 'runic_glow')
                 end
             end
         end
@@ -122,9 +122,9 @@ SMODS.Consumable {
             card.runic_timer = card.runic_timer + 1
             local rot = math.sin(card.runic_timer / 46) * math.rad(10)
             local sc = 0.5 * (math.sin(card.runic_timer / 62) * 0.1)
-            drawFloatingSprite(card, 'supf_Spectrals', {x = 2, y = 0}, rot + math.rad(card.runic_timer), 0.35, 0, 0, 'the_rune_spiral')
+            drawFloatingSpriteLegacy(card, 'supf_Spectrals', {x = 2, y = 0}, rot + math.rad(card.runic_timer), 0.35, 0, 0, 'the_rune_spiral')
             love.graphics.setShader()
-            drawFloatingSprite(card, 'supf_Spectrals', {x = 1, y = 0}, rot, sc, 0, 0, 'the_rune')
+            drawFloatingSpriteLegacy(card, 'supf_Spectrals', {x = 1, y = 0}, rot, sc, 0, 0, 'the_rune')
 
             SUPF.RUNE_SELECTED = false
             if G.consumeables and G.consumeables.highlighted then
