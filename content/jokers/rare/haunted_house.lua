@@ -1,5 +1,5 @@
--- Ecstatic Joker
-do
+-- Haunted House
+
 SMODS.Joker {
 
   key = 'hauntedHouse',
@@ -33,4 +33,3 @@ SMODS.Joker {
     end
   end
 }
-end

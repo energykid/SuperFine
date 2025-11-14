@@ -1,5 +1,5 @@
 -- Ecstatic Joker
-do
+
 SMODS.Joker {
 
   key = 'ecstaticJoker',
@@ -28,4 +28,3 @@ SMODS.Joker {
     end
   end
 }
-end

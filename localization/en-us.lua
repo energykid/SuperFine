@@ -122,6 +122,17 @@ return {
           '{C:attention}3 face cards'
         }
       },
+      j_supf_stoneFactory = {
+        name = 'Stone Factory',
+        text = {
+          'Create a {C:attention}#1#',
+          'and add it to',
+          'your deck if',
+          'played hand has',
+          'a {C:mult}#2#',
+          'and an {C:chips}#3#'
+        }
+      },
       j_supf_archibald = {
         name = 'Archibald',
         text = {

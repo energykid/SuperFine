@@ -1,4 +1,5 @@
 -- Glimby
+
 SMODS.load_file("content/particles/glimby_explosion.lua")()
 
 SMODS.Atlas {

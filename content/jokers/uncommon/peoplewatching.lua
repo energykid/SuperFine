@@ -1,5 +1,5 @@
 -- Peoplewatching
-do
+
 SMODS.Joker {
 
   key = 'peoplewatching',
@@ -37,5 +37,4 @@ SMODS.Joker {
     end
   end
 }
-end
 

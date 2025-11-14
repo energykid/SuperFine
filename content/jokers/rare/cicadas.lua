@@ -1,4 +1,5 @@
 -- Cicadas
+
 SMODS.Atlas {
 	key = "cicada",
 	path = "supf_cicada.png",
