@@ -1,5 +1,5 @@
 -- Voidcard
-do
+
 SMODS.load_file("content/particles/voidcard_particle.lua")()
 SMODS.Joker {
   key = 'voidcard',
@@ -66,4 +66,3 @@ SMODS.Joker {
     end
   end
 }
-end

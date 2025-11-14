@@ -5,7 +5,6 @@ SMODS.Sound {
     path = "emphasis.ogg"
 }
 
-do
 SMODS.Joker {
 
   key = 'emphasis',
@@ -42,4 +41,3 @@ SMODS.Joker {
     end
   end
 }
-end

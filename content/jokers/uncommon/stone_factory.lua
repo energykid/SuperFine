@@ -1,5 +1,12 @@
 -- Stone Factory
 
+SMODS.Sound {
+    key = "cobblestone_generator",
+    path = "cobblestone_generator.ogg"
+}
+
+SMODS.load_file("content/particles/smoke_particle.lua")()
+
 SMODS.Joker {
 
   key = 'stoneFactory',
@@ -36,7 +43,7 @@ SMODS.Joker {
         local cen = nil
         local cards = {}
           local _suit, _rank =
-            pseudorandom_element(SMODS.Suits, pseudoseed('grim_create')).card_key, 'A'
+            pseudorandom_element(SMODS.Suits, pseudoseed('stonefactory_create')).card_key, 'A'
           for _, enhancement_center in pairs(G.P_CENTER_POOLS["Enhanced"]) do
           if enhancement_center.key == 'm_stone' then
             cen = enhancement_center
@@ -46,7 +53,15 @@ SMODS.Joker {
           front = G.P_CARDS[_suit .. '_' .. _rank],
           center = cen
         }, G.deck, nil)
-
+    
+        local pos = getCardPosition(card)
+        
+        for i = 1, 20 do
+          table.insert(SUPF.PARTICLES, #SUPF.PARTICLES + 1, NewSmokeParticle(pos.x, pos.y, 1 + (math.random(40) / 10)))
+        end
+        
+        play_sound("supf_cobblestone_generator", 1, 1)
+        
         SMODS.calculate_context({ playing_card_added = true, cards = cards })
         
       end
