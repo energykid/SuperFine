@@ -252,6 +252,17 @@ return {
           "{V:1}#2#s",
         }
       },
+      c_supf_elements = {
+        name = 'The Elements',
+        text = {
+          "Enhances {C:attention}leftmost{}",
+          "selected card",
+          "into a {C:mult}#1#{} and",
+          "{C:attention}rightmost{}",
+          "selected card",
+          "into a {C:chips}#2#{}",
+        }
+      },
     },
     Spectral = {
       supf_rune = {
@@ -282,8 +293,22 @@ return {
       m_supf_obsidian = {
         name="Obsidian Card",
         text={
-          '{C:white,X:chips}X#1#{} chips and {C:white,X:mult}X#2#{} mult',
-          'no rank or suit'
+          '{C:white,X:chips}X#1#{} Chips and {C:white,X:mult}X#2#{} Mult',
+          'No rank or suit'
+        }
+      },
+      m_supf_fire = {
+        name="Fire Card",
+        text={
+          '{C:white,X:mult}X#1#{} Mult if an',
+          '{C:chips}Ice Card{} is in played hand'
+        }
+      },
+      m_supf_ice = {
+        name="Ice Card",
+        text={
+          '{C:white,X:chips}X#1#{} Chips if a',
+          '{C:mult}Fire Card{} is in played hand'
         }
       }
     },

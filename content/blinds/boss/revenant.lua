@@ -1,5 +1,19 @@
 -- The Revenant
 
+local rev_enable = function(self)
+  G.E_MANAGER:add_event(Event({
+    blocking = false,
+    func = function ()
+      increaseCardSelection(-1)
+      return G.GAME.blind.name ~= 'bl_supf_revenant'
+    end
+  }))
+end
+
+local rev_disable = function(self)
+  increaseCardSelection(1)
+end
+
 SMODS.Blind {
     key = 'revenant',
     atlas = 'Blinds',
@@ -10,13 +24,6 @@ SMODS.Blind {
     end,
     boss = {min = 4},
     boss_colour = HEX('6D758D'),
-    set_blind = function(self)
-        G.E_MANAGER:add_event(Event({
-            blocking = false,
-            func = function ()
-                increaseCardSelection(-1)
-                return G.GAME.blind.name ~= 'bl_supf_revenant'
-            end
-        }))
-    end
+    set_blind = rev_enable,
+    disable = rev_disable
 }
