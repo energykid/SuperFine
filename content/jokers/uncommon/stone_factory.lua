@@ -11,7 +11,7 @@ SMODS.Joker {
 
   key = 'stoneFactory',
   
-  rarity = 3,
+  rarity = 2,
   
   cost = 5,
   
