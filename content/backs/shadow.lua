@@ -3,7 +3,7 @@ SMODS.Back {
     key = "shadow",
     atlas = "Decks",
     pos = { x = 0, y = 0 },
-    unlocked = false,
+    unlocked = true,
     apply = function(self, back)
         G.E_MANAGER:add_event(Event({
             func = function()
@@ -35,6 +35,6 @@ SMODS.Back {
         return { vars = { other_name } }
     end,
     check_for_unlock = function(self, args)
-        return args.type == 'win_deck' and get_deck_win_stake('b_ghost') > 1
+        return args.type == 'win_deck'
     end
 }
