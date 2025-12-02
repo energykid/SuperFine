@@ -2,13 +2,8 @@
 	"folders": [
 		{
 			"path": "."
-		},
-		{
-			"path": "../lovely/dump"
-		},
-		{
-			"path": "../smods"
 		}
 	],
-	"settings": {}
+	"settings": {},
+	"Lua.workspace.library": ["C:/Users/Mint/AppData/Roaming/Balatro/Mods/Steamodded", "C:/Users/Mint/AppData/Roaming/Balatro/Mods/lovely/dump"]
 }

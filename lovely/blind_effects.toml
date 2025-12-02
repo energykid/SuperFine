@@ -14,6 +14,10 @@ function Game:update_hand_played(dt)
 '''
 position = "after"
 payload = '''
+if G.GAME.blind.name == 'bl_supf_revenant' then
+    SUPF.REV_EFFECT = false
+end
+
 if G.GAME.blind.name == 'bl_supf_stack' then
     G.E_MANAGER:add_event(Event({trigger = 'after',
     delay = 0.2,

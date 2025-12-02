@@ -359,6 +359,7 @@ return {
         name = "The Revenant",
         text = {
           '-1 hand selection size',
+          'for your first hand'
         }
       },
       bl_supf_mace = {

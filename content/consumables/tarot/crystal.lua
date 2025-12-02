@@ -8,6 +8,10 @@ SMODS.Consumable {
     
     config = { max_highlighted = 2, mod_conv = 'm_supf_obsidian' },
 
+    keep_on_use = function(self, card)
+        return card.area ~= G.consumeables
+    end,
+
     can_use = function(self, card)
         local currenthand = G.hand
         if card.area == G.consumeables then

@@ -6,7 +6,7 @@ SMODS.Consumable {
     atlas = 'Tarots', 
     pos = { x = 0, y = 0 },
     
-    config = { max_highlighted = 4 },
+    config = { max_highlighted = 3 },
 
     use = function(self, card, area, copier)
         local currenthand = G.hand

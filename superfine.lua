@@ -1,5 +1,6 @@
 SUPF = {}
 
+SUPF.REV_EFFECT = false
 SUPF.WINDOW_PAD = {x = 0, y = 0}
 SUPF.DRAW_SCALE = 1
 SUPF.PARTICLES = {}
