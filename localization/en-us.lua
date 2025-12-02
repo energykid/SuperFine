@@ -56,6 +56,15 @@ return {
           "{C:mult}128{} Mult"
         }
       },
+      j_supf_timeBomb = {
+        name = "Time Bomb",
+        text = {
+          "{C:mult}+#2#{} Mult after",
+          "every {C:attention}#1#{}th card",
+          "scored",
+          "{C:inactive}(Currently #3#)"
+        }
+      },
       j_supf_cicadas = {
         name = "#2# Cicadas",
         text = {
@@ -165,6 +174,18 @@ return {
           '{X:mult,C:white}X3{} Mult at end of round'
         }
       },
+      j_supf_thePayoff = {
+        name = 'The Payoff',
+        text = {
+          '{X:mult,C:white}X#1#{} Mult',
+          'Gain {C:attention}$#2#{} for each',
+          'remaining discard',
+          'and add an additional',
+          '{X:mult,C:white}X#3#{} Mult if no',
+          'discards used at',
+          'the end of the round'
+        }
+      },
       j_supf_rainstorm = {
         name = 'Storm',
         text = {
@@ -263,6 +284,16 @@ return {
           "{V:1}#2#s",
         }
       },
+      c_supf_absence = {
+        name = 'Absence',
+        text = {
+          "Enhances up to",
+          "{C:attention}#1#{} selected cards,",
+          "{C:mult}PERMANENTLY debuffs{}",
+          "one random",
+          "card in hand"
+        }
+      },
       c_supf_elements = {
         name = 'The Elements',
         text = {
@@ -349,6 +380,7 @@ return {
         name = "The Revenant",
         text = {
           '-1 hand selection size',
+          'for your first hand'
         }
       },
       bl_supf_mace = {

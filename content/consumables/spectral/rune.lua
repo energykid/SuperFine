@@ -46,7 +46,7 @@ SMODS.Consumable {
 
     keep_on_use = function(self, card)
         return card.area ~= G.consumeables
-    end, 
+    end,
 
     config = {extra = {is_rune = true}},
     
