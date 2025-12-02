@@ -59,9 +59,9 @@ return {
       j_supf_timeBomb = {
         name = "Time Bomb",
         text = {
-          "{C:mult}+#2#{} Mult{} after",
-          "every {C:attention}#1#th card",
-          "{C:attention}scored",
+          "{C:mult}+#2#{} Mult after",
+          "every {C:attention}#1#{}th card",
+          "scored",
           "{C:inactive}(Currently #3#)"
         }
       },
