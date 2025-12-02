@@ -174,6 +174,18 @@ return {
           '{X:mult,C:white}X3{} Mult at end of round'
         }
       },
+      j_supf_thePayoff = {
+        name = 'The Payoff',
+        text = {
+          '{X:mult,C:white}X#1#{} Mult',
+          'Gain {C:attention}$#2#{} for each',
+          'remaining discard',
+          'and add an additional',
+          '{X:mult,C:white}X#3#{} Mult if no',
+          'discards used at',
+          'the end of the round'
+        }
+      },
       j_supf_rainstorm = {
         name = 'Storm',
         text = {
