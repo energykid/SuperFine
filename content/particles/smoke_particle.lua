@@ -13,8 +13,8 @@ function NewSmokeParticle(x, y, scale)
 
   blast.MaxFrames = 6
   
-  blast.ScaleX = scale
-  blast.ScaleY = scale
+  blast.ScaleX = scale * 1.5
+  blast.ScaleY = scale * 1.5
 
   blast.Xvel = (-100 + math.random(200)) / 5
   blast.Yvel = (-75 + math.random(150)) / 5
