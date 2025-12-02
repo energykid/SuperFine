@@ -263,6 +263,16 @@ return {
           "{V:1}#2#s",
         }
       },
+      c_supf_absence = {
+        name = 'Absence',
+        text = {
+          "Enhances up to",
+          "{C:attention}#1#{} selected cards,",
+          "{C:mult}PERMANENTLY debuffs{}",
+          "one random",
+          "card in hand"
+        }
+      },
       c_supf_elements = {
         name = 'The Elements',
         text = {

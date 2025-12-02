@@ -17,6 +17,60 @@ function changeCardTo(card, new_suit, new_rank)
     G.GAME.blind:debuff_card(card)
 end
 
+function flipCardsThenRun(cards, func)
+
+    cards = cards[1] and cards or {cards}
+
+    G.E_MANAGER:add_event(Event({
+            trigger = 'after',
+            delay = 0.4,
+            func = function()
+                for i, card in ipairs(cards) do
+                    play_sound('tarot1', 1)
+                    card:juice_up(0.3, 0.5)
+                end
+                return true
+            end
+        }))
+        
+            G.E_MANAGER:add_event(Event({
+                trigger = 'after',
+                delay = 0.15,
+                func = function()
+                    for i, card in ipairs(cards) do
+                        card:flip()
+                        play_sound('card1', 1)
+                        card:juice_up(0.3, 0.3)
+                    end
+                    return true
+                end
+            }))
+            delay(0.2)
+            G.E_MANAGER:add_event(Event({
+                trigger = 'after',
+                delay = 0.1,
+                func = function()
+                    for i, card in ipairs(cards) do
+                        func(card)
+                    end
+                    return true
+                end
+            }))
+            G.E_MANAGER:add_event(Event({
+                trigger = 'after',
+                delay = 0.15,
+                func = function()
+                    for i, card in ipairs(cards) do
+                        card:flip()
+                        play_sound('tarot2', 1, 0.6)
+                        card:juice_up(0.3, 0.3)
+                    end
+                    return true
+                end
+            }))
+        delay(0.5)
+end
+
 function flipCardToEnhance(cards, enhancement)
 
     cards = cards[1] and cards or {cards}

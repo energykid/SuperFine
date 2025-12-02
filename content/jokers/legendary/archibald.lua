@@ -24,10 +24,9 @@ SMODS.Joker {
     if context.skip_blind or context.setting_blind then
       card.ability.cards_to_create = card.ability.cards_to_create or 2
       local cards = {}
-        local _suit, _rank =
-          pseudorandom_element(SMODS.Suits, pseudoseed('grim_create')).card_key, 'A'
-        local cen_pool = {}
-        for _, enhancement_center in pairs(G.P_CENTER_POOLS["Enhanced"]) do
+      local _suit, _rank = pseudorandom_element(SMODS.Suits, pseudoseed('supf_archibald')).card_key, 'A'
+      local cen_pool = {}
+      for _, enhancement_center in pairs(G.P_CENTER_POOLS["Enhanced"]) do
         if enhancement_center.key ~= 'm_stone' and not enhancement_center.overrides_base_rank then
           cen_pool[#cen_pool + 1] = enhancement_center
         end
