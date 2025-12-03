@@ -9,7 +9,7 @@ SMODS.Joker {
 
   key = 'emphasis',
 
-  config = { extra = { mult = 20 } },
+  config = { extra = { mult = 10 } },
   
   rarity = 2,
   
