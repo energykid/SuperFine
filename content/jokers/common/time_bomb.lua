@@ -47,7 +47,7 @@ SMODS.Joker {
 
     key = 'timeBomb',
 
-    config = { max_cards_scored = 10, cards_scored = 0, extra = { mult = 20 } },
+    config = { max_cards_scored = 10, cards_scored = 0, extra = { mult = 15 } },
 
     rarity = 1,
 
