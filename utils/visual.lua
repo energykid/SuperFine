@@ -67,6 +67,10 @@ function drawShadedSprite(x, y, r, sx, sy, atlas, fr, maxfr, shadow)
   end
 end
 
+function addParticle(part)
+  table.insert(SUPF.PARTICLES, #SUPF.PARTICLES + 1, part)
+end
+
 function drawFloatingSpriteLegacy(card, atlas, pos, rot, sc, xoff, yoff, index)
   rot = rot or 0
   sc = sc or 1

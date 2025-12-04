@@ -1,6 +1,5 @@
 SUPF = {}
 
-SUPF.REV_EFFECT = false
 SUPF.WINDOW_PAD = {x = 0, y = 0}
 SUPF.DRAW_SCALE = 1
 SUPF.PARTICLES = {}
@@ -9,6 +8,7 @@ SUPF.GRADIENTS = {}
 SUPF.ATTUNEMENTS = {}
 SUPF.PLAY_LIMIT_MOD = 0
 SUPF.MURDER_FRAMES = 0
+SUPF.REV_EFFECT = false
 SUPF.RUNE_SELECTED = false -- visual
 
 function do_folder(folder)
@@ -21,6 +21,7 @@ end
 
 do_folder("utils")
 do_folder("systems")
+SMODS.load_file("content/particles/custom_smoke.lua")()
 SMODS.load_file("content/content_main.lua")()
 
 if SMODS and SMODS.current_mod then

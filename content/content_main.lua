@@ -80,6 +80,8 @@ SMODS.Rarity {
     },
 }
 
+SMODS.load_file("content/particles/custom_smoke.lua")()
+
 -- Enhancements
 do_folder("content/enhancements")
 

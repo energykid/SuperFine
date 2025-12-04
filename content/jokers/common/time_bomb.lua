@@ -10,6 +10,13 @@ SMODS.Sound {
     path = "timebomb_tick.ogg"
 }
 
+SMODS.Atlas {
+	key = "timebomb_puff",
+	path = "supf_timebomb_puff.png",
+	px = 12,
+	py = 10
+}
+
 function tick()
     G.E_MANAGER:add_event(Event({
         trigger = "after",
@@ -17,6 +24,20 @@ function tick()
         blockable = true,
         func = function()
             play_sound("supf_timebomb_tick", 1, 1)
+            return true
+        end
+    }))
+end
+
+function boom(card)
+    G.E_MANAGER:add_event(Event({
+        trigger = "after",
+        blockable = true,
+        func = function()
+            play_sound("supf_timebomb_boom", 1, 1)
+            for _ = 1, 10, 1 do
+                addParticle(NewCustomSmokeParticle(getCardPosition(card), vec2(math.random(-36, 36), math.random(-27, 27)), "supf_timebomb_puff", 9, 0, function(t) t.Xvel = t.Xvel * 0.8; t.Yvel = t.Yvel * 0.8; t.ScaleX = lerp(t.ScaleX, 7, 0.15); t.ScaleY = lerp(t.ScaleY, 14, 0.15); t.Yvel = t.Yvel - 1 end));
+            end
             return true
         end
     }))
@@ -47,14 +68,13 @@ SMODS.Joker {
             
             if (card.ability.cards_scored >= card.ability.max_cards_scored) then
                 card.ability.cards_scored = 0
-                tick()
+                boom(context.other_card)
                 return {
                     message = "Kaboom!",
                     colour = G.C.RED,
-                    mult_mod = card.ability.extra.mult,
-                    sound = "supf_timebomb_boom"
+                    mult_mod = card.ability.extra.mult
                 }
-            elseif (card.ability.cards_scored > card.ability.max_cards_scored - 3) then
+            elseif (card.ability.cards_scored >= card.ability.max_cards_scored - 3) then
                 tick()
             end
         end
