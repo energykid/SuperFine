@@ -70,8 +70,6 @@ SMODS.Joker {
                 card.ability.cards_scored = 0
                 boom(context.other_card)
                 return {
-                    message = "Kaboom!",
-                    colour = G.C.RED,
                     mult_mod = card.ability.extra.mult
                 }
             elseif (card.ability.cards_scored >= card.ability.max_cards_scored - 3) then
