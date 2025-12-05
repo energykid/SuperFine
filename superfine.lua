@@ -1,6 +1,7 @@
 SUPF = {}
 
 SUPF.DRAW_SCRIPTS = {}
+SUPF.CALCULATE_SCRIPTS = {}
 SUPF.UPDATE_SCRIPTS = {}
 SUPF.CONFIG = SMODS.current_mod.config
 SUPF.WINDOW_PAD = {x = 0, y = 0}
@@ -12,7 +13,15 @@ SUPF.ATTUNEMENTS = {}
 SUPF.PLAY_LIMIT_MOD = 0
 SUPF.MURDER_FRAMES = 0
 SUPF.REV_EFFECT = false
-SUPF.RUNE_SELECTED = false -- visual
+SUPF.RUNE_SELECTED = false
+
+SMODS.current_mod.calculate = function(self, context)
+  for _, func in ipairs(SUPF.CALCULATE_SCRIPTS) do
+    local t = func(self, context)
+    if t ~= nil then return t end
+  end
+  return nil
+end
 
 function do_folder(folder)
   local joker_src = NFS.getDirectoryItems(SMODS.current_mod.path .. folder)
@@ -31,7 +40,7 @@ if getSupfModule("content") then
 end
 
 if getSupfModule("visual") then
-  do_folder("visual")
+  SMODS.load_file("visual/visual_main.lua")()
 end
 
 if SMODS and SMODS.current_mod then
