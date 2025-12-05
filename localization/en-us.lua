@@ -389,6 +389,21 @@ return {
           'Reduces rank of played',
           'cards before scoring'
         }
+      },
+      bl_supf_lute = {
+        name = "The Lute",
+        text = {
+          'Lose $1 for each',
+          'empty Joker slot'
+        }
+      },
+      bl_supf_sky = {
+        name = "The Sky",
+        text = {
+          'All cards debuffed if',
+          'less than 2 free',
+          'consumable slots'
+        }
       }
     },
     Back = {
