@@ -1,10 +1,10 @@
 SuperFine!! is a 'Vanilla++' mod - aiming to add content that fits in with vanilla's balance, but stands out on its own.
 
 Currently, it adds:
-23 Jokers,
-5 Boss Blinds,
-four Enhancements,
-two Tarot cards,
+25 Jokers,
+10 Boss Blinds,
+4 Enhancements,
+3 Tarot cards,
 2 Spectral cards,
 one deck,
 and an Attunement system - letting you upgrade your Jokers!

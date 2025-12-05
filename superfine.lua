@@ -1,5 +1,8 @@
 SUPF = {}
 
+SUPF.DRAW_SCRIPTS = {}
+SUPF.UPDATE_SCRIPTS = {}
+SUPF.CONFIG = SMODS.current_mod.config
 SUPF.WINDOW_PAD = {x = 0, y = 0}
 SUPF.DRAW_SCALE = 1
 SUPF.PARTICLES = {}
@@ -21,8 +24,15 @@ end
 
 do_folder("utils")
 do_folder("systems")
-SMODS.load_file("content/particles/custom_smoke.lua")()
-SMODS.load_file("content/content_main.lua")()
+SMODS.load_file("content/particles/custom_particle.lua")()
+
+if getSupfModule("content") then
+  SMODS.load_file("content/content_main.lua")()
+end
+
+if getSupfModule("visual") then
+  do_folder("visual")
+end
 
 if SMODS and SMODS.current_mod then
   
@@ -51,13 +61,21 @@ function Supf_UpdateEverything()
     SUPF.PLAY_LIMIT_MOD = 0
   end
 
-  for i = 1, #SUPF.PARTICLES do
-    if SUPF.PARTICLES[i] ~= nil then
-      SUPF.PARTICLES[i].Update(SUPF.PARTICLES[i])
+  if getSupfModule("visual") then
+    for i = 1, #SUPF.PARTICLES do
+      if SUPF.PARTICLES[i] ~= nil then
+        SUPF.PARTICLES[i].Update(SUPF.PARTICLES[i])
+      end
     end
+  else
+    SUPF.PARTICLES = {}
   end
 
+  for _, func in pairs(SUPF.UPDATE_SCRIPTS) do
+    func()
+  end
 end
+
 
 function Supf_DrawEverything()
   
@@ -68,29 +86,34 @@ function Supf_DrawEverything()
     love.graphics.print(debugtext, 100, 100)
   end
   
-  for i = 1, #SUPF.PARTICLES do
-    if SUPF.PARTICLES[i] ~= nil then
-      SUPF.PARTICLES[i].Draw(SUPF.PARTICLES[i])
+  for _, func in pairs(SUPF.DRAW_SCRIPTS) do
+    func()
+  end
+
+  if getSupfModule("visual") then
+    for i = 1, #SUPF.PARTICLES do
+      if SUPF.PARTICLES[i] ~= nil then
+        SUPF.PARTICLES[i].Draw(SUPF.PARTICLES[i])
+      end
+    end
+
+    if SUPF.MURDER_FRAMES > 0 then
+      love.graphics.setCanvas(G.CANVAS)
+      love.graphics.scale(G.CANV_SCALE)
+      
+      local wid, hei = love.graphics.getDimensions()
+
+      love.graphics.setColor(1, 1, 1, 1)
+      love.graphics.draw(
+        G.ASSET_ATLAS["supf_MurderJoker"].image,
+        love.graphics.newQuad(0, 0, 1, 1, 1, 1),
+        0,
+        0,
+        0,
+        wid,
+        hei,
+        0, 0
+      )
     end
   end
-
-  if SUPF.MURDER_FRAMES > 0 then
-    love.graphics.setCanvas(G.CANVAS)
-    love.graphics.scale(G.CANV_SCALE)
-    
-    local wid, hei = love.graphics.getDimensions()
-
-    love.graphics.setColor(1, 1, 1, 1)
-    love.graphics.draw(
-      G.ASSET_ATLAS["supf_MurderJoker"].image,
-      love.graphics.newQuad(0, 0, 1, 1, 1, 1),
-      0,
-      0,
-      0,
-      wid,
-      hei,
-      0, 0
-    )
-  end
-  
 end

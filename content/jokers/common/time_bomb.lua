@@ -36,7 +36,7 @@ function boom(card)
         func = function()
             play_sound("supf_timebomb_boom", 1, 1)
             for _ = 1, 10, 1 do
-                addParticle(NewCustomSmokeParticle(getCardPosition(card), vec2(math.random(-36, 36), math.random(-27, 27)), "supf_timebomb_puff", 9, 0, function(t) t.Xvel = t.Xvel * 0.8; t.Yvel = t.Yvel * 0.8; t.ScaleX = lerp(t.ScaleX, 7, 0.15); t.ScaleY = lerp(t.ScaleY, 14, 0.15); t.Yvel = t.Yvel - 1 end));
+                addParticle(NewCustomParticle(getCardPosition(card), vec2(math.random(-36, 36), math.random(-27, 27)), "supf_timebomb_puff", 9, 0, function(t) t.Xvel = t.Xvel * 0.8; t.Yvel = t.Yvel * 0.8; t.ScaleX = lerp(t.ScaleX, 7, 0.15); t.ScaleY = lerp(t.ScaleY, 14, 0.15); t.Yvel = t.Yvel - 1 end));
             end
             return true
         end

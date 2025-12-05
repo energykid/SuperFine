@@ -1,6 +1,6 @@
 
 
-function NewCustomSmokeParticle(pos, vel, atlas, scale, rotation, func)
+function NewCustomParticle(pos, vel, atlas, scale, rotation, func)
     local blast = NewParticle(pos.x, pos.y, atlas, 6)
 
     blast.ExtraFunction = func or function(tbl) end
@@ -17,7 +17,7 @@ function NewCustomSmokeParticle(pos, vel, atlas, scale, rotation, func)
     blast.Xvel = vel.x
     blast.Yvel = vel.y
 
-    blast.speedDown = 0.8 + (math.random(100) / 100 * 0.1)
+    blast.speedDown = 0.9 + (math.random(100) / 100 * 0.1)
     
     blast.Update = function(tbl)
         tbl.BaseUpdate(tbl)

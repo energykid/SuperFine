@@ -42,9 +42,17 @@ SMODS.Joker {
             delay = 0.4,
             func = function()
               SUPF.MURDER_FRAMES = 10
-              play_sound('supf_murderjoker')
-              for _, c in ipairs(context.scoring_hand) do
-                c:start_dissolve({G.C.RED}, true, 0, true)
+              if getSupfModule("visual") then
+                play_sound('supf_murderjoker')
+              end
+              if getSupfModule("visual") then
+                for _, c in ipairs(context.scoring_hand) do
+                  c:start_dissolve({G.C.RED}, true, 0, true)
+                end
+              else
+                for _, c in ipairs(context.scoring_hand) do
+                  c:start_dissolve({G.C.RED})
+                end
               end
               return true
             end

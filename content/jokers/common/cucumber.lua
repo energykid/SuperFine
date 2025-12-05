@@ -3,7 +3,7 @@ SMODS.Joker {
 
   key = 'supf_cucumber',
 
-  config = { extra = { mult = 15, odds = 3, multBack = 15 }, isCucumber = true },
+  config = { extra = { mult = 18, odds = 3, multBack = 18 }, isCucumber = true },
   
   rarity = 1,
   
@@ -18,7 +18,7 @@ SMODS.Joker {
       KEY = "j_supf_cucumber_alt"
     end
     
-    return { key = KEY, vars = { card.ability.extra.mult, card.ability.extra.odds, card.ability.extra.multBack, getProbability() } }
+    return { key = KEY, vars = { card.ability.extra.mult, card.ability.extra.odds, card.ability.extra.multBack, getProbability(), card.ability.extra.mult - 6 } }
   end,
   
   calculate = function(self, card, context)
@@ -32,12 +32,13 @@ SMODS.Joker {
     end
     if context.end_of_round and not context.repetition and context.game_over == false and not context.blueprint then
       if card.ability.extra.mult == 0 then 
-        card.ability.extra.mult = 15
+        card.ability.extra.mult = card.ability.extra.multBack
         return {
 					message = 'Reset!'
 				}
       elseif pseudorandom('supf_cucumber') < G.GAME.probabilities.normal / card.ability.extra.odds then
         card.ability.extra.mult = 0
+        card.ability.extra.multBack = card.ability.extra.multBack - 6
         return {
 					message = 'Disabled!'
 				}

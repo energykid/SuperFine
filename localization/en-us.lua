@@ -1,5 +1,36 @@
 return {
+  dictionary = {
+    k_supf_attuned = "Attuned",
+  },
   descriptions = {
+    config = {
+      supf_module_content = {
+        text = {
+        "Content"
+        }
+      },
+      supf_module_content_desc = {
+        text = {
+        'Recommended!',
+        'If enabled, SuperFine!! will add content as usual.',
+        'This includes jokers, consumables, blinds, and more.',
+        'It\'s not all vanilla-styled, but tries to be balanced.'
+        }
+      },
+      supf_module_visual = {
+        text = {
+        "Visual"
+        }
+      },
+      supf_module_visual_desc = {
+        text = {
+        'Recommended!',
+        'If enabled, SuperFine!! will make the game look nice.',
+        'This means some content will have extra visual effects.',
+        'Animations for some common actions may also be changed.'
+        }
+      }
+    },
     Joker = {
       j_supf_ecstaticJoker = {
         name = "Ecstatic Joker",
@@ -10,7 +41,9 @@ return {
       j_supf_emphasis = {
         name = "Emphasis!",
         text = {
-          'Last played card',
+          'If played hand contains',
+          'all {C:attention}numbered cards{} or',
+          '{C:attention}Aces{}, last played card',
           'gives {C:mult}+#1#{} Mult'
         }
       },
@@ -33,7 +66,9 @@ return {
           "{C:green}#4# in #2#{} chance to",
           "negate this card's",
           "effect until the",
-          "next round ends"
+          "next round ends",
+          "and reduce to",
+          "{C:mult}#5#{} Mult"
         }
       },
       j_supf_cucumber_alt = {
@@ -416,9 +451,4 @@ return {
       }
     }
   },
-  misc = {
-    dictionary={
-      k_supf_attuned = "Attuned"
-    }
-  }
 }

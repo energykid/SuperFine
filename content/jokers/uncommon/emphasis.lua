@@ -31,7 +31,11 @@ SMODS.Joker {
       end
     end
     if context.individual and context.cardarea == G.play then
-      if context.other_card == context.scoring_hand[#context.scoring_hand] then
+      local allNumbered = true
+      for _, c in ipairs(G.play.cards) do
+        if c:is_face() then allNumbered = false end
+      end
+      if context.other_card == context.scoring_hand[#context.scoring_hand] and allNumbered then
         return {
           mult_mod = card.ability.extra.mult,
           message = localize{ type = 'variable', key = 'a_mult', vars = { card.ability.extra.mult }},

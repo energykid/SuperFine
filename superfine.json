@@ -2,13 +2,13 @@
 	"id": "superfine",
 	"name": "SuperFine!!",
 	"display_name": "SuperFine!!",
-	"author": ["ENNWAY", "Fred"],
-	"description": "SuperFine is a 'Vanilla++' mod - aiming to add content that fits in with vanilla's balance, but stands out on its own.",
+	"author": ["ENNWAY"],
+	"description": "SuperFine is a mod aiming to add content that stands out while improving the look and feel of some vanilla content.",
 	"prefix": "supf",
 	"main_file": "superfine.lua",
 	"priority": 0,
 	"badge_colour": "FF4A93",
 	"badge_text_colour": "FFFFFF",
-	"version": "1.0.6",
+	"version": "1.1.0",
 	"dependencies": []
 }
